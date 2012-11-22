@@ -79,7 +79,7 @@
 		//Abfrage des Parameters
 		$auswahlParameter=$_REQUEST['mydropdown'];
 		
-		//global $parameter; Simon kann nichts
+		//global $parameter;
 		
 		switch ($auswahlParameter)
 		{

@@ -30,7 +30,7 @@
 
 		<div id="overDiv" style="position:absolute; visibility:hidden; z-index:1000;"></div>
 		
-		<!-- <Form . nötig, weil mit dem Submit-Button etwas gepostet wird. tabelle_test.php gibt an, wo das PHP-Script ist, in dem Fall im selben Dokument, also tabelle_test.php-->
+		<!-- <form...nötig, weil mit dem Submit-Button etwas gepostet wird. tabelle_test.php gibt an, wo das PHP-Script ist, in dem Fall im selben Dokument, also tabelle_test.php-->
 		<form method="post" action="tabelle_test.php">
 			<h1 id="header1"> Tabelle </h1>
 

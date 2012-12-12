@@ -58,6 +58,22 @@
 		</div> 
    </div><!--close sidebar_item-->
   </div><!--close sidebar-->		 
+
+  <div id="official_values">
+	<div class="sidebar">  
+		<div class="sidebar_item">		
+			<h2>Offizielle Werte</h2> 
+				<div>O3:	   
+					<span id="myelement"></span>
+				</div>
+				<div>NO2:	
+					<span id="myelement2"></span>
+				</div>
+			</div>
+		</div>	
+   </div><!--close sidebar_item-->
+  <!--close sidebar_item-->
+  
 	
 	<script src="http://cdn.leafletjs.com/leaflet-0.4/leaflet.js"></script>
 		
@@ -121,10 +137,10 @@
 		
 		
 		for($j=0;$j<count($test_O3);$j+=1){
-				echo 'O3: '.$test_O3[$j]."</br>";
+				//echo 'O3: '.$test_O3[$j]."</br>";
 			}	
 		for($j=0;$j<count($test_NO2);$j+=1){
-				echo 'NO2: '.$test_NO2[$j]."</br>";
+				//echo 'NO2: '.$test_NO2[$j]."</br>";
 			}
 		
 		
@@ -137,6 +153,14 @@
 		?>
 			<script>			
 
+			selector      = "#myelement";
+			selector2      = "#myelement2";
+			var O3= "<?php echo $test_O3[count($test_O3)-1] ?>";
+			var NO2="<?php echo $test_NO2[count($test_NO2)-1] ?>";
+			
+			$(selector).html(O3);
+			$(selector2).html(NO2);
+			
 			var icon = L.icon({
 			iconUrl: 'bilder/egg.png',
 

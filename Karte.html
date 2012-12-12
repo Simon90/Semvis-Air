@@ -46,9 +46,12 @@
             <h2>Auswahl</h2> 
        <div id="Auswahlfelder">
 		<p>Ausgewählte AQEs:</p>
-		<p>Egg1<input type="text" name="Egg1" /> </p>
-		<p>Egg2<input type="text" name="Egg2" /> </p>
-		<p>Egg3<input type="text" name="Egg3" /> </p>
+		<p>Egg1<input type="text" name="Egg1" id=1 /> </p>
+		<p>Egg2<input type="text" name="Egg2" id=2 /> </p>
+		<p>Egg3<input type="text" name="Egg3" id=3 /> </p>
+		<button onClick='auswahlloeschen()'> Auswahl löschen </button>
+		<br>
+		<br>		
 		<FORM METHOD="LINK" ACTION="tabelle.html">
 		<INPUT TYPE="submit" VALUE="Tabelle">
 		</FORM>
@@ -76,30 +79,30 @@
 			popupAnchor:  [0, -12] // point from which the popup should open relative to the iconAnchor
 			});
 			
-			
-			
-			
 			var map = L.map('map').setView([51.963572, 7.613813], 13);
 		  		L.tileLayer('http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/256/{z}/{x}/{y}.png', {
 				maxZoom: 18,
 				attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery ?<a href="http://cloudmade.com">CloudMade</a>'
 				}).addTo(map);
 				
-				function onMapClick(e) {
-					popup
-					/*.setLatLng(e.latlng)
-					.setContent("You clicked the map at " + e.latlng.toString())
-					.openOn(map);*/
-					}
-
-				map.on('click', onMapClick);
+			//writes a value in the selection window
+			function auswahlfenster () {
+			document.getElementById('1').value='Max Mustermann';
+			}
 			
-				var marker = L.marker([51.963572, 7.613813], {icon: icon}).addTo(map);
-				
-				marker.bindPopup("Die Messdaten von AQE Name <br>Temperatur: <a href='somewhere.html' title='Beschreibung des jeweiligen Parameters'>?</a> <br>Luftfeuchtigkeit: <a href='somewhere.html' title='Your pop-up text here'>?</a> <br> Kohlenmonoxid: <a href='somewhere.html' title='Your pop-up text here'>?</a> <br> Ozon: <a href='somewhere.html' title='Your pop-up text here'>?</a> <br> Stickstoffdioxid: <a href='somewhere.html' title='Your pop-up text here'>?</a> <br> <input type='Button' value='Zur Auswahl hinzufügen' />");
-				
-				
-		  </script>
+			//deletes the values in the selection window
+			function auswahlloeschen () {
+			document.getElementById('1').value='';
+			document.getElementById('2').value='';
+			document.getElementById('3').value='';
+			}
+			
+			var marker = L.marker([51.963572, 7.613813], {icon: icon}).addTo(map);
+			//creates a popup
+			marker.bindPopup("Die Messdaten von AQE Name <br>Temperatur: <a href='somewhere.html' title='Beschreibung des jeweiligen Parameters'>?</a> <br>Luftfeuchtigkeit: <a href='somewhere.html' title='Your pop-up text here'>?</a> <br> Kohlenmonoxid: <a href='somewhere.html' title='Your pop-up text here'>?</a> <br> Ozon: <a href='somewhere.html' title='Your pop-up text here'>?</a> <br> Stickstoffdioxid: <a href='somewhere.html' title='Your pop-up text here'>?</a> <br> <br> <input type='button' value='Zur Auswahl hinzufügen' onClick='auswahlfenster()' />");
+		
+		 
+		 </script>
 			
 			<!--Mit dem Befehl unten öffnet sich ein ganz neues Fenster!
 			<a href="Hilfe.html" target="_blank" onClick="ganzneuWindow = window.open('Hilfe.html', '500', 'resizable=no,toolbar=no,scrollbars=yes,width=70,height=60,dependent'); ganzneuWindow.focus(); return false">????</a>

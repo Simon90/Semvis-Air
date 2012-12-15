@@ -84,7 +84,7 @@
 	<script src="http://cdn.leafletjs.com/leaflet-0.4/leaflet.js"></script>
 		
 		<div id="map"></div>
-		
+		/*Messwerte überlappen noch die Elemente bei "Auswahl"/"Ausgewählte AQEs"*/
 		<?php
 		$host = "http://www.uni-muenster.de/Klima/wetter/wetter.php";
 		$filestring = file_get_contents($host);

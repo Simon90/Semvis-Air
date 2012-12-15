@@ -69,6 +69,12 @@
 				<div>NO2:	
 					<span id="myelement2"></span>
 				</div>
+				<div>Relative Luftfeuchtigkeit:
+					<span id=""></span>
+				</div>
+				<div>Lufttemperatur:
+					<span id=""></span>
+				</div>
 			</div>
 		</div>	
    </div><!--close sidebar_item-->
@@ -80,6 +86,32 @@
 		<div id="map"></div>
 		
 		<?php
+		$host = "http://www.uni-muenster.de/Klima/wetter/wetter.php";
+		$filestring = file_get_contents($host);
+		$startpos = 0;
+		while($pos = strpos($filestring, "<td class=", $startpos))
+		{
+		$string = substr($filestring, $pos, strpos($filestring, "</td>", $pos + 1) - $pos);
+		if(stristr($string, '%')) {
+       		 echo $string."</br>";
+		}
+		$startpos = $pos + 1;
+		
+		}
+		
+		$host = "http://www.uni-muenster.de/Klima/wetter/wetter.php";
+		$filestring = file_get_contents($host);
+		$startpos = 0;
+		while($pos = strpos($filestring, "<td class=", $startpos))
+		{
+		$string1 = substr($filestring, $pos, strpos($filestring, "</td>", $pos + 1) - $pos);
+		if(stristr($string1, '°C')) {
+        	echo $string1."</br>";
+		}
+		$startpos = $pos + 1;
+		
+		}
+		
 		$url="http://www.lanuv.nrw.de/luft/temes/heut/MSGE.htm#jetzt";
 		$seitenquelltext=file_get_contents($url);
 		

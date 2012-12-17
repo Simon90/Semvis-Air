@@ -32,19 +32,12 @@ $lat=array();
 $count4=count($json_fulltext);
 for($i=0;$i<$count4;$i++){
 	if(strpos($json_fulltext[$i],'"lat":')!==false){
-		$temp1=explode('"lat":',$json_fulltext[$i]);
-			if(strpos($temp1[1],',"lon"')!==false){ 
-				$temp=explode(',"lon"',$temp1[1]);
-				array_push($lat, substr($temp[0],0,16));
-				}
-			else if(strpos($temp1[1],'"lon"')!==false){
-				$temp=explode('"lon"',$temp1[1]);
-				array_push($lat, substr($temp[0],0,16));
-	}			
+		$temp1=explode('"lat":',$json_fulltext[$i]);			
+		array_push($lat, substr($temp1[1],0,16));	
 			}
 	
 	else{
-		array_push($lat, 'Kein Wert');
+		array_push($lat, -1);
 	}
 }	return $lat;
 }
@@ -56,15 +49,15 @@ $count5=count($json_fulltext);
 for($i=0;$i<$count5;$i++){
 	if(strpos($json_fulltext[$i],'"lon":')!==false){
 		$temp1=explode('"lon":',$json_fulltext[$i]);
-			if(strpos($temp1[1],'},"version"')!==false){ 
-				$temp=explode('},"version"',$temp1[1]);
+			if(strpos($temp1[1],',"domain"')!==false){ 
+				$temp=explode(',"domain"',$temp1[1]);
 				array_push($lon, substr($temp[0],0,16));
 				}
 	}			
 			
 	
 	else{
-		array_push($lon, 'Kein Wert');
+		array_push($lon, -1);
 	}
 }	return $lon;
 }
@@ -82,13 +75,13 @@ for($i=0;$i<$count6;$i++){
 				array_push($timestamp, $temp[0]);
 				}
 			else{
-				array_push($timestamp, 'Kein Wert');
+				array_push($timestamp, -1);
 			}	
 	}			
 			
 	
 	else{
-		array_push($timestamp, 'Kein Wert');
+		array_push($timestamp, -1);
 	}
 }	return $timestamp;
 }
@@ -107,11 +100,11 @@ for($i=0;$i<count($json_fulltext);$i++){
 					array_push($no2_values, $temp0[0]);
 					}
 				else{
-					array_push($no2_values, 'Kein Wert');
+					array_push($no2_values, -1);
 				}	
 	}			
 	else{
-		array_push($no2_values, 'Kein Wert');
+		array_push($no2_values, -1);
 	}
 }	return $no2_values;
 }
@@ -130,11 +123,11 @@ for($i=0;$i<count($json_fulltext);$i++){
 					array_push($o3_values, $temp0[0]);
 					}
 				else{
-					array_push($o3_values, 'Kein Wert');
+					array_push($o3_values, -1);
 				}	
 	}			
 	else{
-		array_push($o3_values, 'Kein Wert');
+		array_push($o3_values, -1);
 	}
 }	return $o3_values;
 }
@@ -153,11 +146,11 @@ for($i=0;$i<count($json_fulltext);$i++){
 					array_push($humidity_values, $temp0[0]);
 					}
 				else{
-					array_push($humidity_values, 'Kein Wert');
+					array_push($humidity_values, -1);
 				}	
 	}			
 	else{
-		array_push($humidity_values, 'Kein Wert');
+		array_push($humidity_values, -1);
 	}
 }	return $humidity_values;
 }
@@ -176,11 +169,11 @@ for($i=0;$i<count($json_fulltext);$i++){
 					array_push($co_values, $temp0[0]);
 					}
 				else{
-					array_push($co_values, 'Kein Wert');
+					array_push($co_values, -90);
 				}	
 	}			
 	else{
-		array_push($co_values, 'Kein Wert');
+		array_push($co_values, -90);
 	}
 }	return $co_values;
 }
@@ -199,11 +192,11 @@ for($i=0;$i<count($json_fulltext);$i++){
 					array_push($o3_values, $temp0[0]);
 					}
 				else{
-					array_push($o3_values, 'Kein Wert');
+					array_push($o3_values, -90);
 				}	
 	}			
 	else{
-		array_push($o3_values, 'Kein Wert');
+		array_push($o3_values, -90);
 	}
 }	return $o3_values;
 }

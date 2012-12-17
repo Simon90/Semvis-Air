@@ -19,7 +19,7 @@ $humidity=get_Humidity($json);
 $O3=get_O3($json);
 //$values=get_values($json);
 //echo count($values);
-$count2=count($O3);
+$count2=count($ids);
 for($i=0;$i<$count2;$i++){
 	echo $ids[$i].' ';
 	echo $lat[$i].' ';

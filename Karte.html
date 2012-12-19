@@ -46,16 +46,16 @@
             <h2>Auswahl</h2> 
        <div id="Auswahlfelder">
 		<p>Ausgewählte AQEs:</p>
-		<p>Egg1<input type="text" name="Egg1" id=1 /> </p>
-		<p>Egg2<input type="text" name="Egg2" id=2 /> </p>
-		<p>Egg3<input type="text" name="Egg3" id=3 /> </p>
-		<button onClick='auswahlloeschen()'> Auswahl löschen </button>
-		<br>
-		<br>		
+		<p> Egg1<input type="text" name="Egg1" id=1 /> 
+		<button onclick="document.getElementById('1').value=''"> löschen </button> </p>
+		<p> Egg2<input type="text" name="Egg2" id=2 /> 
+		<button onclick="document.getElementById('2').value=''"> löschen </button> </p>
+		<p> Egg3<input type="text" name="Egg3" id=3 /> 
+		<button onclick="document.getElementById('3').value=''"> löschen </button> </p>		
 		<FORM METHOD="LINK" ACTION="tabelle.html">
 		<INPUT TYPE="submit" VALUE="Tabelle">
 		</FORM>
-		<FORM METHOD="LINK" ACTION="Diagramm.html">
+		<FORM METHOD="LINK" ACTION="Diagramm.html"> 
 		<Input Type="submit" VALUE="Diagramm">
 		</FORM>
 		</div> 
@@ -85,22 +85,29 @@
 				attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery ?<a href="http://cloudmade.com">CloudMade</a>'
 				}).addTo(map);
 				
-			//writes a value in the selection window
+			
+			var icon = L.icon({
+			iconUrl: 'bilder/egg.png',
+
+			iconSize:     [32, 32], // size of the icon
+			//shadowSize:   [50, 64], // size of the shadow
+			iconAnchor:   [16, 16], // point of the icon which will correspond to marker's location
+			//shadowAnchor: [4, 62],  // the same for the shadow
+			popupAnchor:  [0, -12] // point from which the popup should open relative to the iconAnchor
+			});
+			
+			var i=0;	
 			function auswahlfenster () {
-			document.getElementById('1').value='Max Mustermann';
+			i++;
+				if (document.getElementById(i).value=="");
+				{
+				document.getElementById(i).value='Max Mustermann';
+				}
 			}
-			
-			//deletes the values in the selection window
-			function auswahlloeschen () {
-			document.getElementById('1').value='';
-			document.getElementById('2').value='';
-			document.getElementById('3').value='';
-			}
-			
-			var marker = L.marker([51.963572, 7.613813], {icon: icon}).addTo(map);
+
+		    var marker = L.marker([51.963572, 7.613813], {icon: icon}).addTo(map);
 			//creates a popup
-			marker.bindPopup("Die Messdaten von AQE Name <br>Temperatur: <a href='somewhere.html' title='Beschreibung des jeweiligen Parameters'>?</a> <br>Luftfeuchtigkeit: <a href='somewhere.html' title='Your pop-up text here'>?</a> <br> Kohlenmonoxid: <a href='somewhere.html' title='Your pop-up text here'>?</a> <br> Ozon: <a href='somewhere.html' title='Your pop-up text here'>?</a> <br> Stickstoffdioxid: <a href='somewhere.html' title='Your pop-up text here'>?</a> <br> <br> <input type='button' value='Zur Auswahl hinzufügen' onClick='auswahlfenster()' />");
-		
+			marker.bindPopup("Die Messdaten von AQE Name <br>Temperatur: <a href='somewhere.html' title='Beschreibung des jeweiligen Parameters'>?</a> <br>Luftfeuchtigkeit: <a href='somewhere.html' title='Your pop-up text here'>?</a> <br> Kohlenmonoxid: <a href='somewhere.html' title='Your pop-up text here'>?</a> <br> Ozon: <a href='somewhere.html' title='Your pop-up text here'>?</a> <br> Stickstoffdioxid: <a href='somewhere.html' title='Your pop-up text here'>?</a> <br> <br> <button onClick='auswahlfenster()'> Zur Auswahl hinzufügen </button>");
 		 
 		 </script>
 			

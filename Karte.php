@@ -22,9 +22,6 @@
         <div id="Willkommen">
           <h1>Semvis Air</h1>
         </div><!--close Willkommen-->
-		<div id="welcome_slogan">
-	      <h3>Institut für Geoinformatik  Münster</h3>
-	    </div><!--close welcome_slogan-->
       </div><!--close banner-->
     </div><!--close header-->
 

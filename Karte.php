@@ -55,29 +55,26 @@
           </div><!--close sidebar_item-->
         </div><!--close sidebar-->
 
-        <div class="sidebar">
-          <div class="sidebar_item">
-            <h2>Auswahl</h2>
-
-            <div id="Auswahlfelder">
-              <p>Ausgewählte AQEs:</p>
-
-              <p>Egg1<input type="text" name="Egg1"></p>
-
-              <p>Egg2<input type="text" name="Egg2"></p>
-
-              <p>Egg3<input type="text" name="Egg3"></p>
-
-              <form method="link" action="tabelle.html">
-                <input type="submit" value="Tabelle">
-              </form>
-
-              <form method="link" action="Diagramm.html">
-                <input type="submit" value="Diagramm">
-              </form>
-            </div>
-          </div><!--close sidebar_item-->
-        </div><!--close sidebar-->
+        <div class="sidebar">  
+ <div class="sidebar_item">
+            <h2>Auswahl</h2> 
+       <div id="Auswahlfelder">
+		<p>Ausgewählte AQEs:</p>
+		<p> Egg1<input type="text" name="Egg1" id=1 /> 
+		<button onclick="document.getElementById('1').value=''"> löschen </button> </p>
+		<p> Egg2<input type="text" name="Egg2" id=2 /> 
+		<button onclick="document.getElementById('2').value=''"> löschen </button> </p>
+		<p> Egg3<input type="text" name="Egg3" id=3 /> 
+		<button onclick="document.getElementById('3').value=''"> löschen </button> </p>		
+		<FORM METHOD="LINK" ACTION="tabelle.html">
+		<INPUT TYPE="submit" VALUE="Tabelle">
+		</FORM>
+		<FORM METHOD="LINK" ACTION="Diagramm.html"> 
+		<Input Type="submit" VALUE="Diagramm">
+		</FORM>
+		</div> 
+   </div><!--close sidebar_item-->
+  </div><!--close sidebar-->
 
         <div id="official_values">
           <div class="sidebar">
@@ -222,7 +219,32 @@
                         popupAnchor:  [0, -12] // point from which the popup should open relative to the iconAnchor
                         });
                         
-                        
+                        //puts egg value(s) in the selectionwindow; if the selectionwindow is full an alert applies
+			function auswahlfenster () {
+			if (document.getElementById(1).value=="")
+			{
+			document.getElementById(1).value='EGG';
+			}
+				else 
+					{
+						if (document.getElementById(2).value=="")
+						{
+						document.getElementById(2).value='EGG';
+						}
+							else 
+								{
+									if (document.getElementById(3).value=="")
+									{
+									document.getElementById(3).value='EGG';
+									}
+										else
+											{
+											alert ('Die Auswahlfelder sind voll!');
+											}
+								}
+						}		
+										}
+										
                         
                         
                         var map = L.map('map').setView([51.963572, 7.613813], 13);
@@ -241,8 +263,8 @@
                                 map.on('click', onMapClick);
                         
                                 var marker = L.marker([51.963572, 7.613813], {icon: icon}).addTo(map);
-                                
-                                marker.bindPopup("Die Messdaten von AQE Name <br>Temperatur: <a href='somewhere.html' title='Beschreibung des jeweiligen Parameters'>?<\/a> <br>Luftfeuchtigkeit: <a href='somewhere.html' title='Your pop-up text here'>?<\/a> <br> Kohlenmonoxid: <a href='somewhere.html' title='Your pop-up text here'>?<\/a> <br> Ozon: <a href='somewhere.html' title='Your pop-up text here'>?<\/a> <br> Stickstoffdioxid: <a href='somewhere.html' title='Your pop-up text here'>?<\/a> <br> <input type='Button' value='Zur Auswahl hinzufügen' />");
+                                //creates a popup
+                                marker.bindPopup("Die Messdaten von AQE Name <br>Temperatur: <a href='somewhere.html' title='Beschreibung des jeweiligen Parameters'>?</a> <br>Luftfeuchtigkeit: <a href='somewhere.html' title='Your pop-up text here'>?</a> <br> Kohlenmonoxid: <a href='somewhere.html' title='Your pop-up text here'>?</a> <br> Ozon: <a href='somewhere.html' title='Your pop-up text here'>?</a> <br> Stickstoffdioxid: <a href='somewhere.html' title='Your pop-up text here'>?</a> <br> <br> <button onClick='auswahlfenster()'> Zur Auswahl hinzufügen </button>");
                                 
                                 
         </script> <!--Mit dem Befehl unten öffnet sich ein ganz neues Fenster!

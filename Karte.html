@@ -96,14 +96,32 @@
 			popupAnchor:  [0, -12] // point from which the popup should open relative to the iconAnchor
 			});
 			
-			var i=0;	
+			
+			//puts egg value(s) in the selectionwindow; if the selectionwindow is full an alert applies
 			function auswahlfenster () {
-			i++;
-				if (document.getElementById(i).value=="");
-				{
-				document.getElementById(i).value='Max Mustermann';
-				}
+			if (document.getElementById(1).value=="")
+			{
+			document.getElementById(1).value='EGG';
 			}
+				else 
+					{
+						if (document.getElementById(2).value=="")
+						{
+						document.getElementById(2).value='EGG';
+						}
+							else 
+								{
+									if (document.getElementById(3).value=="")
+									{
+									document.getElementById(3).value='EGG';
+									}
+										else
+											{
+											alert ('Die Auswahlfelder sind voll!');
+											}
+								}
+						}		
+										}
 
 		    var marker = L.marker([51.963572, 7.613813], {icon: icon}).addTo(map);
 			//creates a popup

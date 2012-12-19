@@ -82,11 +82,11 @@
               <h2>Offizielle Werte</h2>
 
               <div>
-                Ozon (O3): <span id="myelement"></span>
+                Ozon (O3): <span id="myelement"></span> [µg/m³]
               </div>
 
               <div>
-                Stickstoff (NO2): <span id="myelement2"></span>
+                Stickstoffdioxid (NO2): <span id="myelement2"></span> [µg/m³]
               </div>
 
               <div>

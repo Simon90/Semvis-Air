@@ -423,8 +423,8 @@ ul img {
 float:left;
 width: 710px; 
 height: 420px;
-bottom: 485px;
-margin-left: 270px;
+top: 20px;
+margin-left: 25px;
 -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;
 -moz-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;
 box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;;  

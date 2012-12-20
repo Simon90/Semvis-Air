@@ -121,8 +121,10 @@
                                                       } ?></span>
             </div>
           </div>
-        </div><script src="http://cdn.leafletjs.com/leaflet-0.4/leaflet.js">
-</script>
+        </div>
+	</div>
+		
+		<script src="http://cdn.leafletjs.com/leaflet-0.4/leaflet.js"></script>
 
         
             <?php
@@ -271,7 +273,7 @@
                         <a href="Hilfe.html" target="_blank" onClick="ganzneuWindow = window.open('Hilfe.html', '500', 'resizable=no,toolbar=no,scrollbars=yes,width=70,height=60,dependent'); ganzneuWindow.focus(); return false">????</a>
                       -->
          </div>
-      </div>
+      
     </div>
   </div><!---main -->
 </body>

@@ -124,8 +124,7 @@
         </div><script src="http://cdn.leafletjs.com/leaflet-0.4/leaflet.js">
 </script>
 
-        <div id="content">
-          <div id="map">
+        
             <?php
                                     
                                     $url="http://www.lanuv.nrw.de/luft/temes/heut/MSGE.htm#jetzt";
@@ -198,7 +197,10 @@
                                     }
                                     echo gettype($werte[0]);*/
                                     
-                                    ?><script>
+                                    ?>
+		<div id="map">				
+			<script>
+				
     
 
                         selector      = "#myelement";
@@ -268,8 +270,7 @@
             </script> <!--Mit dem Befehl unten öffnet sich ein ganz neues Fenster!
                         <a href="Hilfe.html" target="_blank" onClick="ganzneuWindow = window.open('Hilfe.html', '500', 'resizable=no,toolbar=no,scrollbars=yes,width=70,height=60,dependent'); ganzneuWindow.focus(); return false">????</a>
                       -->
-          </div>
-        </div>
+         </div>
       </div>
     </div>
   </div><!---main -->

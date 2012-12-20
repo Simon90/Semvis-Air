@@ -378,7 +378,7 @@ ul#menu li:hover a
 /* styling for the slideshow on the homepage */
 ul.slideshow {
   list-style: none;
-  width: 680px;
+  width: 710px;
   height: 250px;
   overflow: hidden;
   position: relative;
@@ -402,7 +402,7 @@ ul img {
   border: none;}
  
 #slideshow-caption {
-  width: 680px;
+  width: 710px;
   height: 38px;
   position: absolute;
   bottom: 0;
@@ -419,7 +419,17 @@ ul img {
   font: normal 130% arial, sans-serif;
   color: #FFF;}
 
-#map {width: 690px; height: 400px; position:absolute; top:130px; left:450px;}
+#map {
+float:left;
+width: 710px; 
+height: 420px;
+bottom: 485px;
+margin-left: 270px;
+-webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;
+-moz-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;
+box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;;  
+}
+
 #Hintergrund{
 background-image:url(Hintergrund.png);
 

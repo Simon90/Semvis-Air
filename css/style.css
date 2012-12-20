@@ -105,10 +105,10 @@ ol li
   
 #Willkommen
 { width: 200px;
-  float: left;
+  float: right;
   height: 10px;
   margin: 0 auto;
-  padding-left: 0;
+  padding-right: 750px;
   background: transparent;}
   
 #welcome_slogan

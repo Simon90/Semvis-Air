@@ -20,7 +20,7 @@ p
 img
 { border: 0;}
 
-h1, h2, h3, h4, h5, h6 
+h1, h2, h3, h4, h5, h6
 { font: normal 175% Arial, Helvetica, sans-serif;
   color: #1D1D1D;
   text-shadow: 1px 1px #fff;
@@ -68,7 +68,7 @@ ol li
 { margin: 0 0 11px 0;}
 
 #main, #header, #banner, #menubar, #site_content, #footer, #content_grey
-{ margin-left: auto; 
+{ margin-left: auto;
   margin-right: auto;}
 
 #main
@@ -76,20 +76,20 @@ ol li
   
 #header
 { width: 920px;
-  height: 70px;
+  height: 60px;
   background: transparent;}
 
 #banner
 { width: 920px;
   position: relative;
-  height: 30px;
-  padding: 15px 0 0 0;
+  height: 20px;
+  padding: 20px 0 0 0;
   background: transparent;}
 
 #menubar
-{ width: 920px;
+{ width: 990px;
   height: 50px;
-  text-align: center; 
+  text-align: center;
   margin: 0 auto;
   background: #1D1D1D;
   background: -moz-linear-gradient(#535353, #1d1d1d);
@@ -101,23 +101,23 @@ ol li
   -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 5px;
   -moz-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 5px;
   box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 5px;
-  } 
+  }
   
-#welcome
-{ width: 880px;
+#Willkommen
+{ width: 200px;
   float: left;
-  height: 50px;
+  height: 10px;
   margin: 0 auto;
-  padding-left: 20px;
-  background: transparent;} 
+  padding-left: 0;
+  background: transparent;}
   
 #welcome_slogan
 { width: 880px;
   float: left;
   height: 50px;
   margin: 0 auto;
-  padding-left: 20px;
-  background: transparent;}   
+  padding-left: 0px;
+  background: transparent;}
    
 #welcome H1
 { font: normal 300% Arial, Helvetica, sans-serif;
@@ -129,7 +129,7 @@ ol li
 { font: normal 200% Arial, Helvetica, sans-serif;
   letter-spacing: -2px;
   text-shadow: 1px 1px #fff;
-  color: #535353;}  
+  color: #535353;}
   
 ul#menu
 { margin:0;}
@@ -148,13 +148,13 @@ ul#menu li a
   margin: 10px 0 0 20px;
   text-shadow: 0px -1px 0px #000;
   padding: 6px 20px 0 20px;
-  background: transparent; 
-  border-radius: 7px 7px 7px 7px;
+  background: transparent;
+  border-radius: 70px 7px 70px 7px;
   -moz-border-radius: 7px 7px 7px 7px;
   -webkit-border: 7px 7px 7px 7px;
   text-align: center;
   color: #FFF;
-  text-decoration: none;} 
+  text-decoration: none;}
   
 ul#menu li.current a
 { color: #1D1D1D;
@@ -173,9 +173,9 @@ ul#menu li:hover a
   text-shadow: none;}
 
 #site_content
-{ width: 920px;
+{ width: 990px;
   overflow: hidden;
-  margin: 0 auto;} 
+  margin: 0 auto;}
 
 .sidebar_container
 { float: left;
@@ -192,7 +192,7 @@ ul#menu li:hover a
 
 .sidebar_item
 { font: normal 100% Arial, Helvetica, sans-serif;
-  width: 215px;}
+  width: 245px;}
 
 .sidebar h2
 { padding: 5px 0 0 10px;
@@ -209,20 +209,21 @@ ul#menu li:hover a
   -webkit-border: 15px 15px 15px 15px;
   -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 5px;
   -moz-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 5px;
-  box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 5px;}  
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 5px;}
 
 #content
-{ width: 680px;
+{ width: 720px;
   margin-bottom: 20px;
-  float: left;}
+  float: left;
+  padding-left: 30px;}
 
 .content_item
-{ width: 680px;
+{ width: 720px;
   margin-top: 20px;
   margin-bottom: 20px;}
   
 .content_image
-{ float: left; 
+{ float: left;
   width: 150px;
   height: 150px;
   margin: 0 20px 10px 0;
@@ -239,7 +240,7 @@ ul#menu li:hover a
 #content_grey
  { width: 920px;
   height: 160px;
-  text-align: center; 
+  text-align: center;
   background: #1D1D1D;
   background: -moz-linear-gradient(#535353, #1d1d1d);
   background: -o-linear-gradient(#535353, #1d1d1d);
@@ -249,10 +250,10 @@ ul#menu li:hover a
   -webkit-border: 15px 15px 15px 15px;
   -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;
   -moz-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;
-  box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;} 
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;}
   
 #content_grey p
- { color: #FFF;}  
+ { color: #FFF;}
 
 #content_grey h4
 { text-shadow: none;}
@@ -274,8 +275,8 @@ ul#menu li:hover a
 #footer
 { width: 920px;
   height: 20px;
-  padding-top: 20px;
-  text-align: center; 
+  padding-top: 2px;
+  text-align: center;
   background: transparent;
   text-shadow: 1px 1px #fff;
   color: #535353;}
@@ -342,36 +343,36 @@ ul#menu li:hover a
 { padding: 0 0 4px 0;}
 
 .form_settings span
-{ float: left; 
-  width: 280px; 
+{ float: left;
+  width: 280px;
   text-align: left;}
   
 .form_settings input, .form_settings textarea
-{ padding: 2px; 
-  width: 299px; 
-  font: 100% arial; 
-  border: 1px solid #E5E5DB; 
-  background: #FFF; 
+{ padding: 2px;
+  width: 299px;
+  font: 100% arial;
+  border: 1px solid #E5E5DB;
+  background: #FFF;
   color: #47433F;}
   
 .form_settings input[type="checkbox"]
-{ padding: 2px 0; 
-  width: 15px; 
-  font: 100% arial; 
-  border: 0; 
-  background: #FFF; 
+{ padding: 2px 0;
+  width: 15px;
+  font: 100% arial;
+  border: 0;
+  background: #FFF;
   color: #47433F;
   margin: 28px 0;}
 
 .form_settings .submit
-{ font: 100% arial; 
-  border: 1px solid; 
-  width: 99px; 
-  margin: 0 0 0 206px; 
+{ font: 100% arial;
+  border: 1px solid;
+  width: 99px;
+  margin: 0 0 0 206px;
   height: 26px;
   padding: 2px 0 3px 0;
-  cursor: pointer; 
-  background: #5082BD; 
+  cursor: pointer;
+  background: #5082BD;
   color: #FFF;}
 
 /* styling for the slideshow on the homepage */
@@ -405,12 +406,12 @@ ul img {
   height: 38px;
   position: absolute;
   bottom: 0;
-  left: 0; 
+  left: 0;
   z-index: 500;}
  
 #slideshow-caption .slideshow-caption-container {
-  padding: 10px 25px 10px 25px; 
-  background: transparent url(../bilder/transparent.png) repeat;  
+  padding: 10px 25px 10px 25px;
+  background: transparent url(../bilder/transparent.png) repeat;
   z-index: 1000;}
  
 #slideshow-caption p {
@@ -418,10 +419,10 @@ ul img {
   font: normal 130% arial, sans-serif;
   color: #FFF;}
 
-#map {width: 50%; height: 60%; position:absolute; top:21%; left:33%;}
+#map {width: 690px; height: 400px; position:absolute; top:130px; left:450px;}
 #Hintergrund{
-	background-image:url(Hintergrund.png);
-	
+background-image:url(Hintergrund.png);
+
 }
 #header1{
    font-size: 300%;
@@ -445,32 +446,16 @@ ul img {
 #saeulen{position: absolute; top:103%; left:27%;}
 
 #Auswahlfelder{
-	position:absolute; top:50%; right:71%;
-	background-color: ;
+position:absolute; top:50%; right:71%;
+background-color: ;
 }
 
 #official_values{
-	
-	position:absolute; top:80%; left:16%;
-	
+
+position:absolute; top:80%; left:16%;
+
 
 }
 
-#picture{
-	height: 200%; width: 150%;  
-}
-
-#picture0{
-	position:absolute; top:3%; left:85%; height: 25%; width:12%;
-}
-
-#picture1{
-
-	position:absolute; top:45%; left:42%; height: 15%; width:15%;
-}
-
-#picture4{
-	position:absolute; top:85%; left:90%; height: 5%; width:5%;
-}
 
  

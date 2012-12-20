@@ -11,7 +11,7 @@
   <script type="text/javascript" src="js/image_slide.js">
 </script>
   <script type="text/javascript" src="overlib421/overlib.js">
-  </script>
+</script>
   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.4/leaflet.css">
 </head>
 
@@ -51,155 +51,155 @@
           <div class="sidebar_item">
             <h2>Willkommen</h2>
 
-            <p>Willkommen auf unserer Webseite zum "Air Quality Egg". Ihr dürft euch gerne umsehen!</p>
+            <p>Willkommen auf unserer Webseite zum &quot;Air Quality Egg&quot;. Ihr dürft euch gerne umsehen!</p>
           </div><!--close sidebar_item-->
         </div><!--close sidebar-->
 
-        <div class="sidebar">  
- <div class="sidebar_item">
-            <h2>Auswahl</h2> 
-       <div id="Auswahlfelder">
-		<p>Ausgewählte AQEs:</p>
-		<p> Egg1<input type="text" name="Egg1" id=1 /> 
-		<button onclick="document.getElementById('1').value=''"> löschen </button> </p>
-		<p> Egg2<input type="text" name="Egg2" id=2 /> 
-		<button onclick="document.getElementById('2').value=''"> löschen </button> </p>
-		<p> Egg3<input type="text" name="Egg3" id=3 /> 
-		<button onclick="document.getElementById('3').value=''"> löschen </button> </p>		
-		<FORM METHOD="LINK" ACTION="tabelle.html">
-		<INPUT TYPE="submit" VALUE="Tabelle">
-		</FORM>
-		<FORM METHOD="LINK" ACTION="Diagramm.html"> 
-		<Input Type="submit" VALUE="Diagramm">
-		</FORM>
-		</div> 
-   </div><!--close sidebar_item-->
-  </div><!--close sidebar-->
+        <div class="sidebar">
+          <div class="sidebar_item">
+            <h2>Auswahl</h2>
 
-        <div id="official_values">
-          <div class="sidebar">
-            <div class="sidebar_item">
-              <h2>Offizielle Werte</h2>
+            <p>Ausgewählte AQEs:</p>
 
-              <div>
-                Ozon (O3): <span id="myelement"></span> [µg/m³]
-              </div>
+            <p>Egg1<input type="text" name="Egg1" id="1"> <button onclick=
+            "document.getElementById(&#39;1&#39;).value=&#39;&#39;">löschen</button></p>
 
-              <div>
-                Stickstoffdioxid (NO2): <span id="myelement2"></span> [µg/m³]
-              </div>
+            <p>Egg2<input type="text" name="Egg2" id="2"> <button onclick=
+            "document.getElementById(&#39;2&#39;).value=&#39;&#39;">löschen</button></p>
 
-              <div>
-                Relative Luftfeuchtigkeit: <span><?php
-					$host = "http://www.uni-muenster.de/Klima/wetter/wetter.php";
-					$filestring = file_get_contents($host);
-					$startpos = 0;
-					while($pos = strpos($filestring, "<td class=", $startpos))
-					{
-					$string = substr($filestring, $pos, strpos($filestring, "</td>", $pos + 1) - $pos);
-					if(stristr($string, '%')) {
-					echo $string."</br>";
-					}
-					$startpos = $pos + 1;
-					}       ?></span>
-              </div>
+            <p>Egg3<input type="text" name="Egg3" id="3"> <button onclick=
+            "document.getElementById(&#39;3&#39;).value=&#39;&#39;">löschen</button></p>
 
-              <div>
-                Lufttemperatur: <span>
-				<?php $host = "http://www.uni-muenster.de/Klima/wetter/wetter.php";
-					$filestring = file_get_contents($host);
-					$startpos = 0;
-					while($pos = strpos($filestring, "<td class=", $startpos))
-					{
-					$string1 = substr($filestring, $pos, strpos($filestring, "</td>", $pos + 1) - $pos);
-					if(stristr($string1, '°C')) {
-					echo $string1."</br>";
-					}
-					$startpos = $pos + 1;
-					} ?>
-				</span>
-              </div>
+            <form method="link" action="tabelle.html">
+              <input type="submit" value="Tabelle">
+            </form>
+
+            <form method="link" action="Diagramm.html">
+              <input type="submit" value="Diagramm">
+            </form>
+          </div><!--close sidebar_item-->
+        </div><!--close sidebar-->
+
+        <div class="sidebar">
+          <div class="sidebar_item">
+            <h2>Offizielle Werte</h2>
+
+            <div>
+              Ozon (O3): <span id="myelement"></span> [µg/m³]
+            </div>
+
+            <div>
+              Stickstoffdioxid (NO2): <span id="myelement2"></span> [µg/m³]
+            </div>
+
+            <div>
+              Relative Luftfeuchtigkeit: <span><?php
+                                                      $host = "http://www.uni-muenster.de/Klima/wetter/wetter.php";
+                                                      $filestring = file_get_contents($host);
+                                                      $startpos = 0;
+                                                      while($pos = strpos($filestring, "<td class=", $startpos))
+                                                      {
+                                                      $string = substr($filestring, $pos, strpos($filestring, "</td>", $pos + 1) - $pos);
+                                                      if(stristr($string, '%')) {
+                                                      echo $string."</br>";
+                                                      }
+                                                      $startpos = $pos + 1;
+                                                      }       ?></span>
+            </div>
+
+            <div>
+              Lufttemperatur: <span><?php $host = "http://www.uni-muenster.de/Klima/wetter/wetter.php";
+                                                      $filestring = file_get_contents($host);
+                                                      $startpos = 0;
+                                                      while($pos = strpos($filestring, "<td class=", $startpos))
+                                                      {
+                                                      $string1 = substr($filestring, $pos, strpos($filestring, "</td>", $pos + 1) - $pos);
+                                                      if(stristr($string1, '°C')) {
+                                                      echo $string1."</br>";
+                                                      }
+                                                      $startpos = $pos + 1;
+                                                      } ?></span>
             </div>
           </div>
-        </div><!--close sidebar_item-->
-        <!--close sidebar_item-->
-        <script src="http://cdn.leafletjs.com/leaflet-0.4/leaflet.js">
+        </div><script src="http://cdn.leafletjs.com/leaflet-0.4/leaflet.js">
 </script>
 
-        <div id="map"></div><?php
-                        
-                        $url="http://www.lanuv.nrw.de/luft/temes/heut/MSGE.htm#jetzt";
-                        $seitenquelltext=file_get_contents($url);
-                        
-                        function getNO2($quelltext){
-                        $text=$quelltext;
-                        $startpos=0;
-                        $werte='';
-                        while($position = strpos($text, '<td class="mw_standard">', $startpos)){
-                        $pos=strpos($text,'<td class="mw_standard">',$startpos)+24;
-                        $zeile=substr($text,$pos,strpos($text,'</td>',$pos+1)-$pos);
-                        $zeile=trim($zeile,' ');
-                        if(strlen($zeile)>0 && strlen($zeile)<5){
-                        
-                        $werte=$werte.','.$zeile;
-                        }               
-                        $startpos = $pos + 1;           
-                        }
-                        $werte=substr($werte,1,strlen($werte)-1);
-                        $werte=explode(',',$werte);
-                        $no2_werte=array();
-                        
-                        $i=0;
-                        for($j=1;$j<count($werte);$j+=2){
-                        
-                                $no2_werte[$i]=$werte[$j];
-                                $i++;
-                                }
-                        return $no2_werte;      
-                        }
-                        
-                        
-                        function getO3($quelltext){
-                        $text=$quelltext;
-                        $startpos_O3=0;
-                        $werte_O3='';
-                        while($position_O3 = strpos($text, '<td class="mw_ozon">', $startpos_O3)){
-                        $pos_O3=strpos($text,'<td class="mw_ozon">',$startpos_O3)+20;
-                        $zeile_O3=substr($text,$pos_O3,strpos($text,'</td>',$pos_O3+1)-$pos_O3);
-                        $zeile_O3=trim($zeile_O3,' ');
-                        if(strlen($zeile_O3)>0 && strlen($zeile_O3)<5){
-                        
-                        $werte_O3=$werte_O3.','.$zeile_O3;
-                        }               
-                        $startpos_O3 = $pos_O3 + 1;             
-                        }
-                        $werte_O3=substr($werte_O3,1,strlen($werte_O3)-1);
-                        $werte_O3=explode(',',$werte_O3);
-                        
-                        return $werte_O3;
-                        }
-                        
-                        
-                        $test_O3=getO3($seitenquelltext);
-                        $test_NO2=getNo2($seitenquelltext);
-                        
-                        
-                        for($j=0;$j<count($test_O3);$j+=1){
-                                        //echo 'O3: '.$test_O3[$j]."</br>";
-                                }       
-                        for($j=0;$j<count($test_NO2);$j+=1){
-                                        //echo 'NO2: '.$test_NO2[$j]."</br>";
-                                }
-                        
-                        
-                        /*Bei Bedarf die Werte in Integer konvertieren
-                        for($i=0;$i<count($werte);$i++){
-                                $werte[$i]=(int)$werte[$i];
-                        }
-                        echo gettype($werte[0]);*/
-                        
-                        ?><script>
-                
+        <div id="content">
+          <div id="map">
+            <?php
+                                    
+                                    $url="http://www.lanuv.nrw.de/luft/temes/heut/MSGE.htm#jetzt";
+                                    $seitenquelltext=file_get_contents($url);
+                                    
+                                    function getNO2($quelltext){
+                                    $text=$quelltext;
+                                    $startpos=0;
+                                    $werte='';
+                                    while($position = strpos($text, '<td class="mw_standard">', $startpos)){
+                                    $pos=strpos($text,'<td class="mw_standard">',$startpos)+24;
+                                    $zeile=substr($text,$pos,strpos($text,'</td>',$pos+1)-$pos);
+                                    $zeile=trim($zeile,' ');
+                                    if(strlen($zeile)>0 && strlen($zeile)<5){
+                                    
+                                    $werte=$werte.','.$zeile;
+                                    }               
+                                    $startpos = $pos + 1;           
+                                    }
+                                    $werte=substr($werte,1,strlen($werte)-1);
+                                    $werte=explode(',',$werte);
+                                    $no2_werte=array();
+                                    
+                                    $i=0;
+                                    for($j=1;$j<count($werte);$j+=2){
+                                    
+                                            $no2_werte[$i]=$werte[$j];
+                                            $i++;
+                                            }
+                                    return $no2_werte;      
+                                    }
+                                    
+                                    
+                                    function getO3($quelltext){
+                                    $text=$quelltext;
+                                    $startpos_O3=0;
+                                    $werte_O3='';
+                                    while($position_O3 = strpos($text, '<td class="mw_ozon">', $startpos_O3)){
+                                    $pos_O3=strpos($text,'<td class="mw_ozon">',$startpos_O3)+20;
+                                    $zeile_O3=substr($text,$pos_O3,strpos($text,'</td>',$pos_O3+1)-$pos_O3);
+                                    $zeile_O3=trim($zeile_O3,' ');
+                                    if(strlen($zeile_O3)>0 && strlen($zeile_O3)<5){
+                                    
+                                    $werte_O3=$werte_O3.','.$zeile_O3;
+                                    }               
+                                    $startpos_O3 = $pos_O3 + 1;             
+                                    }
+                                    $werte_O3=substr($werte_O3,1,strlen($werte_O3)-1);
+                                    $werte_O3=explode(',',$werte_O3);
+                                    
+                                    return $werte_O3;
+                                    }
+                                    
+                                    
+                                    $test_O3=getO3($seitenquelltext);
+                                    $test_NO2=getNo2($seitenquelltext);
+                                    
+                                    
+                                    for($j=0;$j<count($test_O3);$j+=1){
+                                                    //echo 'O3: '.$test_O3[$j]."</br>";
+                                            }       
+                                    for($j=0;$j<count($test_NO2);$j+=1){
+                                                    //echo 'NO2: '.$test_NO2[$j]."</br>";
+                                            }
+                                    
+                                    
+                                    /*Bei Bedarf die Werte in Integer konvertieren
+                                    for($i=0;$i<count($werte);$i++){
+                                            $werte[$i]=(int)$werte[$i];
+                                    }
+                                    echo gettype($werte[0]);*/
+                                    
+                                    ?><script>
+    
 
                         selector      = "#myelement";
                         selector2      = "#myelement2";
@@ -220,32 +220,30 @@
                         });
                         
                         //puts egg value(s) in the selectionwindow; if the selectionwindow is full an alert applies
-			function auswahlfenster () {
-			if (document.getElementById(1).value=="")
-			{
-			document.getElementById(1).value='EGG';
-			}
-				else 
-					{
-						if (document.getElementById(2).value=="")
-						{
-						document.getElementById(2).value='EGG';
-						}
-							else 
-								{
-									if (document.getElementById(3).value=="")
-									{
-									document.getElementById(3).value='EGG';
-									}
-										else
-											{
-											alert ('Die Auswahlfelder sind voll!');
-											}
-								}
-						}		
-										}
-										
-                        
+                        function auswahlfenster () {
+                        if (document.getElementById(1).value=="")
+                        {
+                        document.getElementById(1).value='EGG';
+                        }
+                                else 
+                                        {
+                                                if (document.getElementById(2).value=="")
+                                                {
+                                                document.getElementById(2).value='EGG';
+                                                }
+                                                        else 
+                                                                {
+                                                                        if (document.getElementById(3).value=="")
+                                                                        {
+                                                                        document.getElementById(3).value='EGG';
+                                                                        }
+                                                                                else
+                                                                                        {
+                                                                                        alert ('Die Auswahlfelder sind voll!');
+                                                                                        }
+                                                                }
+                                                }               
+                                                                                }
                         
                         var map = L.map('map').setView([51.963572, 7.613813], 13);
                                 L.tileLayer('http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/256/{z}/{x}/{y}.png', {
@@ -264,14 +262,16 @@
                         
                                 var marker = L.marker([51.963572, 7.613813], {icon: icon}).addTo(map);
                                 //creates a popup
-                                marker.bindPopup("Die Messdaten von AQE Name <br>Temperatur: <a href='somewhere.html' title='Beschreibung des jeweiligen Parameters'>?</a> <br>Luftfeuchtigkeit: <a href='somewhere.html' title='Your pop-up text here'>?</a> <br> Kohlenmonoxid: <a href='somewhere.html' title='Your pop-up text here'>?</a> <br> Ozon: <a href='somewhere.html' title='Your pop-up text here'>?</a> <br> Stickstoffdioxid: <a href='somewhere.html' title='Your pop-up text here'>?</a> <br> <br> <button onClick='auswahlfenster()'> Zur Auswahl hinzufügen </button>");
+                                marker.bindPopup("Die Messdaten von AQE Name <br>Temperatur: <a href='somewhere.html' title='Beschreibung des jeweiligen Parameters'>?<\/a> <br>Luftfeuchtigkeit: <a href='somewhere.html' title='Your pop-up text here'>?<\/a> <br> Kohlenmonoxid: <a href='somewhere.html' title='Your pop-up text here'>?<\/a> <br> Ozon: <a href='somewhere.html' title='Your pop-up text here'>?<\/a> <br> Stickstoffdioxid: <a href='somewhere.html' title='Your pop-up text here'>?<\/a> <br> <br> <button onClick='auswahlfenster()'> Zur Auswahl hinzufügen <\/button>");
                                 
                                 
-        </script> <!--Mit dem Befehl unten öffnet sich ein ganz neues Fenster!
+            </script> <!--Mit dem Befehl unten öffnet sich ein ganz neues Fenster!
                         <a href="Hilfe.html" target="_blank" onClick="ganzneuWindow = window.open('Hilfe.html', '500', 'resizable=no,toolbar=no,scrollbars=yes,width=70,height=60,dependent'); ganzneuWindow.focus(); return false">????</a>
-                        -->
+                      -->
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+  </div><!---main -->
 </body>
 </html>

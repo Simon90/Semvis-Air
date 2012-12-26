@@ -187,7 +187,7 @@ ul#menu li:hover a
 { float: left;
   width: 250px;
   padding: 0;
-  margin-top: 10px;
+  margin-top: 1px;
   margin-bottom: 10px;}
 
 .sidebar_item
@@ -295,12 +295,31 @@ ul#menu li:hover a
 
 #footer a:hover
 { text-decoration: underline;}
+
+.visualize
+{ font: bold 80% Arial, Helvetica, sans-serif;
+  height: 30px;
+  width: auto; 
+  float:right;
+  position: relative;
+  padding: 5px 2px 7px 2px;
+  background: #1D1D1D;
+  background: -moz-linear-gradient(#1D1D1D, #535353);
+  background: -o-linear-gradient(#1D1D1D, #535353);
+  background: -webkit-linear-gradient(#1D1D1D, #535353);
+  border-radius: 15px 15px 15px 15px;
+  -moz-border-radius: 15px 15px 15px 15px;
+  -webkit-border: 15px 15px 15px 15px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 0px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 5px;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 0px;}
   
  .readmore
-{ font: bold 110% Arial, Helvetica, sans-serif;
-  height: 15px;
-  width: 80px;
-  margin-left: 95px;
+{ font: bold 65% Arial, Helvetica, sans-serif;
+  height: 10px;
+  width: auto; 
+  float:right;
+  position: relative;
   padding: 5px 2px 7px 2px;
   background: #fff;
   background: -moz-linear-gradient(#fff, #ccc);
@@ -309,17 +328,19 @@ ul#menu li:hover a
   border-radius: 15px 15px 15px 15px;
   -moz-border-radius: 15px 15px 15px 15px;
   -webkit-border: 15px 15px 15px 15px;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 5px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 0px;
   -moz-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 5px;
-  box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 5px;}
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 1px;}
+  
+  
   
  .readmore a
 { color: #1D1D1D;}
  
  .button_small
 { font: normal 110% Arial, Helvetica, sans-serif;
-  height: 15px;
-  width: 80px;
+  height: auto;
+  width: 50px;
   padding: 5px 2px 7px 2px;
   background: #1D1D1D;
   background: -moz-linear-gradient(#535353, #1d1d1d);
@@ -427,7 +448,7 @@ top: 20px;
 margin-left: 25px;
 -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;
 -moz-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;
-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;;  
+box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;  
 }
 
 #Hintergrund{

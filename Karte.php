@@ -1,4 +1,4 @@
-﻿<html>
+﻿<html lang="de">
 <head>
   <title>Air Quality Egg Muenster</title>
   <meta name="description" content="Luftqualität Muenster">
@@ -61,18 +61,20 @@
 
             <p>Ausgewählte AQEs:</p>
 
-            <p>Egg1<input type="text" name="Egg1" id="1"> <button onclick=
-            "document.getElementById(&#39;1&#39;).value=&#39;&#39;">löschen</button></p>
+            <p>Egg1<input type="text" name="Egg1" id="1"> <div class="readmore" onclick=
+            "document.getElementById(&#39;1&#39;).value=&#39;&#39;">löschen</div></p>
 
-            <p>Egg2<input type="text" name="Egg2" id="2"> <button onclick=
-            "document.getElementById(&#39;2&#39;).value=&#39;&#39;">löschen</button></p>
+            <p>Egg2<input type="text" name="Egg2" id="2"> <div class="readmore" onclick=
+            "document.getElementById(&#39;2&#39;).value=&#39;&#39;">löschen</div></p>
 
-            <p>Egg3<input type="text" name="Egg3" id="3"> <button onclick=
-            "document.getElementById(&#39;3&#39;).value=&#39;&#39;">löschen</button></p>
-
+            <p>Egg3<input type="text" name="Egg3" id="3"> <div class="readmore" onclick=
+            "document.getElementById(&#39;3&#39;).value=&#39;&#39;">löschen</div></p>
+			
+			
             <form method="link" action="tabelle.html">
               <input type="submit" value="Tabelle">
             </form>
+			
 
             <form method="link" action="Diagramm.html">
               <input type="submit" value="Diagramm">

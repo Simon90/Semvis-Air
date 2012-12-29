@@ -30,6 +30,46 @@ for($i=0;$i<$count2;$i++){
 	echo $NO2[$i].' ';
 	echo $CO[$i].' ';
 	echo $O3[$i]."</br>";
+	$sensorid=pg_escape_string($ids[$i]);
+	$latitude=pg_escape_string( $lat[$i]);
+	$longitude=pg_escape_string($lon[$i]);
+    $date= pg_escape_string($timestamp[$i]);
+	$date="'$date'";
+	$date=str_replace("T"," ",$date);
+	$date=str_replace("Z","",$date);
+	$temperaturC= pg_escape_string($temperature[$i]);
+	$humidity2= pg_escape_string($humidity[$i]);
+	$NO2_2= pg_escape_string($NO2[$i]);
+	$CO_2=pg_escape_string( $CO[$i]);
+	$ozon=pg_escape_string( $O3[$i]);
+	
+$name=pg_escape_string("'sensor'");
+$connection="host=localhost port=5432 dbname=CosmDaten user=xxx password=xxx";
+pg_connect($connection);
+$result=pg_query("Select id from \"CosmSensor\" where id=$sensorid");
+
+$array=pg_fetch_array($result);
+if(strlen($array[0])==0){
+$result=pg_query("Insert into \"CosmSensor\" (id,name,latitude,longitude) values ($sensorid, $name,$latitude,$longitude);");
+	}
+if($date!="'-1'"){	
+$re=pg_query("Select \"sensorId\" from \"MeasuredData\" where \"sensorId\"=$sensorid and \"date\"=$date");
+$r=pg_fetch_array($re);
+
+if(is_bool($r)){
+$query="Insert into \"MeasuredData\"" ;
+$query.="(\"date\",\"sensorId\",\"temperaturC\",ozon,\"NO2\",humidity,\"CO\") values ($date,$sensorid,$temperaturC,$ozon,$NO2_2,$humidity2,$CO_2)";
+$connection="host=localhost port=5432 dbname=CosmDaten user=xxx password=xxx";
+pg_connect($connection);
+$result=pg_query($query);
+
+}
+}	
+	
+	
+	
+	
+	
 	}
 
 

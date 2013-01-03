@@ -268,8 +268,20 @@
                         
                                 var marker = L.marker([51.963572, 7.613813], {icon: icon}).addTo(map);
                                 //creates a popup
-                                marker.bindPopup("Die Messdaten von AQE Name <br>Temperatur: <a href='somewhere.html' title='Beschreibung des jeweiligen Parameters'>?<\/a> <br>Luftfeuchtigkeit: <a href='somewhere.html' title='Your pop-up text here'>?<\/a> <br> Kohlenmonoxid: <a href='somewhere.html' title='Your pop-up text here'>?<\/a> <br> Ozon: <a href='somewhere.html' title='Your pop-up text here'>?<\/a> <br> Stickstoffdioxid: <a href='somewhere.html' title='Your pop-up text here'>?<\/a> <br> <br> <button onClick='auswahlfenster()'> Zur Auswahl hinzufügen <\/button>");
-                                
+								<?php $connection="host=xxx port=5432 dbname=CosmDaten user=xxx password=xxx";
+                                 pg_connect($connection);
+								 $result=pg_query("select * from sensor_measureddata_join where id=75759 and date= (select max(date)from \"MeasuredData\" where \"sensorId\"=75759);");
+                                 $data = pg_fetch_object($result);
+								 $timestamp=$data->date;
+								 $date=substr($timestamp,0,10);
+								 $sub=explode("-",$date);
+								 $date="  ".$sub[2]."-".$sub[1]."-".$sub[0];
+								 $time=substr($timestamp,10,9);
+								 
+					
+								?>
+								marker.bindPopup(" <table class=\"tabelle\" style=\"width:200\"><tr ><td style=\"text-decoration:underline;font-weight:bold;\"><em>Name:</em></td><td><?php print($data->name); ?></td></tr><tr> <td ><em>Datum:</em></td>  <td><?php print($date); ?></td> </tr>  <tr> <td ><em> Uhrzeit:</em></td> <td><?php print($time); ?></td> </tr> <tr> <td> <em>Temperatur</em></td> <td><?php print($data->temperaturC."°C"); ?>  </td> </tr> <tr><td ><em> Luftfeuchtigkeit:</em></td> <td><?php print($data->humidity); ?></td> </tr> <tr> <td > <em>Kohlenmonoxid:</em></td> <td><?php print($data->CO); ?></td> </tr> <tr><td ><em>Ozon:</em></td> <td><?php print($data->ozon); ?></td> </tr> <tr><td > <em>Stickstoffdioxid:</em></td><td><?php print($data->NO2); ?> </td> </tr> </table> <br> <button onClick='auswahlfenster()'> Zur Auswahl hinzufügen </button>");
+								
                                 
             </script> <!--Mit dem Befehl unten öffnet sich ein ganz neues Fenster!
                         <a href="Hilfe.html" target="_blank" onClick="ganzneuWindow = window.open('Hilfe.html', '500', 'resizable=no,toolbar=no,scrollbars=yes,width=70,height=60,dependent'); ganzneuWindow.focus(); return false">????</a>

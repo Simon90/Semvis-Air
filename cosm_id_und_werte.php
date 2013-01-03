@@ -43,8 +43,8 @@ for($i=0;$i<$count2;$i++){
 	$CO_2=pg_escape_string( $CO[$i]);
 	$ozon=pg_escape_string( $O3[$i]);
 	
-$name=pg_escape_string("'sensor'");
-$connection="host=localhost port=5432 dbname=CosmDaten user=xxx password=xxx";
+$name="'sensor'";
+$connection="host=xxx port=5432 dbname=CosmDaten user=xxx password=xxx";
 pg_connect($connection);
 $result=pg_query("Select id from \"CosmSensor\" where id=$sensorid");
 
@@ -59,7 +59,7 @@ $r=pg_fetch_array($re);
 if(is_bool($r)){
 $query="Insert into \"MeasuredData\"" ;
 $query.="(\"date\",\"sensorId\",\"temperaturC\",ozon,\"NO2\",humidity,\"CO\") values ($date,$sensorid,$temperaturC,$ozon,$NO2_2,$humidity2,$CO_2)";
-$connection="host=localhost port=5432 dbname=CosmDaten user=xxx password=xxx";
+$connection="host=xxx port=5432 dbname=CosmDaten user=xxx password=xxx";
 pg_connect($connection);
 $result=pg_query($query);
 

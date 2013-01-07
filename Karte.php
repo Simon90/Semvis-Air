@@ -129,7 +129,7 @@
 		<script src="http://cdn.leafletjs.com/leaflet-0.4/leaflet.js"></script>
 
         
-            <?php
+            <?php 
                                     
                                     $url="http://www.lanuv.nrw.de/luft/temes/heut/MSGE.htm#jetzt";
                                     $seitenquelltext=file_get_contents($url);
@@ -261,13 +261,14 @@
                                         popup
                                         /*.setLatLng(e.latlng)
                                         .setContent("You clicked the map at " + e.latlng.toString())
-                                        .openOn(map);*/
-                                        }
+                                        .openOn(map); */
+                                        } 
+
 
                                 map.on('click', onMapClick);
                         
                                 var marker = L.marker([51.963572, 7.613813], {icon: icon}).addTo(map);
-                                //creates a popup
+								//creates a popup
 								<?php $connection="host=xxx port=5432 dbname=CosmDaten user=xxx password=xxx";
                                  pg_connect($connection);
 								 $result=pg_query("select * from sensor_measureddata_join where id=75759 and date= (select max(date)from \"MeasuredData\" where \"sensorId\"=75759);");
@@ -280,7 +281,7 @@
 								 
 					
 								?>
-								marker.bindPopup(" <table class=\"tabelle\" style=\"width:200\"><tr ><td style=\"text-decoration:underline;font-weight:bold;\"><em>Name:</em></td><td><?php print($data->name); ?></td></tr><tr> <td ><em>Datum:</em></td>  <td><?php print($date); ?></td> </tr>  <tr> <td ><em> Uhrzeit:</em></td> <td><?php print($time); ?></td> </tr> <tr> <td> <em>Temperatur</em></td> <td><?php print($data->temperaturC."°C"); ?>  </td> </tr> <tr><td ><em> Luftfeuchtigkeit:</em></td> <td><?php print($data->humidity); ?></td> </tr> <tr> <td > <em>Kohlenmonoxid:</em></td> <td><?php print($data->CO); ?></td> </tr> <tr><td ><em>Ozon:</em></td> <td><?php print($data->ozon); ?></td> </tr> <tr><td > <em>Stickstoffdioxid:</em></td><td><?php print($data->NO2); ?> </td> </tr> </table> <br> <button onClick='auswahlfenster()'> Zur Auswahl hinzufügen </button>");
+								marker.bindPopup(" <table class=\"tabelle\" style=\"width:200\"><tr ><td style=\"text-decoration:underline;font-weight:bold;\"><em>Name:</em></td><td><?php print($data->name); ?></td></tr><tr> <td ><em>Datum:</em></td>  <td><?php print($date); ?></td> </tr>  <tr> <td ><em> Uhrzeit:</em></td> <td><?php print($time); ?></td> </tr> <tr> <td> <em>Temperatur</em></td> <td><?php print($data->temperaturC."°C"); ?>  </td> </tr> <tr><td ><em> Luftfeuchtigkeit:</em></td> <td><?php print($data->humidity); ?></td> </tr> <tr> <td > <em>Kohlenmonoxid:</em></td> <td><?php print($data->CO); ?></td> </tr> <tr><td ><em>Ozon:</em></td> <td><?php print($data->ozon); ?></td> </tr> <tr><td > <em>Stickstoffdioxid:</em></td><td><?php print($data->NO2); ?> </td> </tr> </table> <br> <button onClick='auswahlfenster()'> Zur Auswahl hinzufügen </button>");*/
 								
                                 
             </script> <!--Mit dem Befehl unten öffnet sich ein ganz neues Fenster!

@@ -52,7 +52,7 @@
             <h2>Willkommen</h2>
 
             <p>Willkommen auf unserer Webseite zum &quot;Air Quality Egg&quot;. Ihr dürft euch gerne umsehen!</p>
-          </div><!--close sidebar_item-->
+			</div><!--close sidebar_item-->
         </div><!--close sidebar-->
 
         <div class="sidebar">
@@ -261,7 +261,7 @@
                                         popup
                                         /*.setLatLng(e.latlng)
                                         .setContent("You clicked the map at " + e.latlng.toString())
-                                        .openOn(map); */
+                                        .openOn(map); */ 
                                         } 
 
 
@@ -269,7 +269,7 @@
                         
                                 var marker = L.marker([51.963572, 7.613813], {icon: icon}).addTo(map);
 								//creates a popup
-								<?php $connection="host=xxx port=5432 dbname=CosmDaten user=xxx password=xxx";
+								<?php $connection="host=giv-geosoft2c.uni-muenster.de port=5432 dbname=CosmDaten user=geosoft2 password=DZLwwxbW";
                                  pg_connect($connection);
 								 $result=pg_query("select * from sensor_measureddata_join where id=75759 and date= (select max(date)from \"MeasuredData\" where \"sensorId\"=75759);");
                                  $data = pg_fetch_object($result);

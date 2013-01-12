@@ -47,13 +47,6 @@
 
     <div id="site_content">
       <div class="sidebar_container">
-        <div class="sidebar">
-          <div class="sidebar_item">
-            <h2>Willkommen</h2>
-
-            <p>Willkommen auf unserer Webseite zum &quot;Air Quality Egg&quot;. Ihr dürft euch gerne umsehen!</p>
-			</div><!--close sidebar_item-->
-        </div><!--close sidebar-->
 
         <div class="sidebar">
           <div class="sidebar_item">
@@ -202,6 +195,7 @@
                                     echo gettype($werte[0]);*/
                                     
                                     ?>
+
 		<div id="map">				
 			<script>
 				
@@ -287,9 +281,9 @@
             </script> <!--Mit dem Befehl unten öffnet sich ein ganz neues Fenster!
                         <a href="Hilfe.html" target="_blank" onClick="ganzneuWindow = window.open('Hilfe.html', '500', 'resizable=no,toolbar=no,scrollbars=yes,width=70,height=60,dependent'); ganzneuWindow.focus(); return false">????</a>
                       -->
-         </div>
+         </div><!--map-->
       
-    </div>
+    </div>	<!--site_content-->
   </div><!---main -->
 </body>
 </html>

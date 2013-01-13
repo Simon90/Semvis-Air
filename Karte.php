@@ -54,13 +54,13 @@
 
             <p>Ausgewählte AQEs:</p>
 
-            <p>Egg1<input type="text" name="Egg1" id=1> <div class="readmore" onclick=
+            <p>Egg1<input type="text" name="Egg1" id=1> <div class="delete" onclick=
             document.getElementById(1).value="">löschen</div></p>
 
-            <p>Egg2<input type="text" name="Egg2" id=2> <div class="readmore" onclick=
+            <p>Egg2<input type="text" name="Egg2" id=2> <div class="delete" onclick=
             document.getElementById(2).value="">löschen</div></p>
 
-            <p>Egg3<input type="text" name="Egg3" id=3> <div class="readmore" onclick=
+            <p>Egg3<input type="text" name="Egg3" id=3> <div class="delete" onclick=
             document.getElementById(3).value="">löschen</div></p>
 			
 			
@@ -82,11 +82,11 @@
             <div>
               Ozon (O3): <span id="myelement"></span> [µg/m³]
             </div>
-
+			<br>
             <div>
               Stickstoffdioxid (NO2): <span id="myelement2"></span> [µg/m³]
             </div>
-
+			<br>
             <div>
               Relative Luftfeuchtigkeit: <span><?php
                                                       $host = "http://www.uni-muenster.de/Klima/wetter/wetter.php";
@@ -101,7 +101,7 @@
                                                       $startpos = $pos + 1;
                                                       }       ?></span>
             </div>
-
+			<br>
             <div>
               Lufttemperatur: <span><?php $host = "http://www.uni-muenster.de/Klima/wetter/wetter.php";
                                                       $filestring = file_get_contents($host);
@@ -114,7 +114,13 @@
                                                       }
                                                       $startpos = $pos + 1;
                                                       } ?></span>
+			</div>
+			<br>
+			<div>
+              Feinstaub PM10: <span id="myelement3"></span> [µg/m³] &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <a class="tooltip" href="#">?<span class="classic">Erläuterungen zu den offiziellen Werten erhalten Sie unter "Hilfe" im Menü</span></a> 
             </div>
+			
+            
           </div>
         </div>
 	</div>
@@ -174,10 +180,31 @@
                                     
                                     return $werte_O3;
                                     }
+									
+									function getpm10($quelltext){
+                                    $text=$quelltext;
+                                    $startpos_pm10=0;
+                                    $werte_pm10='';
+                                    while($position_pm10 = strpos($text, '<td class="mw_pm10">', $startpos_pm10)){
+                                    $pos_pm10=strpos($text,'<td class="mw_pm10">',$startpos_pm10)+20;
+                                    $zeile_pm10=substr($text,$pos_pm10,strpos($text,'</td>',$pos_pm10+1)-$pos_pm10);
+                                    $zeile_pm10=trim($zeile_pm10,' ');
+                                    if(strlen($zeile_pm10)>0 && strlen($zeile_pm10)<5){
+                                    
+                                    $werte_pm10=$werte_pm10.','.$zeile_pm10;
+                                    }               
+                                    $startpos_pm10 = $pos_pm10 + 1;             
+                                    }
+                                    $werte_pm10=substr($werte_pm10,1,strlen($werte_pm10)-1);
+                                    $werte_pm10=explode(',',$werte_pm10);
+                                    
+                                    return $werte_pm10;
+                                    }
                                     
                                     
                                     $test_O3=getO3($seitenquelltext);
                                     $test_NO2=getNo2($seitenquelltext);
+									$test_pm10=getpm10($seitenquelltext);
                                     
                                     
                                     for($j=0;$j<count($test_O3);$j+=1){
@@ -185,6 +212,9 @@
                                             }       
                                     for($j=0;$j<count($test_NO2);$j+=1){
                                                     //echo 'NO2: '.$test_NO2[$j]."</br>";
+                                            }
+									for($j=0;$j<count($test_pm10);$j+=1){
+                                                    //echo 'pm10: '.$test_pm10[$j]."</br>";
                                             }
                                     
                                     
@@ -203,11 +233,14 @@
 
                         selector      = "#myelement";
                         selector2      = "#myelement2";
+						selector3       = "#myelement3";
                         var O3= "<?php echo $test_O3[count($test_O3)-1] ?>";
                         var NO2="<?php echo $test_NO2[count($test_NO2)-1] ?>";
+						var pm10="<?php echo $test_pm10[count($test_pm10)-1] ?>";
                         
                         $(selector).html(O3);
                         $(selector2).html(NO2);
+						$(selector3).html(pm10);
                         
                         var icon = L.icon({
                         iconUrl: 'bilder/egg.png',

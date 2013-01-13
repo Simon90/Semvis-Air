@@ -54,13 +54,13 @@
 
             <p>Ausgewählte AQEs:</p>
 
-            <p>Egg1<input type="text" name="Egg1" id=1> <div class="delete" onclick=
+            <p>Egg1<input type="text" name="Egg1" readonly id=1> <div class="delete" onclick=
             document.getElementById(1).value="">löschen</div></p>
 
-            <p>Egg2<input type="text" name="Egg2" id=2> <div class="delete" onclick=
+            <p>Egg2<input type="text" name="Egg2" readonly id=2> <div class="delete" onclick=
             document.getElementById(2).value="">löschen</div></p>
 
-            <p>Egg3<input type="text" name="Egg3" id=3> <div class="delete" onclick=
+            <p>Egg3<input type="text" name="Egg3" readonly id=3> <div class="delete" onclick=
             document.getElementById(3).value="">löschen</div></p>
 			
 			

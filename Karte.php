@@ -21,6 +21,7 @@
       <div id="banner">
         <div id="Willkommen">
           <h1>Semvis Air</h1>
+			<h6>System zur Erfassung,Modellierung und Visualisierung von Luftqualitätsdaten</h6>
         </div><!--close Willkommen-->
       </div><!--close banner-->
     </div><!--close header-->
@@ -54,24 +55,20 @@
 
             <p>Ausgewählte AQEs:</p>
 
-            <p>Egg1<input type="text" name="Egg1" readonly id=1> <div class="delete" onclick=
+            <p>Nr.1:<input type="text" name="Egg1" readonly id=1 style="margin-left:5px"> <div class="delete" onclick=
             document.getElementById(1).value="">löschen</div></p>
 
-            <p>Egg2<input type="text" name="Egg2" readonly id=2> <div class="delete" onclick=
+            <p>Nr.2:<input type="text" name="Egg2" readonly id=2 style="margin-left:5px"> <div class="delete" onclick=
             document.getElementById(2).value="">löschen</div></p>
 
-            <p>Egg3<input type="text" name="Egg3" readonly id=3> <div class="delete" onclick=
+            <p>Nr.3:<input type="text" name="Egg3" readonly id=3 style="margin-left:5px"> <div class="delete" onclick=
             document.getElementById(3).value="">löschen</div></p>
 			
 			
             <form method="link" action="tabelle.html">
-              <input type="submit" value="Tabelle">
-            </form>
-			
-
+              <input type="submit" value="Tabelle"></form>
             <form method="link" action="Diagramm.html">
-              <input type="submit" value="Diagramm">
-            </form>
+              <input type="submit" value="Diagramm"></form> <span style="margin-left: 225px"><a class="tooltip" href="#">?<span class="classic">Erläuterungen zum Umgang mit der Auswahlfunktion erhalten Sie unter 'Hilfe'</span></a></span>
           </div><!--close sidebar_item-->
         </div><!--close sidebar-->
 
@@ -117,7 +114,7 @@
 			</div>
 			<br>
 			<div>
-              Feinstaub PM10: <span id="myelement3"></span> [µg/m³] &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <a class="tooltip" href="#">?<span class="classic">Erläuterungen zu den offiziellen Werten erhalten Sie unter "Hilfe" im Menü</span></a> 
+              Feinstaub PM10: <span id="myelement3"></span> [µg/m³] <span style="margin-left: 60px"><a class="tooltip" href="#">?<span class="classic">Erläuterungen zu den offiziellen Werten erhalten Sie unter 'Hilfe'</span></a></span>
             </div>
 			
             

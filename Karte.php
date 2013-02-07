@@ -4,14 +4,12 @@
 <head>
 
   <title>Air Quality Egg Muenster</title>
-  <meta name="description" content="Luftqualität Muenster">
+  <meta name="description" content="Luftqualitätsdaten Münster">
   <meta name="keywords" content="Air Quality Egg">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=9">
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <script type="text/javascript" src="js/jquery.min.js">
-</script>
-  <script type="text/javascript" src="js/image_slide.js">
 </script>
   <script type="text/javascript" src="overlib421/overlib.js">
 </script>
@@ -23,7 +21,7 @@
     <div id="header">
       <div id="banner">
         <div id="Willkommen">
-          <h1>SeMVIS Air</h1>
+          <h1>Semvis Air</h1>
 
           <h6>System zur Erfassung,Modellierung und Visualisierung von Luftqualitätsdaten</h6>
         </div><!--close Willkommen-->

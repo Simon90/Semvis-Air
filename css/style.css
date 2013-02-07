@@ -569,7 +569,7 @@ font-size:small;
 .accordion li:hover{
     width:60%;
 }
-.slide-01  { 
+.slider1  {
 }
 
 
@@ -577,15 +577,17 @@ font-size:small;
     
 #vertical{
     height:400px;
+	overflow:visible;
+	
 }
 #vertical li{
     float:none;
-    height:9%;
+    height:10%;
     width:100%;
-    -moz-transition:height 0.5s ease-out;
-    -webkit-transition:height 0.5s ease-out;
-    -o-transition:height 0.5s ease-out;
-    transition:height 0.5s ease-out;
+    -moz-transition:height .5s ease-out;
+    -webkit-transition:height .5s ease-out;
+    -o-transition:height .5s ease-out;
+    transition:height .5s ease-out;
 }
 #vertical li:first-of-type{
     -moz-border-radius:10px 10px 0 0;
@@ -598,18 +600,17 @@ font-size:small;
     border-radius:10px 10px 10px 10px;
 }
 #vertical:hover li{
-    height:9%;
+    height:10%;
     width:100%;
 }
 #vertical li:hover{
-    height:30%;
+    height:60%;
     width:100%;
 }
 
 /* Help-Slide */
-.slider
+.slider2
 { font: normal 125% Arial, Helvetica, sans-serif;
-  height: auto;
   width: 685px;
   padding: 5px 5px 5px 5px;
   background: #1D1D1D;

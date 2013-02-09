@@ -1,14 +1,24 @@
 <?php
+//This script retrieves the values from Cosm with the help of PachubeAPI and cosm_id_and_values_f.php. 
+//Former ist from https://github.com/cosm/cosm-js, the latter contains self-defined functions.
 
-
+//functions from Cosm
 include('PachubeAPI.php');
+//self-defined functions to get the values
 include('cosm_id_und_werte_f.php');
+
 $pachube = new PachubeAPI("QgvMiPLj6wDkY3k2JSPpD3-rMAuSAKxLbVlLMVhxTURMOD0g");
 
+//$alle contains all meta-information about all feeds with the tag 'munster' (ID,Title, see http://cosm.com/docs/v2/feed/list.html for further information) . 
 $alle=$pachube->getFeedsList("json", 0, 100000, "summary", "munster","munster");
 
+//array: contains all IDs with the tag 'munster'.
 $ids=get_ids($alle);
+
+//array: contains the values for every ID in JSON format.
 $json=get_json($ids);
+
+//The following two arrays contain the coordinates. The values below are self-explaining.
 $lat=get_lat($json);
 $lon=get_lon($json);
 $timestamp=get_timestamp($json);
@@ -19,6 +29,8 @@ $humidity=get_Humidity($json);
 $O3=get_O3($json);
 //$values=get_values($json);
 //echo count($values);
+
+//$count2 initialisation before the loop for a better performance. Echo-lines are not important, just for implementation. 
 $count2=count($ids);
 for($i=0;$i<$count2;$i++){
 	echo $ids[$i].' ';
@@ -30,6 +42,8 @@ for($i=0;$i<$count2;$i++){
 	echo $NO2[$i].' ';
 	echo $CO[$i].' ';
 	echo $O3[$i]."</br>";
+	
+	//pgSQL
 	$sensorid=pg_escape_string($ids[$i]);
 	$latitude=pg_escape_string( $lat[$i]);
 	$longitude=pg_escape_string($lon[$i]);
@@ -44,6 +58,7 @@ for($i=0;$i<$count2;$i++){
 	$ozon=pg_escape_string( $O3[$i]);
 	
 $name="'sensor'";
+//Connection to PostgreSQL. Enter appropriate values, otherwise it will not work.
 $connection="host=xxx port=5432 dbname=CosmDaten user=xxx password=xxx";
 pg_connect($connection);
 $result=pg_query("Select id from \"CosmSensor\" where id=$sensorid");

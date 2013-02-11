@@ -306,18 +306,63 @@ linkages to the help-site, the table and the diagram.  -->
 					//Leaflet code snippet for popups. Containing values
 					var marker = L.marker([51.963572, 7.613813], {icon: icon}).addTo(map);
 													//creates a popup
-													<?php $connection="host=giv-geosoft2c.uni-muenster.de port=5432 dbname=CosmDaten user=geosoft2 password=DZLwwxbW";
-					 pg_connect($connection);
-													 $result=pg_query("select * from sensor_measureddata_join where id=75759 and date= (select max(date)from \"MeasuredData\" where \"sensorId\"=75759);");
-					 $data = pg_fetch_object($result);
-													 $timestamp=$data->date;
-													 $date=substr($timestamp,0,10);
-													 $sub=explode("-",$date);
-													 $date="  ".$sub[2]."-".$sub[1]."-".$sub[0];
-													 $time=substr($timestamp,10,9);
-													 
-							
-													?>
+<?php 
+						$connection="host=giv-geosoft2c.uni-muenster.de port=5432 dbname=CosmDaten user=geosoft2 password=DZLwwxbW";
+						pg_connect($connection);
+					 
+						$ids=pg_query('select id from "CosmSensor";');
+						$rows = pg_num_rows($ids);
+						$id_coord=array();
+
+						$standard_latitude=51.963059;
+						$standard_longitude=7.627009;
+						
+						for ($i=0; $i<$rows; $i++) 
+						{
+							$row = pg_fetch_row($ids, $i);
+							$coordinates=pg_query('select latitude,longitude from "CosmSensor" where id='.$row[0].';');
+							$coord = pg_fetch_row($coordinates);
+							array_push($id_coord, $row[0]);
+							array_push($id_coord, $coord[0]);
+							array_push($id_coord, $coord[1]);
+						}
+						
+						for($i=1;$i<count($id_coord)-1; $i+=3){
+							if($id_coord[$i]==-1)
+								{
+								$id_coord[$i]=$standard_latitude;
+								}
+							if($id_coord[$i+1]==-1)
+								{$id_coord[$i+1]=$standard_longitude;
+								$standard_longitude=$standard_longitude+0.004;
+								}
+							}
+						$array_connect='';
+						for ($i=0; $i<count($id_coord); $i++) 
+						{	
+							$array_connect=$array_connect.','.$id_coord[$i];
+						}
+						$array_connect=substr($array_connect,1);
+						
+						 ?>
+						var id_coord="<?php echo $array_connect ?>";
+						id_coord=id_coord.split(",");
+						
+						for(var i=0;i<id_coord.length;i+=3){
+						var marker = L.marker([id_coord[i+1],id_coord[i+2]], {icon: icon}).addTo(map);
+						}
+						
+						<?php
+						$result=pg_query("select * from sensor_measureddata_join where id=75759 and date= (select max(date)from \"MeasuredData\" where \"sensorId\"=75759);");
+						$data = pg_fetch_object($result);
+						$timestamp=$data->date;
+						$date=substr($timestamp,0,10);
+						$sub=explode("-",$date);
+						$date="  ".$sub[2]."-".$sub[1]."-".$sub[0];
+						$time=substr($timestamp,10,9);
+														 
+								
+						?>
 													marker.bindPopup(" <table class=\"tabelle\" style=\"width:200\"><tr ><td style=\"text-decoration:underline;font-weight:bold;\"><em>Name:<\/em><\/td><td><?php print($data->name); ?><\/td><\/tr><tr> <td ><em>Datum:<\/em><\/td>  <td><?php print($date); ?><\/td> <\/tr>  <tr> <td ><em> Uhrzeit:<\/em><\/td> <td><?php print($time); ?><\/td> <\/tr> <tr> <td> <em>Temperatur<\/em><\/td> <td><?php print($data->temperaturC."°C"); ?>  <\/td> <\/tr> <tr><td ><em> Luftfeuchtigkeit:<\/em><\/td> <td><?php print($data->humidity); ?><\/td> <\/tr> <tr> <td > <em>Kohlenmonoxid:<\/em><\/td> <td><?php print($data->CO); ?><\/td> <\/tr> <tr><td ><em>Ozon:<\/em><\/td> <td><?php print($data->ozon); ?><\/td> <\/tr> <tr><td > <em>Stickstoffdioxid:<\/em><\/td><td><?php print($data->NO2); ?> <\/td> <\/tr> <\/table> <br> <button onClick='auswahlfenster()'> Zur Auswahl hinzufügen <\/button>");
 													
                                 

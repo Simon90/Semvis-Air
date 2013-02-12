@@ -197,4 +197,24 @@ for($i=0;$i<count($json_fulltext);$i++){
 	}
 }	return $o3_values;
 }
+
+function get_Name($json_fulltext){
+$names=array();
+for($i=0;$i<count($json_fulltext);$i++){
+	if(strpos($json_fulltext[$i],'"title":"')!==false){
+		$temp8=explode('"title":"',$json_fulltext[$i]);
+			$count8=count($temp8);
+				if(strpos($temp8[1],'","private')!==false){ 
+					$temp=explode('","private',$temp8[1]);
+					array_push($names, $temp[0]);
+					}
+				else{
+					array_push($names, '-');
+				}	
+	}			
+	else{
+		array_push($names, '-');
+	}
+}	return $names;
+}
 ?>

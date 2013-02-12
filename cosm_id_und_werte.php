@@ -27,6 +27,7 @@ $temperature=get_Temperature($json);
 $CO=get_CO($json);
 $humidity=get_Humidity($json);
 $O3=get_O3($json);
+$names=get_Name($json);
 //$values=get_values($json);
 //echo count($values);
 

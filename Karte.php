@@ -303,20 +303,21 @@ linkages to the help-site, the table and the diagram.  -->
 
 					map.on('click', onMapClick);
 					
-					//Leaflet code snippet for popups. Containing values
-					var marker = L.marker([51.963572, 7.613813], {icon: icon}).addTo(map);
-													//creates a popup
 <?php 
+include('pg_value_functions.php');
+						
+						//Connection to our database
 						$connection="host=giv-geosoft2c.uni-muenster.de port=5432 dbname=CosmDaten user=geosoft2 password=DZLwwxbW";
 						pg_connect($connection);
 					 
+						//Getting all the Ids
 						$ids=pg_query('select id from "CosmSensor";');
 						$rows = pg_num_rows($ids);
-						$id_coord=array();
-
-						$standard_latitude=51.963059;
-						$standard_longitude=7.627009;
 						
+						//$id_coord is an array and will be filled with the help of the loop thereunder.
+						$id_coord=array();
+						
+						//Fills id_coord with IDs, latitude and longitude.
 						for ($i=0; $i<$rows; $i++) 
 						{
 							$row = pg_fetch_row($ids, $i);
@@ -327,6 +328,9 @@ linkages to the help-site, the table and the diagram.  -->
 							array_push($id_coord, $coord[1]);
 						}
 						
+						//standard values for IDs without coordinates, in the database with the value -1.
+						$standard_latitude=51.963059;
+						$standard_longitude=7.627009;
 						for($i=1;$i<count($id_coord)-1; $i+=3){
 							if($id_coord[$i]==-1)
 								{
@@ -337,6 +341,8 @@ linkages to the help-site, the table and the diagram.  -->
 								$standard_longitude=$standard_longitude+0.004;
 								}
 							}
+						
+						//$array_connect will contain a string so it ist easy to overgive it to javascript		
 						$array_connect='';
 						for ($i=0; $i<count($id_coord); $i++) 
 						{	
@@ -344,27 +350,41 @@ linkages to the help-site, the table and the diagram.  -->
 						}
 						$array_connect=substr($array_connect,1);
 						
-						 ?>
-						var id_coord="<?php echo $array_connect ?>";
-						id_coord=id_coord.split(",");
-						
-						for(var i=0;i<id_coord.length;i+=3){
-						var marker = L.marker([id_coord[i+1],id_coord[i+2]], {icon: icon}).addTo(map);
-						}
-						
-						<?php
+						/*
 						$result=pg_query("select * from sensor_measureddata_join where id=75759 and date= (select max(date)from \"MeasuredData\" where \"sensorId\"=75759);");
 						$data = pg_fetch_object($result);
 						$timestamp=$data->date;
 						$date=substr($timestamp,0,10);
 						$sub=explode("-",$date);
 						$date="  ".$sub[2]."-".$sub[1]."-".$sub[0];
-						$time=substr($timestamp,10,9);
-														 
-								
-						?>
-													marker.bindPopup(" <table class=\"tabelle\" style=\"width:200\"><tr ><td style=\"text-decoration:underline;font-weight:bold;\"><em>Name:<\/em><\/td><td><?php print($data->name); ?><\/td><\/tr><tr> <td ><em>Datum:<\/em><\/td>  <td><?php print($date); ?><\/td> <\/tr>  <tr> <td ><em> Uhrzeit:<\/em><\/td> <td><?php print($time); ?><\/td> <\/tr> <tr> <td> <em>Temperatur<\/em><\/td> <td><?php print($data->temperaturC."°C"); ?>  <\/td> <\/tr> <tr><td ><em> Luftfeuchtigkeit:<\/em><\/td> <td><?php print($data->humidity); ?><\/td> <\/tr> <tr> <td > <em>Kohlenmonoxid:<\/em><\/td> <td><?php print($data->CO); ?><\/td> <\/tr> <tr><td ><em>Ozon:<\/em><\/td> <td><?php print($data->ozon); ?><\/td> <\/tr> <tr><td > <em>Stickstoffdioxid:<\/em><\/td><td><?php print($data->NO2); ?> <\/td> <\/tr> <\/table> <br> <button onClick='auswahlfenster()'> Zur Auswahl hinzufügen <\/button>");
-													
+						$time=substr($timestamp,10,9);*/
+						 
+						//The following line retrieves all values from every parameter for every ID, $all_values is an array. See pg_value_functions.
+						$all_values=get_values(get_id_coord());
+						$anzahl=count($all_values);
+?>									
+
+						//$all_values is an array. In every slot is a string with the values for one parameter. The following lines split these
+						//strings so they can be used for the popups.
+						var split_names="<?php echo $all_values[0] ?>".split(",");
+						split_dates="<?php echo $all_values[1] ?>".split(",");
+						split_times="<?php echo $all_values[2] ?>".split(",");
+						split_temperatures="<?php echo $all_values[3] ?>".split(",");
+						split_ozones="<?php echo $all_values[4] ?>".split(",");
+						split_no2s="<?php echo $all_values[5] ?>".split(",");
+						split_humiditys="<?php echo $all_values[6] ?>".split(",");
+						split_carbon_monoxide="<?php echo $all_values[7] ?>".split(",");
+						
+						//Same as above.
+						var id_coord="<?php echo $array_connect ?>";
+						id_coord=id_coord.split(",");
+						
+						//The following loop creates a marker and binds a popup for every ID. It increases by three because in every third slot is an ID, the
+						//others contain coordinates.
+						for(var i=0;i<id_coord.length;i+=3){
+						var marker = L.marker([id_coord[i+1],id_coord[i+2]], {icon: icon}).addTo(map);
+						marker.bindPopup(" <table class=\"tabelle\" style=\"width:200\"><tr ><td style=\"text-decoration:underline;font-weight:bold;\"><em>Name:<\/em><\/td><td>"+split_names[i/3]+"<\/td><\/tr><tr> <td ><em>Datum:<\/em><\/td>  <td>"+split_dates[i/3]+"<\/td> <\/tr>  <tr> <td ><em> Uhrzeit:<\/em><\/td> <td>"+split_times[i/3]+"<\/td> <\/tr> <tr> <td> <em>Temperatur<\/em><\/td> <td>"+split_temperatures[i/3]+"<\/td> <\/tr> <tr><td ><em> Luftfeuchtigkeit:<\/em><\/td> <td>"+split_ozones[i/3]+"<\/td> <\/tr> <tr> <td > <em>Kohlenmonoxid:<\/em><\/td> <td>"+split_no2s[i/3]+"<\/td> <\/tr> <tr><td ><em>Ozon:<\/em><\/td> <td>"+split_humiditys[i/3]+"<\/td> <\/tr> <tr><td > <em>Stickstoffdioxid:<\/em><\/td><td>"+split_carbon_monoxide[i/3]+"<\/td> <\/tr> <\/table> <br> <button onClick='auswahlfenster()'> Zur Auswahl hinzufügen <\/button>");
+						}													
                                 
         </script> <!--Mit dem Befehl unten öffnet sich ein ganz neues Fenster!
                         <a href="Hilfe.html" target="_blank" onClick="ganzneuWindow = window.open('Hilfe.html', '500', 'resizable=no,toolbar=no,scrollbars=yes,width=70,height=60,dependent'); ganzneuWindow.focus(); return false">????</a>

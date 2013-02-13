@@ -351,10 +351,10 @@ margin: 10px 0px 2px 30px;
  .delete
 { font: bold 65% Arial, Helvetica, sans-serif;
   height: 10px;
-  bottom:20px;
-  right: 40px;
-  width: auto; 
-  float:right;
+  bottom: 32px;
+  float: right;
+  right: 15px;
+  width: auto;  
   position: relative;
   padding: 5px 5px 5px 5px;
   background: #fff;
@@ -486,30 +486,6 @@ margin-left: 30px;
 box-shadow: rgba(0, 0, 0, 1) 5px 0px 10px;  
 }
 
-#Hintergrund{
-background-image:url(Hintergrund.png);
-
-}
-#header1{
-   font-size: 300%;
-   text-align:center;	
-   text-decoration: underline;
-   font-family:Forte;
-   color:black;
-}
-#Startseite{background-color: ; font-family:arial; color:red;position:fixed; right:1%; bottom:2%;}
-
-#Hilfeseite{background-color: ; font-family:arial; color:red;position:fixed; right:7%; bottom:2%;}
-
-#Impressum{font-family:arial; color:red;position:fixed;position:absolute; left:1%;bottom:1% }
-
-#tabelle{background-color: ;}
-
-#kartenlink{background-color: black; font-family:arial; color:red;position:fixed; right:7%; bottom:2%;}
-
-#linien{position: absolute; top:40%; left:27%;}
-
-#saeulen{position: absolute; top:103%; left:27%;}
 
 #Auswahlfelder{
 position:absolute; top:50%; right:71%;
@@ -526,7 +502,7 @@ position:absolute; top:80%; left:16%;
 font-size:small;
 }
 
-/*------------Accordion-----------------*/
+/*------------Accordion---Horizontal----*/
     
 .accordion{
     width:720px;
@@ -573,7 +549,7 @@ font-size:small;
 }
 
 
-/*--------------VERTICAL----------------*/
+/*-----Accordion----VERTICAL----------------*/
     
 #vertical{
     height:400px;
@@ -604,11 +580,11 @@ font-size:small;
     width:100%;
 }
 #vertical li:hover{
-    height:60%;
+    height:70%;
     width:100%;
 }
 
-/* Help-Slide */
+/*------------ Help-Slide ------------------*/
 .slider2
 { font: normal 125% Arial, Helvetica, sans-serif;
   width: 685px;
@@ -623,7 +599,7 @@ font-size:small;
   -moz-box-shadow: rgba(0, 0, 0, 1) 5px 0px 5px;
   box-shadow: rgba(0, 0, 0, 1) 5px 0px 5px;}
   
-  /* Tooltip */
+/*------------------------ Tooltip-------------------------- */
   
   .tooltip {
 			border-bottom: 1px dotted #000000; color: #000000; outline: none;
@@ -645,14 +621,7 @@ font-size:small;
 			position: absolute; left: 1em; bottom: 1em; z-index: 99;
 			margin-left: 0; width: 200px;
 		}
-		/*.tooltip:hover img {
-			border: 0; margin: -10px 0 0 -55px;
-			float: left; position: absolute;
-		}*/
-		/*.tooltip:hover em {
-			font-family: Candara, Tahoma, Geneva, sans-serif; font-size: 1.2em; font-weight: bold;
-			display: block; padding: 0.2em 0 0.6em 0;
-		}*/
+
 		.classic { padding: 0.8em 0.5em; }
 		* html a:hover { background: transparent; }
 		.classic {background: #FFF; border: 1px solid #000000; }

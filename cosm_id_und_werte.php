@@ -57,8 +57,8 @@ for($i=0;$i<$count2;$i++){
 	$NO2_2= pg_escape_string($NO2[$i]);
 	$CO_2=pg_escape_string( $CO[$i]);
 	$ozon=pg_escape_string( $O3[$i]);
-$name=pg_escape_string($names[$i]);
-    $name="'".$name."'";
+	
+$name="'sensor'";
 //Connection to PostgreSQL. Enter appropriate values, otherwise it will not work.
 $connection="host=xxx port=5432 dbname=CosmDaten user=xxx password=xxx";
 pg_connect($connection);

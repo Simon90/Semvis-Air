@@ -60,7 +60,7 @@ for($i=0;$i<$count2;$i++){
 	
 $name="'sensor'";
 //Connection to PostgreSQL. Enter appropriate values, otherwise it will not work.
-$connection="host=xxx port=5432 dbname=CosmDaten user=xxx password=xxx";
+$connection="host=giv-geosoft2c.uni-muenster.de port=5432 dbname=CosmDaten user=geosoft2 password=DZLwwxbW";
 pg_connect($connection);
 $result=pg_query("Select id from \"CosmSensor\" where id=$sensorid");
 
@@ -75,7 +75,7 @@ $r=pg_fetch_array($re);
 if(is_bool($r)){
 $query="Insert into \"MeasuredData\"" ;
 $query.="(\"date\",\"sensorId\",\"temperaturC\",ozon,\"NO2\",humidity,\"CO\") values ($date,$sensorid,$temperaturC,$ozon,$NO2_2,$humidity2,$CO_2)";
-$connection="host=xxx port=5432 dbname=CosmDaten user=xxx password=xxx";
+$connection="host=giv-geosoft2c.uni-muenster.de port=5432 dbname=CosmDaten user=geosoft2 password=DZLwwxbW";
 pg_connect($connection);
 $result=pg_query($query);
 

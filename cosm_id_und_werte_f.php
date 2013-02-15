@@ -52,11 +52,9 @@ $count5=count($json_fulltext);
 for($i=0;$i<$count5;$i++){
 	if(strpos($json_fulltext[$i],'"lon":')!==false){
 		$temp1=explode('"lon":',$json_fulltext[$i]);
-			if(strpos($temp1[1],',"domain"')!==false){ 
-				$temp=explode(',"domain"',$temp1[1]);
-				array_push($lon, substr($temp[0],0,16));
+				array_push($lon, substr($temp1[1],0,12));
 				}
-	}			
+				
 			
 	
 	else{

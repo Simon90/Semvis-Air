@@ -116,7 +116,8 @@
 					$humiditys_connect='';
 					$carbon_monoxide_connect='';
 					
-					for($i=0;$i<17;$i++){
+					$id_coord=get_id_coord();
+					for($i=0;$i<count($id_coord)/3;$i++){
 					$names_connect=$names_connect.','.$names[$i];
 					$dates_connect=$dates_connect.','.$dates[$i];
 					$times_connect=$times_connect.','.$times[$i];

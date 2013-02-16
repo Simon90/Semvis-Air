@@ -38,7 +38,7 @@ linkages to the help-site, the table and the diagram.  -->
           <a href="Hilfe.html">Hilfe</a>
         </li>
         <li>
-          <a href="impressum.html">Impressum und Kontakt</a>
+          <a href="Impressum.html">Impressum und Kontakt</a>
         </li>
       </ul>
     </div><!--close menubar-->

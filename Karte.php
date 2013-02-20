@@ -61,7 +61,7 @@ linkages to the help-site, the table and the diagram.  -->
             <div class="delete" onclick="document.getElementById(3).value=&quot;&quot;">
               löschen
             </div><!--close delete-button-->
-            <form method="link" action="tabelle.html">
+            <form method="link" id="tabellenbutton" action="tabelle.html">
               <input type="submit" value="Tabelle">
             </form>
 
@@ -218,6 +218,8 @@ linkages to the help-site, the table and the diagram.  -->
 
         <div id="map">
         <script>
+						var eggname;
+						
                         //following code with the help of the Cosm library and Leaflet.
 
 
@@ -245,31 +247,7 @@ linkages to the help-site, the table and the diagram.  -->
                         popupAnchor:  [0, -12] // point from which the popup should open relative to the iconAnchor
                         });
                         
-                        //puts egg value(s) in the selectionwindow; if the selectionwindow is full an alert applies
-                        function auswahlfenster () {
-                        if (document.getElementById(1).value=="")
-                        {
-                        document.getElementById(1).value='EGG';
-                        }
-                                                        else 
-                                                                {
-                                                                        if (document.getElementById(2).value=="")
-                                                                        {
-                                                                        document.getElementById(2).value='EGG';
-                                                                        }
-                                                                        else 
-                                                                        {
-                                                                                if (document.getElementById(3).value=="")
-                                                                                        {
-                                                                                        document.getElementById(3).value='EGG';
-                                                                                        }
-                                                                                else
-                                                                                        {
-                                                                                        alert ('Die Auswahlfelder sind voll!');
-                                                                                        }
-                                                                        }
-                                                                }               
-                                                }
+                    
                         //Leaflet
                         var map = L.map('map').setView([51.963572, 7.613813], 13);
                                         L.tileLayer('http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/256/{z}/{x}/{y}.png', {
@@ -368,8 +346,39 @@ linkages to the help-site, the table and the diagram.  -->
                                                 //others contain coordinates.
                                                 for(var i=0;i<id_coord.length;i+=3){
                                                 var marker = L.marker([id_coord[i+1],id_coord[i+2]], {icon: icon}).addTo(map);
-                                                marker.bindPopup(" <table class=\"tabelle\" style=\"width:200\"><tr ><td style=\"text-decoration:underline;font-weight:bold;\"><em>Name:<\/em><\/td><td>"+split_names[i/3]+"<\/td><\/tr><tr> <td ><em>Datum:<\/em><\/td>  <td>"+split_dates[i/3]+"<\/td> <\/tr>  <tr> <td ><em> Uhrzeit:<\/em><\/td> <td>"+split_times[i/3]+"<\/td> <\/tr> <tr> <td> <em>Temperatur<\/em><\/td> <td>"+split_temperatures[i/3]+"<\/td> <\/tr> <tr><td ><em> Luftfeuchtigkeit:<\/em><\/td> <td>"+split_ozones[i/3]+"<\/td> <\/tr> <tr> <td > <em>Kohlenmonoxid:<\/em><\/td> <td>"+split_no2s[i/3]+"<\/td> <\/tr> <tr><td ><em>Ozon:<\/em><\/td> <td>"+split_humiditys[i/3]+"<\/td> <\/tr> <tr><td > <em>Stickstoffdioxid:<\/em><\/td><td>"+split_carbon_monoxide[i/3]+"<\/td> <\/tr> <\/table> <br> <button onClick='auswahlfenster()'> Zur Auswahl hinzufügen <\/button>");
-                                                }                                                                                                       
+                                                marker.bindPopup(" <table class=\"tabelle\" style=\"width:200\"><tr ><td style=\"text-decoration:underline;font-weight:bold;\"><em>Name:<\/em><\/td><td>"+split_names[i/3]+"<\/td><\/tr><tr> <td ><em>Datum:<\/em><\/td>  <td>"+split_dates[i/3]+"<\/td> <\/tr>  <tr> <td ><em> Uhrzeit:<\/em><\/td> <td>"+split_times[i/3]+"<\/td> <\/tr> <tr> <td> <em>Temperatur<\/em><\/td> <td>"+split_temperatures[i/3]+"<\/td> <\/tr> <tr><td ><em> Luftfeuchtigkeit:<\/em><\/td> <td>"+split_ozones[i/3]+"<\/td> <\/tr> <tr> <td > <em>Kohlenmonoxid:<\/em><\/td> <td>"+split_no2s[i/3]+"<\/td> <\/tr> <tr><td ><em>Ozon:<\/em><\/td> <td>"+split_humiditys[i/3]+"<\/td> <\/tr> <tr><td > <em>Stickstoffdioxid:<\/em><\/td><td>"+split_carbon_monoxide[i/3]+"<\/td> <\/tr> <\/table> <br> <button onClick='auswahlfenster(\""+split_names[i/3]+"\"); linkgenerieren(\""+id_coord[i/3]+"\");'> Zur Auswahl hinzufügen <\/button>");
+                                                }      
+												
+						function linkgenerieren (id) {
+						
+						}
+						
+						//puts egg name in the selectionwindow; if the selectionwindow is full an alert applies
+                        function auswahlfenster (en) {
+						
+						if (document.getElementById(1).value=="")
+                        {
+						document.getElementById(1).value=en;
+						}
+                                                        else 
+                                                                {
+                                                                        if (document.getElementById(2).value=="")
+                                                                        {
+                                                                        document.getElementById(2).value=en;
+                                                                        }
+                                                                        else 
+                                                                        {
+                                                                                if (document.getElementById(3).value=="")
+                                                                                        {
+                                                                                        document.getElementById(3).value=en;
+                                                                                        }
+                                                                                else
+                                                                                        {
+                                                                                        alert ('Die Auswahlfelder sind voll!');
+                                                                                        }
+                                                                        }
+                                                                }               
+                                                }
                                 
         </script> <!--Mit dem Befehl unten öffnet sich ein ganz neues Fenster!
                         <a href="Hilfe.html" target="_blank" onClick="ganzneuWindow = window.open('Hilfe.html', '500', 'resizable=no,toolbar=no,scrollbars=yes,width=70,height=60,dependent'); ganzneuWindow.focus(); return false">????</a>

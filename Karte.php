@@ -218,7 +218,6 @@ linkages to the help-site, the table and the diagram.  -->
 
         <div id="map">
         <script>
-						var eggname;
 						
                         //following code with the help of the Cosm library and Leaflet.
 

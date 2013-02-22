@@ -99,9 +99,9 @@ ol li
   border-radius: 15px 15px 15px 15px;
   -moz-border-radius: 15px 15px 15px 15px;
   -webkit-border: 15px 15px 15px 15px;
-  -webkit-box-shadow: rgba(0, 0, 0, 1) 5px 0px 5px;
-  -moz-box-shadow: rgba(0, 0, 0, 1) 5px 0px 5px;
-  box-shadow: rgba(0, 0, 0, 1) 5px 0px 5px;
+  -webkit-box-shadow: rgba(0, 0, 0, 1) 5px 2px 10px;
+  -moz-box-shadow: rgba(0, 0, 0, 1) 5px 2px 10px;
+  box-shadow: rgba(0, 0, 0, 1) 5px 2px 10px;
   }
   
 #Willkommen
@@ -209,12 +209,12 @@ ul#menu li:hover a
   border-radius: 15px 15px 15px 15px;
   -moz-border-radius: 15px 15px 15px 15px;
   -webkit-border: 15px 15px 15px 15px;
-  -webkit-box-shadow: rgba(0, 0, 0, 1) 5px 0px 5px;
-  -moz-box-shadow: rgba(0, 0, 0, 1) 5px 0px 5px;
-  box-shadow: rgba(0, 0, 0, 1) 5px 0px 5px;}
+  -webkit-box-shadow: rgba(0, 0, 0, 1) 5px 2px 10px;
+  -moz-box-shadow: rgba(0, 0, 0, 1) 5px 2px 10px;
+  box-shadow: rgba(0, 0, 0, 1) 5px 2px 10px;}
 
 #content
-{ width: auto;
+{ width: 700px;
   height:auto;
   margin-bottom: 20px;
   float: left;
@@ -226,16 +226,17 @@ ul#menu li:hover a
   margin-bottom: 20px;}
   
 .content_image
-{ float: left;
-  width: 150px;
-  height: 150px;
-  margin: 0 20px 10px 0;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;
-  -moz-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;
-  box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;}
+{ float: right;
+  width: 320px;
+  height: 238px;
+  margin: 0 50px 0px 0;
+  -webkit-box-shadow: rgba(0, 0, 0, 1) 0px 0px 5px;
+  -moz-box-shadow: rgba(0, 0, 0, 1) 0px 0px 5px;
+  box-shadow: rgba(0, 0, 0, 1) 5px 5px 10px;}
+
   
 .content_container
-{ width: 320px;
+{ width: 300px;
   padding: 5px;
   margin-right: 10px;
   float: left;}
@@ -375,7 +376,7 @@ margin: 10px 0px 2px 30px;
  .button_small
 { font: normal 110% Arial, Helvetica, sans-serif;
   height: auto;
-  width: auto;
+  width: 250px;
   padding: 5px 2px 5px 2px;
   background: -ms-linear-gradient(#535353, #1d1d1d);
   background: -moz-linear-gradient(#535353, #1d1d1d);
@@ -384,9 +385,9 @@ margin: 10px 0px 2px 30px;
   border-radius: 15px 15px 15px 15px;
   -moz-border-radius: 15px 15px 15px 15px;
   -webkit-border: 15px 15px 15px 15px;
-  -webkit-box-shadow: rgba(0, 0, 0, 1) 5px 0px 5px;
-  -moz-box-shadow: rgba(0, 0, 0, 1) 5px 0px 5px;
-  box-shadow: rgba(0, 0, 0, 1) 5px 0px 5px;}
+  -webkit-box-shadow: rgba(0, 0, 0, 1) 5px 2px 10px;
+  -moz-box-shadow: rgba(0, 0, 0, 1) 5px 2px 10px;
+  box-shadow: rgba(0, 0, 0, 1) 5px 2px 10px;}
   
 .button_small a
 { color: #FFF;
@@ -429,54 +430,6 @@ margin: 10px 0px 2px 30px;
   padding: 2px 0 3px 0;
   cursor: pointer;
   background: #5082BD;
-  color: #FFF;}
-
-/* styling for the slideshow on the homepage */
-
-
-ul.slideshow {
-  list-style: none;
-  width: 710px;
-  height: 250px;
-  overflow: hidden;
-  position: relative;
-  margin: 0;
-  margin-top: 20px;
-  -webkit-box-shadow: rgba(0, 0, 0, 1) 5px 0px 10px;
-  -moz-box-shadow: rgba(0, 0, 0, 1) 5px 0px 10px;
-  box-shadow: rgba(0, 0, 0, 1) 5px 0px 10px;
-  }
- 
-ul.slideshow li {
-  position: absolute;
-  margin: 0;
-  padding: 0;
-  left: 0;
-  right: 0;}
- 
- 
-ul.slideshow li.show {
-  z-index: 500;}
- 
-ul img {
-  border: none;}
- 
-#slideshow-caption {
-  width: 710px;
-  height: 38px;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  z-index: 500;}
- 
-#slideshow-caption .slideshow-caption-container {
-  padding: 10px 25px 10px 25px;
-  background: transparent url(../bilder/transparent.png) repeat;
-  z-index: 1000;}
- 
-#slideshow-caption p {
-  padding: 0;
-  font: normal 130% arial, sans-serif;
   color: #FFF;}
 
 

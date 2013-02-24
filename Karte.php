@@ -49,24 +49,21 @@ linkages to the help-site, the table and the diagram.  -->
           <div class="sidebar_item">
             <h2>Auswahl</h2>
             <p>Ausgewählte AQEs:</p>
-            <p>Nr.1:<input type="text" name="Egg1" readonly id="1" style="margin-left:5px"></p>
-            <div class="delete" onclick="document.getElementById(1).value=&quot;&quot;">
+            <p>Egg 1:<input type="text" name="Egg1" readonly id="1" style="margin-left:5px"></p>
+            <div class="delete" onclick="loeschen(1);">
               löschen
             </div><!--close delete-button-->
-            <p>Nr.2:<input type="text" name="Egg2" readonly id="2" style="margin-left:5px"></p>
-            <div class="delete" onclick="document.getElementById(2).value=&quot;&quot;">
+            <p>Egg 2:<input type="text" name="Egg2" readonly id="2" style="margin-left:5px"></p>
+            <div class="delete" onclick="loeschen(2);">
               löschen
             </div><!--close delete-button-->
-            <p>Nr.3:<input type="text" name="Egg3" readonly id="3" style="margin-left:5px"></p>
-            <div class="delete" onclick="document.getElementById(3).value=&quot;&quot;">
+            <p>Egg 3:<input type="text" name="Egg3" readonly id="3" style="margin-left:5px"></p>
+            <div class="delete" onclick="loeschen(3);">
               löschen
             </div><!--close delete-button-->
-            <form method="link" id="tabellenbutton" action="tabelle.html">
-              <input type="submit" value="Tabelle">
-            </form>
+			<input type="button" name="Tabelle" value="Tabelle" id="4" onclick="linkgenerieren(4)">
+			<input type="button" name="Diagramm" value="Diagramm" id="5" onclick="linkgenerieren(5)">
 
-            <form method="link" action="Diagramm.html">
-              <input type="submit" value="Diagramm">
             </form><span style="margin-left: 225px"><a class="tooltip" href="#">?<span class="classic">Erläuterungen zum Umgang mit
             der Auswahlfunktion erhalten Sie unter 'Hilfe'</span></a></span>
           </div><!--close sidebar_item-->
@@ -218,6 +215,8 @@ linkages to the help-site, the table and the diagram.  -->
 
         <div id="map">
         <script>
+						var all_eggs = new Array();
+						var selected_eggs = ["","",""];
 						
                         //following code with the help of the Cosm library and Leaflet.
 
@@ -341,44 +340,75 @@ linkages to the help-site, the table and the diagram.  -->
                                                 var id_coord="<?php echo $array_connect ?>";
                                                 id_coord=id_coord.split(",");
                                                 
-                                                //The following loop creates a marker and binds a popup for every ID. It increases by three because in every third slot is an ID, the
-                                                //others contain coordinates.
-                                                for(var i=0;i<id_coord.length;i+=3){
-                                                var marker = L.marker([id_coord[i+1],id_coord[i+2]], {icon: icon}).addTo(map);
-                                                marker.bindPopup(" <table class=\"tabelle\" style=\"width:200\"><tr ><td style=\"text-decoration:underline;font-weight:bold;\"><em>Name:<\/em><\/td><td>"+split_names[i/3]+"<\/td><\/tr><tr> <td ><em>Datum:<\/em><\/td>  <td>"+split_dates[i/3]+"<\/td> <\/tr>  <tr> <td ><em> Uhrzeit:<\/em><\/td> <td>"+split_times[i/3]+"<\/td> <\/tr> <tr> <td> <em>Temperatur<\/em><\/td> <td>"+split_temperatures[i/3]+"<\/td> <\/tr> <tr><td ><em> Luftfeuchtigkeit:<\/em><\/td> <td>"+split_ozones[i/3]+"<\/td> <\/tr> <tr> <td > <em>Kohlenmonoxid:<\/em><\/td> <td>"+split_no2s[i/3]+"<\/td> <\/tr> <tr><td ><em>Ozon:<\/em><\/td> <td>"+split_humiditys[i/3]+"<\/td> <\/tr> <tr><td > <em>Stickstoffdioxid:<\/em><\/td><td>"+split_carbon_monoxide[i/3]+"<\/td> <\/tr> <\/table> <br> <button onClick='auswahlfenster(\""+split_names[i/3]+"\"); linkgenerieren(\""+id_coord[i/3]+"\");'> Zur Auswahl hinzufügen <\/button>");
-                                                }      
+                                                //The following loop creates a marker and binds a popup for every ID. 
+												var egg;
+												for(var i=0;i<split_names.length;i++) {
+													var j = i*3;
+													egg = new teg(id_coord[j],split_names[i],id_coord[j+1],id_coord[j+2]);
+													var marker = L.marker([egg.x_coordinate,egg.y_coordinate], {icon: icon}).addTo(map);
+													marker.bindPopup(" <table class=\"tabelle\" style=\"width:200\"><tr ><td style=\"text-decoration:underline;font-weight:bold;\"><em>Name:<\/em><\/td><td>"+egg.name+"<\/td><\/tr><tr> <td ><em>Datum:<\/em><\/td>  <td>"+split_dates[i]+"<\/td> <\/tr>  <tr> <td ><em> Uhrzeit:<\/em><\/td> <td>"+split_times[i]+"<\/td> <\/tr> <tr> <td> <em>Temperatur<\/em><\/td> <td>"+split_temperatures[i]+"<\/td> <\/tr> <tr><td ><em> Luftfeuchtigkeit:<\/em><\/td> <td>"+split_ozones[i]+"<\/td> <\/tr> <tr> <td > <em>Kohlenmonoxid:<\/em><\/td> <td>"+split_no2s[i]+"<\/td> <\/tr> <tr><td ><em>Ozon:<\/em><\/td> <td>"+split_humiditys[i]+"<\/td> <\/tr> <tr><td > <em>Stickstoffdioxid:<\/em><\/td><td>"+split_carbon_monoxide[i]+"<\/td> <\/tr> <\/table> <br> <button onClick='auswahlfenster(\""+i+"\")'> Zur Auswahl hinzufügen <\/button>");
+													all_eggs[i] = egg;
+												}
 												
+						//creates a link for the table/diagram and commited the id's of the selected eggs with the URL						
 						function linkgenerieren (id) {
+						if (id == "4")
+						{
+						var newURL         = "tabelle.html?";
+						}
+						else
+						{
+						var newURL = "diagramm.html?";
+						}
+						for (var i = 0; i < 3; i++) {
+							if(selected_eggs[i] != "") {
+								newURL = newURL + "id"+(i+1)+"="+selected_eggs[i].id+"&";
+							}
+						}
+						newURL = newURL.substring(0,newURL.length-1);
+						location.href = newURL;
+						}
 						
+						
+						//deletes the egg name in the selectionwindow and selected eggs array
+						function loeschen (id) {
+						document.getElementById(id).value="";
+						selected_eggs[id-1]="";
 						}
 						
 						//puts egg name in the selectionwindow; if the selectionwindow is full an alert applies
                         function auswahlfenster (en) {
-						
-						if (document.getElementById(1).value=="")
-                        {
-						document.getElementById(1).value=en;
+							var addedAt = addEgg(en);
+							if(addedAt > 0) {
+								var myEgg = all_eggs[en];
+								var name = myEgg.name;
+								document.getElementById(addedAt).value=name;
+							} else {
+								alert ('Die Auswahlfelder sind voll!');
+							}                          
+                        }
+
+						//initialize an egg with id, name and coordinates
+						function teg(id, name,x_coordinate, y_coordinate) {
+							this.id = id;
+							this.name = name;
+							this.x_coordinate = x_coordinate;
+							this.y_coordinate = y_coordinate;
 						}
-                                                        else 
-                                                                {
-                                                                        if (document.getElementById(2).value=="")
-                                                                        {
-                                                                        document.getElementById(2).value=en;
-                                                                        }
-                                                                        else 
-                                                                        {
-                                                                                if (document.getElementById(3).value=="")
-                                                                                        {
-                                                                                        document.getElementById(3).value=en;
-                                                                                        }
-                                                                                else
-                                                                                        {
-                                                                                        alert ('Die Auswahlfelder sind voll!');
-                                                                                        }
-                                                                        }
-                                                                }               
-                                                }
-                                
+						
+						//add the egg to the selected eggs with his position in the selectionwindow
+						function addEgg(en) {
+							var myegg = all_eggs[en];
+							var position = 0;
+							for(var i = 0; i < 3; i++) {
+								if(selected_eggs[i] == "") {
+									selected_eggs[i] = myegg;
+									position = i+1;
+									break;
+								}
+							}
+							return position;
+						}
         </script> <!--Mit dem Befehl unten öffnet sich ein ganz neues Fenster!
                         <a href="Hilfe.html" target="_blank" onClick="ganzneuWindow = window.open('Hilfe.html', '500', 'resizable=no,toolbar=no,scrollbars=yes,width=70,height=60,dependent'); ganzneuWindow.focus(); return false">????</a>
                       -->

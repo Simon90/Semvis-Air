@@ -21,6 +21,8 @@ p
 img
 { border: 0;}
 
+/*---Main-class-formatting text----*/
+
 h1, h2, h3, h4, h5, h6
 { font: normal 175% Arial,Helvetica, sans-serif;
   color: #1D1D1D;
@@ -47,6 +49,8 @@ h5, h6
   letter-spacing: -0.5px;
  }
 
+ /*-----hover-effects----*/
+ 
 a, a:hover
 { color: #1D1D1D;
   background: transparent;
@@ -68,13 +72,17 @@ ol
 ol li
 { margin: 0 0 11px 0;}
 
+/*-----Main class for content-boxes----*/
+
 #main, #header, #banner, #menubar, #site_content, #footer, #content_grey
 { margin-left: auto;
   margin-right: auto;}
 
 #main
 { background: transparent;}
-  
+
+/*---header and welcome-slogan--*/
+
 #header
 { width: 920px;
   height: 75px;
@@ -86,6 +94,16 @@ ol li
   height: 20px;
   padding: 20px 0 0 0;
   background: transparent;}
+  
+#Willkommen
+{ width: 920px;
+  float: right;
+  height: 10px;
+  margin: 0 auto;
+  padding-right: 30px;
+  background: transparent;}
+  
+/*Menubar-and-effects--*/
 
 #menubar
 { width: 990px;
@@ -103,34 +121,6 @@ ol li
   -moz-box-shadow: rgba(0, 0, 0, 1) 5px 2px 10px;
   box-shadow: rgba(0, 0, 0, 1) 5px 2px 10px;
   }
-  
-#Willkommen
-{ width: 920px;
-  float: right;
-  height: 10px;
-  margin: 0 auto;
-  padding-right: 30px;
-  background: transparent;}
-  
-#welcome_slogan
-{ width: 880px;
-  float: left;
-  height: 50px;
-  margin: 0 auto;
-  padding-left: 0px;
-  background: transparent;}
-   
-#welcome H1
-{ font: normal 300% Arial, Helvetica, sans-serif;
-  letter-spacing: -3px;
-  text-shadow: 1px 1px #fff;
-  color: #1D1D1D;}
-
-#welcome_slogan H1
-{ font: normal 200% Arial, Helvetica, sans-serif;
-  letter-spacing: -2px;
-  text-shadow: 1px 1px #fff;
-  color: #535353;}
   
 ul#menu
 { margin:0;}
@@ -172,13 +162,16 @@ ul#menu li:hover a
   background: -o-linear-gradient(#fff, #ccc);
   background: -webkit-linear-gradient(#fff, #ccc);
   text-shadow: none;}
+  
+/*----Side content----*/ 
 
 #site_content
 { width: 990px;
   height: auto;
   overflow: visible; 
   margin: auto;}
-
+  
+  /*-----Definition-Sidebar and Sidebar-items---*/
 .sidebar_container
 { float: left;
   margin: 10px 20px 0 0;
@@ -213,6 +206,7 @@ ul#menu li:hover a
   -moz-box-shadow: rgba(0, 0, 0, 1) 5px 2px 10px;
   box-shadow: rgba(0, 0, 0, 1) 5px 2px 10px;}
 
+  /*-------Content boxes----*/
 #content
 { width: 700px;
   height:auto;
@@ -240,54 +234,11 @@ ul#menu li:hover a
   padding: 5px;
   margin-right: 10px;
   float: left;}
-  
-#content_grey
- { width: 920px;
-  height: 160px;
-  text-align: center;
-  background: -ms-linear-gradient(#535353, #1d1d1d);
-  background: -moz-linear-gradient(#535353, #1d1d1d);
-  background: -o-linear-gradient(#535353, #1d1d1d);
-  background: -webkit-linear-gradient(#535353, #1d1d1d);
-  border-radius: 15px 15px 15px 15px;
-  -moz-border-radius: 15px 15px 15px 15px;
-  -webkit-border: 15px 15px 15px 15px;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;
-  -moz-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;
-  box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;}
-  
-#content_grey p
- { color: #FFF;}
 
-#content_grey h4
-{ text-shadow: none;}
-  
-.content_grey_container_box
-{ width: 270px;
-  padding: 5px;
-  text-align: center;
-  margin: 20px 10px 10px 10px;
-  float: left;}
-
-.content_grey_container_boxl
-{ width: 270px;
-  padding: 5px;
-  text-align: center;
-  margin: 20px 0 10px 10px;
-  float: left;}
-  
- input[type=text],textarea,[type=submit] {
-	 width:150px;
-     border: 1px solid white; 
-    -webkit-box-shadow: 
-      inset 0 0 8px  rgba(0,0,0,0.1),
-            0 0 16px rgba(0,0,0,0.1); 
-    -moz-box-shadow: 
-      inset 0 0 8px  rgba(0,0,0,0.1),
-            0 0 16px rgba(0,0,0,0.1); 
-    box-shadow: 
-      inset 0 0 8px  rgba(0,0,0,0.1),
-            0 0 16px rgba(0,0,0,0.1);
+/*---formatting input types----*/  
+ input[type=text],textarea,[type=submit],[type=button] {
+	width:130px;
+    border: 1px solid white; 
     padding: 3px;
     background: rgba(255,255,255,0.5);
     margin: 0 0 0px 0;
@@ -306,7 +257,12 @@ margin: 10px 0px 2px 30px;
 
 }
 
-  
+[type=button]{
+width:88px;
+cursor:pointer;
+}
+
+/*---Footer---*/
 #footer
 { width: 920px;
   height: 20px;
@@ -331,26 +287,10 @@ margin: 10px 0px 2px 30px;
 #footer a:hover
 { text-decoration: underline;}
 
-.visualize
-{ font: bold 80% Arial, Helvetica, sans-serif;
-  height: 30px;
-  width: auto; 
-  float:right;
-  position: relative;
-  padding: 5px 2px 7px 2px;
-  background: -ms-linear-gradient(#1d1d1d, #535353);
-  background: -moz-linear-gradient(#1D1D1D, #535353);
-  background: -o-linear-gradient(#1D1D1D, #535353);
-  background: -webkit-linear-gradient(#1D1D1D, #535353);
-  border-radius: 15px 15px 15px 15px;
-  -moz-border-radius: 15px 15px 15px 15px;
-  -webkit-border: 15px 15px 15px 15px;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 0px;
-  -moz-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 5px;
-  box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 0px;}
-  
+/*----delete-Button----*/
  .delete
 { font: bold 65% Arial, Helvetica, sans-serif;
+  cursor: pointer;
   height: 10px;
   bottom: 32px;
   float: right;
@@ -368,10 +308,10 @@ margin: 10px 0px 2px 30px;
   -moz-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 5px;
   box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 1px;}
   
-  
-  
  .delete a
 { color: #1D1D1D;}
+ 
+ /*--small-Button....*/
  
  .button_small
 { font: normal 110% Arial, Helvetica, sans-serif;
@@ -393,6 +333,7 @@ margin: 10px 0px 2px 30px;
 { color: #FFF;
   padding-left: 5px;}
 
+/*---formatting-text-and-boxes---*/
 .form_settings
 { margin: 15px 0 0 0;}
 
@@ -403,23 +344,6 @@ margin: 10px 0px 2px 30px;
 { float: left;
   width: 280px;
   text-align: left;}
-  
-.form_settings input, .form_settings textarea
-{ padding: 2px;
-  width: 299px;
-  font: 100% arial;
-  border: 1px solid #E5E5DB;
-  background: #FFF;
-  color: #47433F;}
-  
-.form_settings input[type="checkbox"]
-{ padding: 2px 0;
-  width: 15px;
-  font: 100% arial;
-  border: 0;
-  background: #FFF;
-  color: #47433F;
-  margin: 28px 0;}
 
 .form_settings .submit
 { font: 100% arial;
@@ -432,7 +356,7 @@ margin: 10px 0px 2px 30px;
   background: #5082BD;
   color: #FFF;}
 
-
+/*-----Map----*/
 #map {
 float:left;
 width: 710px; 
@@ -445,21 +369,12 @@ box-shadow: rgba(0, 0, 0, 1) 5px 0px 10px;
 }
 
 
-#Auswahlfelder{
-position:absolute; top:50%; right:71%;
-}
-
-#official_values{
-
-position:absolute; top:80%; left:16%;
-
-
 }
 .tabelle{
 font-size:small;
 }
 
-/*------------Accordion---Horizontal----*/
+/*--------Accordion---Horizontal-----*/
     
 .accordion{
     width:720px;
@@ -502,6 +417,7 @@ font-size:small;
 .accordion li:hover{
     width:60%;
 }
+/*------------ Single-Help-Slide 1 ------------------*/
 .slider1  {
 }
 
@@ -541,7 +457,7 @@ font-size:small;
     width:100%;
 }
 
-/*------------ Help-Slide ------------------*/
+/*------------ Single-Help-Slide 2 ------------------*/
 .slider2
 { font: normal 125% Arial, Helvetica, sans-serif;
   width: 685px;

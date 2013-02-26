@@ -8,6 +8,7 @@ linkages to the help-site, the table and the diagram.  -->
   <title>Air Quality Egg Muenster</title>
   <meta name="description" content="Luftqualitätsdaten Münster">
   <meta name="keywords" content="Air Quality Egg">
+  <meta name="viewport" content="target-densitydpi=480px, width=1000px, user-scalable=yes">
   <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--Order IE to use the best available compatibility-Microsoft Standard-->
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <script type="text/javascript" src="js/jquery.min.js"></script>
@@ -48,7 +49,7 @@ linkages to the help-site, the table and the diagram.  -->
         <div class="sidebar">
           <div class="sidebar_item">
             <h2>Auswahl</h2>
-            <p>Ausgewählte AQEs:</p>
+            <p><b>Ausgewählte AQEs:</b></p>
             <p>Egg 1:<input type="text" name="Egg1" readonly id="1" style="margin-left:5px"></p>
             <div class="delete" onclick="loeschen(1);">
               löschen
@@ -210,7 +211,8 @@ linkages to the help-site, the table and the diagram.  -->
                                         $werte[$i]=(int)$werte[$i];
                         }
                         echo gettype($werte[0]);*/
-                        
+                       
+					  
                       ?>
 
         <div id="map">

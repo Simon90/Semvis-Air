@@ -100,6 +100,9 @@
 					array_push($humiditys, $data[11]);
 					array_push($carbon_monoxide, $data[13]);
 					}
+					/*for($i=0;$i<count($data);$i++){
+						echo $data[$i].'</br>';
+						}*/
 				}	
 					/*What the following lines do:
 					The problem here is the transfer to javascript. Solution: Connect the values in the arrays above with a comma as a separator. 
@@ -137,6 +140,7 @@
 					$no2s_connect=substr($no2s_connect,1);
 					$humiditys_connect=substr($humiditys_connect,1);
 					$carbon_monoxide_connect=substr($carbon_monoxide_connect,1);
+					//echo $names_connect;
 					
 					//$all_values is an array containing a string for every parameter as mentioned above.
 					$all_values=array();
@@ -150,8 +154,9 @@
 					array_push($all_values, $carbon_monoxide_connect);
 					return $all_values;
 					}
-						/*$test=get_values(get_id_coord());
-						$anzahl=count($test);
-						echo $anzahl;
-						*/						
+					
+				    /*$test=get_values(get_id_coord());
+					echo $test[0].'</br>';
+					echo $test[6];*/
+												
 ?>

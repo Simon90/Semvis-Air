@@ -90,18 +90,12 @@ for($i=0;$i<$count6;$i++){
 function get_NO2($json_fulltext){
 $no2_values=array();
 for($i=0;$i<count($json_fulltext);$i++){
-	if(strpos($json_fulltext[$i],'"id":"O3"')!==false){
-		$temp1=explode('"id":"O3"',$json_fulltext[$i]);
-			$count7=count($temp1);
-				if(strpos($temp1[0],'"current_value":"')!==false){ 
-					$temp=explode('"current_value":"',$temp1[0]);
-					$temp0=explode('","at"',$temp[count($temp)-2]);
+	if(strpos($json_fulltext[$i],'"id":"NO2","current_value":"')!==false){
+		$temp=explode('"id":"NO2","current_value":"',$json_fulltext[$i]);
+					$temp0=explode('","at"',$temp[1]);
 					array_push($no2_values, $temp0[0]);
 					}
-				else{
-					array_push($no2_values, -1);
-				}	
-	}			
+				
 	else{
 		array_push($no2_values, -1);
 	}
@@ -112,18 +106,12 @@ for($i=0;$i<count($json_fulltext);$i++){
 function get_O3($json_fulltext){
 $o3_values=array();
 for($i=0;$i<count($json_fulltext);$i++){
-	if(strpos($json_fulltext[$i],'"id":"O3"')!==false){
-		$temp1=explode('"id":"O3"',$json_fulltext[$i]);
-			$count7=count($temp1);
-				if(strpos($temp1[0],'"current_value":"')!==false){ 
-					$temp=explode('"current_value":"',$temp1[0]);
-					$temp0=explode('","at"',$temp[count($temp)-1]);
+	if(strpos($json_fulltext[$i],'"id":"O3","current_value":"')!==false){
+		$temp=explode('"id":"O3","current_value":"',$json_fulltext[$i]);
+					$temp0=explode('","at"',$temp[1]);
 					array_push($o3_values, $temp0[0]);
-					}
-				else{
-					array_push($o3_values, -1);
-				}	
-	}			
+					}	
+				
 	else{
 		array_push($o3_values, -1);
 	}
@@ -134,18 +122,12 @@ for($i=0;$i<count($json_fulltext);$i++){
 function get_Humidity($json_fulltext){
 $humidity_values=array();
 for($i=0;$i<count($json_fulltext);$i++){
-	if(strpos($json_fulltext[$i],'"id":"O3"')!==false){
-		$temp1=explode('"id":"O3"',$json_fulltext[$i]);
-			$count7=count($temp1);
-				if(strpos($temp1[0],'"current_value":"')!==false){ 
-					$temp=explode('"current_value":"',$temp1[0]);
-					$temp0=explode('","at"',$temp[count($temp)-3]);
-					array_push($humidity_values, $temp0[0]);
-					}
-				else{
-					array_push($humidity_values, -1);
+	if(strpos($json_fulltext[$i],'"id":"humidity","current_value":"')!==false){
+		$temp1=explode('"id":"humidity","current_value":"',$json_fulltext[$i]);
+					$temp2=explode('","at"',$temp1[1]);
+					array_push($humidity_values, $temp2[0]);
 				}	
-	}			
+				
 	else{
 		array_push($humidity_values, -1);
 	}
@@ -156,18 +138,13 @@ for($i=0;$i<count($json_fulltext);$i++){
 function get_CO($json_fulltext){
 $co_values=array();
 for($i=0;$i<count($json_fulltext);$i++){
-	if(strpos($json_fulltext[$i],'"id":"O3"')!==false){
-		$temp1=explode('"id":"O3"',$json_fulltext[$i]);
-			$count7=count($temp1);
-				if(strpos($temp1[0],'"current_value":"')!==false){ 
-					$temp=explode('"current_value":"',$temp1[0]);
-					$temp0=explode('","at"',$temp[count($temp)-4]);
-					array_push($co_values, $temp0[0]);
+	if(strpos($json_fulltext[$i],'"id":"CO","current_value":"')!==false){
+		$temp=explode('"id":"CO","current_value":"',$json_fulltext[$i]);
+			$temp0=explode('","at"',$temp[1]);
+			array_push($co_values, $temp0[0]);
 					}
-				else{
-					array_push($co_values, -90);
-				}	
-	}			
+					
+				
 	else{
 		array_push($co_values, -90);
 	}
@@ -176,24 +153,18 @@ for($i=0;$i<count($json_fulltext);$i++){
 
 //Returns an array with temperature values.
 function get_Temperature($json_fulltext){
-$o3_values=array();
+$temperature_values=array();
 for($i=0;$i<count($json_fulltext);$i++){
-	if(strpos($json_fulltext[$i],'"id":"temperature"')!==false){
-		$temp1=explode('"id":"temperature"',$json_fulltext[$i]);
-			$count7=count($temp1);
-				if(strpos($temp1[0],'"current_value":"')!==false){ 
-					$temp=explode('"current_value":"',$temp1[0]);
-					$temp0=explode('","at"',$temp[count($temp)-1]);
-					array_push($o3_values, $temp0[0]);
-					}
-				else{
-					array_push($o3_values, -90);
-				}	
-	}			
+	if(strpos($json_fulltext[$i],'"id":"temperature","current_value":"')!==false){
+		$temp=explode('"id":"temperature","current_value":"',$json_fulltext[$i]);
+				$temp0=explode('","at"',$temp[1]);
+					array_push($temperature_values, $temp0[0]);
+					}	
+				
 	else{
-		array_push($o3_values, -90);
+		array_push($temperature_values, -90);
 	}
-}	return $o3_values;
+}	return $temperature_values;
 }
 
 function get_Name($json_fulltext){

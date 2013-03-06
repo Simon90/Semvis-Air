@@ -22,7 +22,7 @@ linkages to the help-site, the table and the diagram.  -->
       <div id="banner">
         <div id="Willkommen">
           <h1>Semvis Air</h1>
-          <h6>System zur Erfassung,Modellierung und Visualisierung von Luftqualitätsdaten</h6>
+          <h6>System for Capturing, Modeling and the Visualisation of the Air</h6>
         </div><!--close Willkommen-->
       </div><!--close banner-->
     </div><!--close header-->
@@ -48,25 +48,25 @@ linkages to the help-site, the table and the diagram.  -->
       <div class="sidebar_container">
         <div class="sidebar">
           <div class="sidebar_item">
-            <h2>Auswahl</h2>
-            <p><b>Ausgewählte AQEs:</b></p>
-            <p>Egg 1:<input type="text" name="Egg1" readonly id="1" style="margin-left:5px"></p>
+            <h2>Selection</h2>
+            <p><b>Selected Air Quality Eggs:</b></p>
+            <p>AQE 1:<input type="text" name="Egg1" readonly id="1" style="margin-left:5px"></p>
             <div class="delete" onclick="loeschen(1);">
-              löschen
+              delete
             </div><!--close delete-button-->
-            <p>Egg 2:<input type="text" name="Egg2" readonly id="2" style="margin-left:5px"></p>
+            <p>AQE 2:<input type="text" name="Egg2" readonly id="2" style="margin-left:5px"></p>
             <div class="delete" onclick="loeschen(2);">
-              löschen
+              delete
             </div><!--close delete-button-->
-            <p>Egg 3:<input type="text" name="Egg3" readonly id="3" style="margin-left:5px"></p>
+            <p>AQE 3:<input type="text" name="Egg3" readonly id="3" style="margin-left:5px"></p>
             <div class="delete" onclick="loeschen(3);">
-              löschen
+              delete
             </div><!--close delete-button-->
 			<input type="button" name="Tabelle" value="Tabelle" id="4" onclick="linkgenerieren(4)">
 			<input type="button" name="Diagramm" value="Diagramm" id="5" onclick="linkgenerieren(5)">
 
-            </form><span style="margin-left: 225px"><a class="tooltip" href="#">?<span class="classic">Erläuterungen zum Umgang mit
-            der Auswahlfunktion erhalten Sie unter 'Hilfe'</span></a></span>
+            </form><span style="margin-left: 225px"><a class="tooltip" href="#">?<span class="classic">Our help provides an instruction of how to use the
+			functions.</span></a></span>
           </div><!--close sidebar_item-->
         </div><!--close sidebar-->
 

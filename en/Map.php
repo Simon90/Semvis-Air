@@ -62,8 +62,8 @@ linkages to the help-site, the table and the diagram.  -->
             <div class="delete" onclick="loeschen(3);">
               delete
             </div><!--close delete-button-->
-			<input type="button" name="Tabelle" value="Tabelle" id="4" onclick="linkgenerieren(4)">
-			<input type="button" name="Diagramm" value="Diagramm" id="5" onclick="linkgenerieren(5)">
+			<input type="button" name="Tabelle" value="Table" id="4" onclick="linkgenerieren(4)">
+			<input type="button" name="Diagramm" value="Diagram" id="5" onclick="linkgenerieren(5)">
 
             </form><span style="margin-left: 225px"><a class="tooltip" href="#">?<span class="classic">Our help provides an instruction of how to use the
 			functions.</span></a></span>
@@ -72,18 +72,18 @@ linkages to the help-site, the table and the diagram.  -->
 
         <div class="sidebar">
           <div class="sidebar_item">
-            <h2>Offizielle Werte</h2>
+            <h2>Official Values</h2>
 
             <div>
-              Ozon (O3): <span id="myelement"></span> [µg/m³]
+              Ozone (O3): <span id="myelement"></span> [µg/m³]
             </div><br>
 
             <div>
-              Stickstoffdioxid (NO2): <span id="myelement2"></span> [µg/m³]
+              Nitrogen Dioxide (NO2): <span id="myelement2"></span> [µg/m³]
             </div><br>
 
             <div>
-              Relative Luftfeuchtigkeit: <span><?php
+              Humidity: <span><?php
                                                       $host = "http://www.uni-muenster.de/Klima/wetter/wetter.php";
                                                       $filestring = file_get_contents($host);
                                                       $startpos = 0;
@@ -99,7 +99,7 @@ linkages to the help-site, the table and the diagram.  -->
             </div><br>
 
             <div>
-              Lufttemperatur: <span><?php $host = "http://www.uni-muenster.de/Klima/wetter/wetter.php";
+              Temperature: <span><?php $host = "http://www.uni-muenster.de/Klima/wetter/wetter.php";
                                                       $filestring = file_get_contents($host);
                                                       $startpos = 0;
                                                       while($pos = strpos($filestring, "<td class=", $startpos))
@@ -114,8 +114,8 @@ linkages to the help-site, the table and the diagram.  -->
             </div><br>
 
             <div>
-              Feinstaub PM10: <span id="myelement3"></span> [µg/m³] <span style="margin-left: 60px"><a class="tooltip" href="#">?<span class="classic">
-			  Erläuterungen zu den offiziellen Werten erhalten Sie unter 'Hilfe'</span></a></span>
+              Finde Dust (PM10): <span id="myelement3"></span> [µg/m³] <span style="margin-left: 60px"><a class="tooltip" href="#">?<span class="classic">
+			  Our Help contains explanations for the measured values.</span></a></span>
             </div>
           </div><!--close-sidebar_item-->
         </div><!--close-sidebar-->	
@@ -348,7 +348,7 @@ linkages to the help-site, the table and the diagram.  -->
 													var j = i*3;
 													egg = new teg(id_coord[j],split_names[i],id_coord[j+1],id_coord[j+2]);
 													var marker = L.marker([egg.x_coordinate,egg.y_coordinate], {icon: icon}).addTo(map);
-													marker.bindPopup(" <table class=\"tabelle\" style=\"width:200\"><tr ><td style=\"text-decoration:underline;font-weight:bold;\"><em>Name:<\/em><\/td><td>"+egg.name+"<\/td><\/tr><tr> <td ><em>Datum:<\/em><\/td>  <td>"+split_dates[i]+"<\/td> <\/tr>  <tr> <td ><em> Uhrzeit:<\/em><\/td> <td>"+split_times[i]+"<\/td> <\/tr> <tr> <td> <em>Temperatur<\/em><\/td> <td>"+split_temperatures[i]+"<\/td> <\/tr> <tr><td ><em> Luftfeuchtigkeit:<\/em><\/td> <td>"+split_ozones[i]+"<\/td> <\/tr> <tr> <td > <em>Kohlenmonoxid:<\/em><\/td> <td>"+split_no2s[i]+"<\/td> <\/tr> <tr><td ><em>Ozon:<\/em><\/td> <td>"+split_humiditys[i]+"<\/td> <\/tr> <tr><td > <em>Stickstoffdioxid:<\/em><\/td><td>"+split_carbon_monoxide[i]+"<\/td> <\/tr> <\/table> <br> <button onClick='auswahlfenster(\""+i+"\")'> Zur Auswahl hinzufügen <\/button>");
+													marker.bindPopup(" <table class=\"tabelle\" style=\"width:200\"><tr ><td style=\"text-decoration:underline;font-weight:bold;\"><em>Name:<\/em><\/td><td>"+egg.name+"<\/td><\/tr><tr> <td ><em>Date:<\/em><\/td>  <td>"+split_dates[i]+"<\/td> <\/tr>  <tr> <td ><em> Time:<\/em><\/td> <td>"+split_times[i]+" CET<\/td> <\/tr> <tr> <td> <em>Temperature<\/em><\/td> <td>"+split_temperatures[i]+" °C<\/td> <\/tr> <tr><td ><em> Humidity:<\/em><\/td> <td>"+split_humiditys[i]+" %<\/td> <\/tr> <tr> <td > <em>Carbon Monoxide:<\/em><\/td> <td>"+split_carbon_monoxide[i]+" ppm<\/td> <\/tr> <tr><td ><em>Ozone:<\/em><\/td> <td>"+split_ozones[i]+" ppm<\/td> <\/tr> <tr><td > <em>Nitrogen Dioxide:<\/em><\/td><td>"+split_no2s[i]+" ppm<\/td> <\/tr> <\/table> <br> <button onClick='auswahlfenster(\""+i+"\")'> Add to Selection <\/button>");
 													all_eggs[i] = egg;
 												}
 												
@@ -386,7 +386,7 @@ linkages to the help-site, the table and the diagram.  -->
 								var name = myEgg.name;
 								document.getElementById(addedAt).value=name;
 							} else {
-								alert ('Die Auswahlfelder sind voll!');
+								alert ('The Selectin is full! Please delete one AQE.');
 							}                          
                         }
 

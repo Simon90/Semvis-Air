@@ -1,0 +1,286 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+
+    <script src="libraries_diagram/RGraph/libraries/RGraph.common.core.js" ></script>
+    <script src="libraries_diagram/RGraph/libraries/RGraph.line.js" ></script>
+    <script src="libraries_diagram/RGraph/libraries/RGraph.common.key.js" ></script>
+	<script src="libraries_diagram/jquery-1.9.1.js" type="text/javascript"></script>
+	
+    <title>Diagramm</title>
+</head>
+<body>
+
+    <h1 id='heading'>Diagramm</h1>
+	<p>
+	<form name='selectpara'>
+		<input type="radio" name="Parameter" onClick=(chooseTemperature())> Temperatur<br>
+		<input type="radio" name="Parameter" onClick=(chooseO3())> Ozon<br>
+		<input type="radio" name="Parameter" onClick=(chooseCO())> Kohlenstoffmonoxid<br>
+		<input type="radio" name="Parameter" onClick=(chooseNO2())> Stickstoffdioxid<br>
+		<input type="radio" name="Parameter" onClick=(chooseHumidity())> Luftfeuchtigkeit<br>
+	</form>
+	</p>
+		
+	<p id='parameter'>
+        Bitte gemessenen Parameter auswählen
+    </p>	
+		
+    <canvas id="canvas1" width="700" height="350">[No canvas support]</canvas>
+	
+	<p id='time'>
+        Tag
+    </p>
+	
+	<p>
+	<form name='selectday'>
+		<input type="radio" name="Parameter" onClick=(chooseDay(6))> <b id=day6> </b> 
+		<input type="radio" name="Parameter" onClick=(chooseDay(5))> <b id=day5> </b> 
+		<input type="radio" name="Parameter" onClick=(chooseDay(4))> <b id=day4> </b> 
+		<input type="radio" name="Parameter" onClick=(chooseDay(3))> <b id=day3> </b> 
+		<input type="radio" name="Parameter" onClick=(chooseDay(2))> <b id=day2> </b> 
+		<input type="radio" name="Parameter" onClick=(chooseDay(1))> <b id=day1> </b> 
+		<input type="radio" name="Parameter" onClick=(chooseDay(0))> <b id=day0> </b> (heute)
+	</form>
+	</p>
+	
+	<p>
+		<sub>
+			Diagramm erstellt mit <a href="http://www.rgraph.net/">RGraph</a> 
+		</sub>
+	</p>
+
+	<script>
+	
+	timeBegin = new Date(2013, 0, 1, 0, 0, 0, 0);
+	timeEnd = new Date(2013, 0, 1, 0, 0, 0, 0);
+
+	
+	function chooseDay(n)
+		{
+		timeBegin = writeCorrectDates(n);
+		timeBeginArray = timeBegin.split(".");
+		
+		dateBegin = new Date();
+		dateBegin.setDate(timeBeginArray[0]);
+		dateBegin.setMonth(timeBeginArray[1]);
+		dateBegin.setFullYear(timeBeginArray[2]);
+		
+		timeEnd = writeCorrectDates(n-1);
+		timeEndArray = timeEnd.split(".");
+		
+		dateEnd = new Date();
+		dateEnd.setDate(timeEndArray[0]);
+		dateEnd.setMonth(timeEndArray[1]);
+		dateEnd.setFullYear(timeEndArray[2]);
+		}
+	
+
+	
+
+	
+	
+	
+	
+	//At loading the page: Draw empty diagram
+	drawDiagram();
+	
+	//Date of the radio buttons: Instead of "yesterday", "day before yesterday" etc.
+	for (var x = 0; x < 7; x++) document.getElementById('day' + x).innerHTML = writeCorrectDates(x);
+	
+	function testLeapYear(x){
+		if (x%400 == 0) return true;
+		if (x%4 == 0 && x%100 != 0) return true;
+		else return false;			
+		}
+	
+	function writeCorrectDates(n)
+		{
+			var d = new Date();
+			var currentDay = d.getDate();
+			var currentMonth = d.getMonth() + 1;
+			var currentYear = d.getFullYear();
+			var correctDay = (currentDay-n + '.' + (currentMonth) + '.' + currentYear);
+			
+			//Preventing negative days and months
+			if (currentDay-n < 1){
+				var minusDays = n - currentDay;
+				var previousMonth = currentMonth-1;
+				if (previousMonth < 1) previousMonth = 12;
+				var previousMonthLength;
+				if (previousMonth == 1 || previousMonth == 3 || previousMonth == 5 || previousMonth == 7 || previousMonth == 8 || previousMonth == 10 || previousMonth == 12)
+					previousMonthLength = 31;
+				else if (previousMonth == 4 || previousMonth == 6 || previousMonth == 9 || previousMonth == 11)
+					previousMonthLength = 30;
+				else if (testLeapYear(currentYear) == true)
+					previousMonthLength = 29;
+				else previousMonthLength = 28;
+				correctDay = (previousMonthLength-minusDays + '.' + (previousMonth) + '.' + currentYear);
+				}
+			return correctDay;
+		}
+	
+	
+	
+	
+	//Functions:
+	
+		//Main function for drawing all diagrams
+	function drawDiagram(egg1, egg2, egg3)
+		{
+		var line = new RGraph.Line('canvas1', [egg1, egg2, egg3]);
+		line.Set('chart.labels', time);
+		line.Set('chart.ylabels.count', 5);
+		line.Set('chart.xaxispos', 'center');
+		line.Set('chart.numxticks', 12);
+		line.Set('chart.numyticks', 20);
+		line.Set('colors', ['red', 'limegreen', 'blue']);
+		line.Set('chart.key', ['egg1','egg2','egg3']);
+		line.Set('chart.key.position', 'gutter');
+		line.Set('chart.background.grid.autofit.numvlines', 24);
+		line.Set('chart.background.grid.autofit.numhlines', 8);
+		line.Set('chart.gutter.left', 50);
+		line.Draw();
+		}
+	
+	
+		//Remove previous diagram from the canvas
+	function clearCanvas()
+		{
+		var c = document.getElementById("canvas1");
+		var context = c.getContext('2d');
+		context.rect(-10,0,700,500);
+		context.fillStyle='white';
+		context.fill();
+		}
+		
+		//Choose parameter for drawing the diagram
+	var selectedPara;
+	
+	function chooseTemperature()
+		{
+			clearCanvas();
+			document.getElementById('heading').innerHTML='Temperatur';
+			document.getElementById('parameter').innerHTML='Temperatur in °C';
+			var line = new RGraph.Line('canvas1', [temp1, temp2, temp3]);
+			line.Set('chart.scale.decimals', 1);
+			drawDiagram(temp1, temp2, temp3);
+		}
+	
+	function chooseO3()
+		{
+			clearCanvas();
+			document.getElementById('heading').innerHTML='Ozon';
+			document.getElementById('parameter').innerHTML='Ozon in Parts per Million';
+			var line = new RGraph.Line('canvas1', [ozon1, ozon2, ozon3]);
+			line.Set('chart.scale.decimals', 0);
+			drawDiagram(ozon1, ozon2, ozon3);
+			selectedPara = 'ozon';
+		}
+		
+	function chooseCO()
+		{
+			clearCanvas();
+			document.getElementById('heading').innerHTML='Kohlenstoffmonoxid';
+			document.getElementById('parameter').innerHTML='Kohlenstoffmonoxid in Parts per Million';
+			var line = new RGraph.Line('canvas1', [co1, co2, co3]);
+			line.Set('chart.scale.decimals', 0);
+			drawDiagram(co1, co2, co3);
+			selectedPara = 'CO';
+		}
+		
+	function chooseNO2()
+		{
+			clearCanvas();
+			document.getElementById('heading').innerHTML='Stickstoffdioxid';
+			document.getElementById('parameter').innerHTML='Stickstoffdioxid in Parts per Million';
+			var line = new RGraph.Line('canvas1', [nitro1, nitro2, nitro3]);
+			line.Set('chart.scale.decimals', 0);
+			drawDiagram(nitro1, nitro2, nitro3);
+			selectedPara = 'NO2';
+		}
+		
+	function chooseHumidity()
+		{
+			clearCanvas();
+			document.getElementById('heading').innerHTML='Luftfeuchtigkeit';
+			document.getElementById('parameter').innerHTML='Luftfeuchtigkeit in Prozent';
+			var line = new RGraph.Line('canvas1', [hum1, hum2, hum3]);
+			line.Set('chart.scale.decimals', 1);
+			drawDiagram(hum1, hum2, hum3);
+			selectedPara = 'humidity';
+		}
+		
+
+		
+
+	//Variables and data
+	
+		// 		*** Noch kein Datenbankzugriff, deshalb erstmal nur Testdaten ***
+	
+		//Beispieldaten für Temperatur
+		var temp1 = [15, 10, 5, 0, -10, -5, 10, 15, 20, 30, 10, 0, 5, 0, 5, 0, 15, 10, 5, 0, -5, 10, 15, 20, 25, 25, 30, 25];
+		var temp2 = [10, 5, -5, -10, -15, -5, 0, 5, 5, 10, 15, 15, 10, 15, 20, 30, 10, 0, 5, 0, 5, 0, 15, 10, 5, 10, 15, 15];
+		var temp3 = [5, 0, 5, 0, 15, 10, 5, 0, -5, 10, 15, 20, 15, 10, 5, 0, -10, -5, 10, 5, 5, 10, 15, 15, 10, 5, 0, -5];
+		
+		//Zerlegung in einzelne Tage für Temperatur
+		
+		var temp1_6 = temp1.slice(0,4);
+		var temp1_5 = temp1.slice(4,8);
+		var temp1_4 = temp1.slice(8,12);
+		var temp1_3 = temp1.slice(12,16);
+		var temp1_2 = temp1.slice(16,20);
+		var temp1_1 = temp1.slice(20,24);
+		var temp1_0 = temp1.slice(24,28);
+		
+		var temp2_6 = temp2.slice(0,4);
+		var temp2_5 = temp2.slice(4,8);
+		var temp2_4 = temp2.slice(8,12);
+		var temp2_3 = temp2.slice(12,16);
+		var temp2_2 = temp2.slice(16,20);
+		var temp2_1 = temp2.slice(20,24);
+		var temp2_0 = temp2.slice(24,28);
+		
+		var temp3_6 = temp3.slice(0,4);
+		var temp3_5 = temp3.slice(4,8);
+		var temp3_4 = temp3.slice(8,12);
+		var temp3_3 = temp3.slice(12,16);
+		var temp3_2 = temp3.slice(16,20);
+		var temp3_1 = temp3.slice(20,24);
+		var temp3_0 = temp3.slice(24,28);
+		
+		//Beispieldaten für Ozon
+		var ozon1 = [0, 1, 5, 0, 0, 1, 0, 1, 2, 0, 0, 0];
+		var ozon2 = [1, 2, 0, 0, 1, 4, 0, 2, 0, 1, 0, 1];
+		var ozon3 = [0, 0, 1, 0, 1, 1, 2, 0, 0, 0, 1, 2];
+		
+		//Beispieldaten für Kohlenstoffmonoxid
+		var co1 = [60257, 58251, 57140, 56025, 58105, 57163, 60248, 62365, 150924, 58254, 59257, 60248];
+		var co2 = [57140, 55389, 56025, 58105, 57163, 58254, 59257, 59247, 60248, 60257, 58251, 57148];
+		var co3 = [58105, 57163, 60248, 60257, 58251, 57148, 60257, 58251, 57140, 56025, 57348, 58245];
+		
+		//Beispieldaten für Stickstoffdioxid
+		var nitro1 = [42856, 44733, 45245, 39640, 38356, 32082, 37287, 40287, 42489, 40168, 42915, 45814];
+		var nitro2 = [41958, 42856, 44733, 45245, 39640, 38356, 40287, 42489, 40168, 38169, 37439, 45018];
+		var nitro3 = [42489, 40168, 38169, 37439, 39340, 38356, 35082, 38169, 37439, 39287, 34635, 31629];
+		
+		//Beispieldaten für Luftfeuchtigkeit
+		var hum1 = [42, 43.5, 44, 43, 46, 41, 39, 37, 38, 39, 38, 36];
+		var hum2 = [39, 38, 36, 42, 43, 44, 42, 40, 40, 42, 43, 46,];
+		var hum3 = [41, 39, 37, 38, 39, 38, 36, 42, 43, 44, 42, 40];
+		
+		//Labels for x-axis
+		var time = ['0 Uhr','2 Uhr','4 Uhr','6 Uhr','8 Uhr','10 Uhr','12 Uhr','14 Uhr','16 Uhr','18 Uhr','20 Uhr','22 Uhr','24 Uhr',];
+		
+		//Default: Empty diagram
+		var egg1 = [0];
+		var egg2 = [0];
+		var egg3 = [0];
+
+
+	
+    </script>
+	
+</body>
+</html>

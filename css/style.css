@@ -425,13 +425,13 @@ font-size:small;
 /*-----Accordion----VERTICAL----------------*/
     
 #vertical{
-    height:400px;
-	overflow:visible;
+    height:600px;
+	overflow:hidden;
 	
 }
 #vertical li{
     float:none;
-    height:10%;
+    height:6%;
     width:100%;
     -moz-transition:height .5s ease-out;
     -webkit-transition:height .5s ease-out;
@@ -449,11 +449,11 @@ font-size:small;
     border-radius:10px 10px 10px 10px;
 }
 #vertical:hover li{
-    height:10%;
+    height:6%;
     width:100%;
 }
 #vertical li:hover{
-    height:70%;
+    height:40%;
     width:100%;
 }
 

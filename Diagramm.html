@@ -3,10 +3,10 @@
 <head>
     <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
 
-    <script src="RGraph/libraries/RGraph.common.core.js" ></script>
-    <script src="RGraph/libraries/RGraph.line.js" ></script>
-    <script src="RGraph/libraries/RGraph.common.key.js" ></script>
-	<script src="jquery-1.9.1.js" type="text/javascript"></script>
+    <script src="libraries_diagram/RGraph/libraries/RGraph.common.core.js" ></script>
+    <script src="libraries_diagram/RGraph/libraries/RGraph.line.js" ></script>
+    <script src="libraries_diagram/RGraph/libraries/RGraph.common.key.js" ></script>
+	<script src="libraries_diagram/jquery-1.9.1.js" type="text/javascript"></script>
 	
     <title>Diagramm</title>
 </head>
@@ -24,7 +24,7 @@
 	</p>
 		
 	<p id='parameter'>
-        Bitte gemessenen Parameter auswählen
+        Bitte gemessenen Parameter auswï¿½hlen
     </p>	
 		
     <canvas id="canvas1" width="700" height="350">[No canvas support]</canvas>
@@ -53,7 +53,7 @@
 
 	<script>
 	
-	// Muss noch angepasst werden, wird mit der url von der Karte übergeben
+	// Muss noch angepasst werden, wird mit der url von der Karte ï¿½bergeben
 	var sensorId1 = 75762;
 	var sensorId2 = 75839;
 	var sensorId3 = 75842;	
@@ -186,7 +186,7 @@
 			callPHP();
 			clearCanvas();
 			document.getElementById('heading').innerHTML='Temperatur';
-			document.getElementById('parameter').innerHTML='Temperatur in °C';
+			document.getElementById('parameter').innerHTML='Temperatur in ï¿½C';
 			var line = new RGraph.Line('canvas1', [egg1, egg2, egg3]);
 			line.Set('chart.scale.decimals', 1);	
 		}

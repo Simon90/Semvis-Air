@@ -1,277 +1,311 @@
-<!DOCTYPE html >
+<!DOCTYPE html>
+
 <html>
 <head>
-    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
-
-    <script src="libraries_diagram/RGraph/libraries/RGraph.common.core.js" ></script>
-    <script src="libraries_diagram/RGraph/libraries/RGraph.line.js" ></script>
-    <script src="libraries_diagram/RGraph/libraries/RGraph.common.key.js" ></script>
-	<script src="libraries_diagram/jquery-1.9.1.js" type="text/javascript"></script>
-	
-    <title>Diagramm</title>
-</head>
-<body>
-
-    <h1 id='heading'>Diagramm</h1>
-	<p>
-	<form name='selectpara'>
-		<input type="radio" name="Parameter" onClick=(chooseTemperature())> Temperatur<br>
-		<input type="radio" name="Parameter" onClick=(chooseO3())> Ozon<br>
-		<input type="radio" name="Parameter" onClick=(chooseCO())> Kohlenstoffmonoxid<br>
-		<input type="radio" name="Parameter" onClick=(chooseNO2())> Stickstoffdioxid<br>
-		<input type="radio" name="Parameter" onClick=(chooseHumidity())> Luftfeuchtigkeit<br>
-	</form>
-	</p>
-		
-	<p id='parameter'>
-        Bitte gemessenen Parameter ausw�hlen
-    </p>	
-		
-    <canvas id="canvas1" width="700" height="350">[No canvas support]</canvas>
-	
-	<p id='time'>
-        Tag
-    </p>
-	
-	<p>
-	<form name='selectday'>
-		<input type="radio" name="Parameter" onClick=(chooseDay(6))> <b id=day6> </b> 
-		<input type="radio" name="Parameter" onClick=(chooseDay(5))> <b id=day5> </b> 
-		<input type="radio" name="Parameter" onClick=(chooseDay(4))> <b id=day4> </b> 
-		<input type="radio" name="Parameter" onClick=(chooseDay(3))> <b id=day3> </b> 
-		<input type="radio" name="Parameter" onClick=(chooseDay(2))> <b id=day2> </b> 
-		<input type="radio" name="Parameter" onClick=(chooseDay(1))> <b id=day1> </b> 
-		<input type="radio" name="Parameter" onClick=(chooseDay(0)) checked="checked"> <b id=day0> </b> (heute)
-	</form>
-	</p>
-	
-	<p>
-		<sub>
-			Diagramm erstellt mit <a href="http://www.rgraph.net/">RGraph</a> 
-		</sub>
-	</p>
-
-	<script>
-	
-	// Muss noch angepasst werden, wird mit der url von der Karte �bergeben
-	var sensorId1 = 75762;
-	var sensorId2 = 75839;
-	var sensorId3 = 75842;	
-	
-	//choose the day of the displayed measurements
-	function chooseDay(n)
-		{
-		timeBegin = writeCorrectDates(n);
-		timeBeginArray = timeBegin.split(".");
-		
-		dateBegin = timeBeginArray[0];
-		monthBegin = timeBeginArray[1];
-		yearBegin = timeBeginArray[2];
-		
-		timeEnd = writeCorrectDates(n-1);
-		timeEndArray = timeEnd.split(".");
-		
-		dateEnd = timeEndArray[0];
-		monthEnd = timeEndArray[1];
-		yearEnd = timeEndArray[2];
-		
-		egg1 = [0];
-		egg2 = [0];
-		egg3 = [0];
-		
-		callPHP();
-		switch(selectedPara)
-			{
-			case 'temperaturC':
-				chooseTemperature();
-				break;
-			case 'ozon':
-				chooseO3();
-				break;
-			case 'CO':
-				chooseCO();
-				break;
-			case 'NO2':
-				chooseNO2();
-				break;
-			case 'humidity':
-				chooseHumidity();
-				break;
-			}
-		}
-	
-
-	chooseDay(0);
-	
-	
-	
-	
-	//At loading the page: Draw empty diagram
-	drawDiagram();
-	
-	//Date of the radio buttons: Instead of "yesterday", "day before yesterday" etc.
-	for (var x = 0; x < 7; x++) document.getElementById('day' + x).innerHTML = writeCorrectDates(x);
-	
-	function testLeapYear(x){
-		if (x%400 == 0) return true;
-		if (x%4 == 0 && x%100 != 0) return true;
-		else return false;			
-		}
-	
-	function writeCorrectDates(n)
-		{
-			var d = new Date();
-			var currentDay = d.getDate();
-			var currentMonth = d.getMonth() + 1;
-			var currentYear = d.getFullYear();
-			var correctDay = (currentDay-n + '.' + (currentMonth) + '.' + currentYear);
-			
-			//Preventing negative days and months
-			if (currentDay-n < 1){
-				var minusDays = n - currentDay;
-				var previousMonth = currentMonth-1;
-				if (previousMonth < 1) previousMonth = 12;
-				var previousMonthLength;
-				if (previousMonth == 1 || previousMonth == 3 || previousMonth == 5 || previousMonth == 7 || previousMonth == 8 || previousMonth == 10 || previousMonth == 12)
-					previousMonthLength = 31;
-				else if (previousMonth == 4 || previousMonth == 6 || previousMonth == 9 || previousMonth == 11)
-					previousMonthLength = 30;
-				else if (testLeapYear(currentYear) == true)
-					previousMonthLength = 29;
-				else previousMonthLength = 28;
-				correctDay = (previousMonthLength-minusDays + '.' + (previousMonth) + '.' + currentYear);
-				}
-			return correctDay;
-		}
-
-	
-	//Main function for drawing all diagrams
-	function drawDiagram(egg1, egg2, egg3)
-		{
-		var line = new RGraph.Line('canvas1', [egg1, egg2, egg3]);
-		line.Set('chart.labels', time);
-		line.Set('chart.ylabels.count', 5);
-		line.Set('chart.xaxispos', 'center');
-		line.Set('chart.numxticks', 12);
-		line.Set('chart.numyticks', 20);
-		line.Set('colors', ['red', 'limegreen', 'blue']);
-		line.Set('chart.key', ['egg1','egg2','egg3']);
-		line.Set('chart.key.position', 'gutter');
-		line.Set('chart.background.grid.autofit.numvlines', 24);
-		line.Set('chart.background.grid.autofit.numhlines', 8);
-		line.Set('chart.gutter.left', 50);
-		line.Draw();
-		}
-	
-	
-	//Remove previous diagram from the canvas
-	function clearCanvas()
-		{
-		var c = document.getElementById("canvas1");
-		var context = c.getContext('2d');
-		context.rect(-10,0,750,500);
-		context.fillStyle='white';
-		context.fill();
-		}
-		
-	//Choose parameter
-	var selectedPara;
-	
-	function chooseTemperature()
-		{
-			selectedPara = 'temperaturC';
-			egg1 = [0];
-			egg2 = [0];
-			egg3 = [0];
-			callPHP();
-			clearCanvas();
-			document.getElementById('heading').innerHTML='Temperatur';
-			document.getElementById('parameter').innerHTML='Temperatur in �C';
-			var line = new RGraph.Line('canvas1', [egg1, egg2, egg3]);
-			line.Set('chart.scale.decimals', 1);	
-		}
-	
-	function chooseO3()
-		{
-			selectedPara = 'ozon';
-			egg1 = [0];
-			egg2 = [0];
-			egg3 = [0];
-			callPHP();
-			clearCanvas();
-			document.getElementById('heading').innerHTML='Ozon';
-			document.getElementById('parameter').innerHTML='Ozon in Parts per Million';
-			var line = new RGraph.Line('canvas1', [egg1, egg2, egg3]);
-			line.Set('chart.scale.decimals', 0);
-		}
-		
-	function chooseCO()
-		{
-			selectedPara = 'CO';
-			egg1 = [0];
-			egg2 = [0];
-			egg3 = [0];
-			callPHP();
-			clearCanvas();
-			document.getElementById('heading').innerHTML='Kohlenstoffmonoxid';
-			document.getElementById('parameter').innerHTML='Kohlenstoffmonoxid in Parts per Million';
-			var line = new RGraph.Line('canvas1', [egg1, egg2, egg3]);
-			line.Set('chart.scale.decimals', 0);
-		}
-		
-	function chooseNO2()
-		{
-			selectedPara = 'NO2';
-			egg1 = [0];
-			egg2 = [0];
-			egg3 = [0];
-			callPHP();
-			clearCanvas();
-			document.getElementById('heading').innerHTML='Stickstoffdioxid';
-			document.getElementById('parameter').innerHTML='Stickstoffdioxid in Parts per Million';
-			var line = new RGraph.Line('canvas1', [egg1, egg2, egg3]);
-			line.Set('chart.scale.decimals', 0);
-		}
-		
-	function chooseHumidity()
-		{
-			selectedPara = 'humidity';
-			egg1 = [0];
-			egg2 = [0];
-			egg3 = [0];
-			callPHP();
-			clearCanvas();
-			document.getElementById('heading').innerHTML='Luftfeuchtigkeit';
-			document.getElementById('parameter').innerHTML='Luftfeuchtigkeit in Prozent';
-			var line = new RGraph.Line('canvas1', [egg1, egg2, egg3]);
-			line.Set('chart.scale.decimals', 1);
-		}
-	
-		
-		
-	//Labels for x-axis
-	var time = ['0 Uhr','2 Uhr','4 Uhr','6 Uhr','8 Uhr','10 Uhr','12 Uhr','14 Uhr','16 Uhr','18 Uhr','20 Uhr','22 Uhr','24 Uhr',];
-	
-	//Default: Empty diagram
-	var egg1 = [0];
-	var egg2 = [0];
-	var egg3 = [0];
-
-	//function for requesting data from the database with PHP and drawing the diagram
-	function callPHP(){	
-
-	phpLocation = 'http://localhost/Semvis-Air/requestData.php?dateBegin=' + dateBegin + '&monthBegin=' + monthBegin + '&yearBegin=' + yearBegin + '&dateEnd=' + dateEnd + '&monthEnd=' + monthEnd + '&yearEnd=' + yearEnd + '&selectedPara=' + selectedPara + '&sensorId1=' + sensorId1 + '&sensorId2=' + sensorId2 + '&sensorId3=' + sensorId3;
-
-	$.ajax({
-	type: "GET",
-	url: phpLocation,
-	dataType: "script",
-	success: function(){
-						drawDiagram(egg1, egg2, egg3);
-						}
-	});
-	}	
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>Air Quality Egg Münster</title>
+  <meta name="description" content="Luftqualitätsdaten Muenster">
+  <meta name="keywords" content="Air Quality Egg">
+  <meta name="viewport" content="target-densitydpi=480px, width=1000px, user-scalable=yes">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--Order IE to use the best available compatibility-Microsoft Standard-->
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <script src="libraries_diagram/RGraph/libraries/RGraph.common.core.js">
 </script>
-	
+  <script src="libraries_diagram/RGraph/libraries/RGraph.line.js">
+</script>
+  <script src="libraries_diagram/RGraph/libraries/RGraph.common.key.js">
+</script>
+  <script src="libraries_diagram/jquery-1.9.1.js" type="text/javascript">
+</script>
+</head>
+
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="banner">
+        <div id="Willkommen">
+          <h1>Semvis Air</h1>
+
+          <h6>System zur Erfassung,Modellierung und Visualisierung von Luftqualitätsdaten</h6>
+        </div><!--close welcome-->
+      </div><!--close banner-->
+    </div><!--close header-->
+
+    <div id="menubar">
+      <ul id="menu">
+        <li class="current">
+          <a href="Diagramm.html">Diagramm</a>
+        </li>
+
+        <li>
+          <a href="Karte.php">Zurück zur Kartenansicht</a>
+        </li>
+      </ul>
+    </div><!--close menubar-->
+
+    <div id="site_content">
+      <div class="sidebar_container">
+        <div class="sidebar">
+          <div class="sidebar_item">
+            <h2>Diagramm</h2>
+
+            <form name='selectpara' id="selectpara">
+              <input type="radio" name="Parameter" onclick="(chooseTemperature())"> Temperatur<br>
+              <input type="radio" name="Parameter" onclick="(chooseO3())"> Ozon<br>
+              <input type="radio" name="Parameter" onclick="(chooseCO())"> Kohlenstoffmonoxid<br>
+              <input type="radio" name="Parameter" onclick="(chooseNO2())"> Stickstoffdioxid<br>
+              <input type="radio" name="Parameter" onclick="(chooseHumidity())"> Luftfeuchtigkeit<br>
+            </form>
+			<br>
+            <p id='parameter'>Maßeinheit</p><span style="margin-left: 225px"><a class="tooltip">?<span class="classic">Um eine
+            Messung im Diagramm anzuzeigen, wählen und markieren Sie bitte den jeweiligen Kreis</span></a></span>
+          </div><!--Close-item-->
+        </div><!--Close-sidebar-->
+
+        <div class="sidebar">
+          <div class="sidebar_item">
+            <p id='time'></p>
+
+            <h2>Tag</h2>
+
+            <form name='selectday' id="selectday">
+              <input type="radio" name="Parameter" onclick="(chooseDay(6))"> <span id="day6"></span><br>
+              <input type="radio" name="Parameter" onclick="(chooseDay(5))"> <span id="day5"></span><br>
+              <input type="radio" name="Parameter" onclick="(chooseDay(4))"> <span id="day4"></span><br>
+              <input type="radio" name="Parameter" onclick="(chooseDay(3))"> <span id="day3"></span><br>
+              <input type="radio" name="Parameter" onclick="(chooseDay(2))"> <span id="day2"></span><br>
+              <input type="radio" name="Parameter" onclick="(chooseDay(1))"> <span id="day1"></span><br>
+              <input type="radio" name="Parameter" onclick="(chooseDay(0))" checked="checked"> <span id="day0"></span> (heute)
+            </form><span style="margin-left: 225px"><a class="tooltip">?<span class="classic">Wenn Sie die Werte vergangener Tage
+            einsehen möchten, wählen und markieren Sie bitte den zum jeweiligen Datum dazugehörigen Kreis</span></a></span>
+          </div><!--Close-item-->
+        </div><!--Close-sidebar-->
+      </div><!--Close-sidebar_container-->
+
+      <div id="diagram">
+        <canvas id="canvas1" width="710" height="420">[No canvas support]</canvas>
+      </div><script>
+  
+        // Muss noch angepasst werden, wird mit der url von der Karte �bergeben
+        var sensorId1 = 75762;
+        var sensorId2 = 75839;
+        var sensorId3 = 75842;  
+        
+        //choose the day of the displayed measurements
+        function chooseDay(n)
+                {
+                timeBegin = writeCorrectDates(n);
+                timeBeginArray = timeBegin.split(".");
+                
+                dateBegin = timeBeginArray[0];
+                monthBegin = timeBeginArray[1];
+                yearBegin = timeBeginArray[2];
+                
+                timeEnd = writeCorrectDates(n-1);
+                timeEndArray = timeEnd.split(".");
+                
+                dateEnd = timeEndArray[0];
+                monthEnd = timeEndArray[1];
+                yearEnd = timeEndArray[2];
+                
+                egg1 = [0];
+                egg2 = [0];
+                egg3 = [0];
+                
+                callPHP();
+                switch(selectedPara)
+                        {
+                        case 'temperaturC':
+                                chooseTemperature();
+                                break;
+                        case 'ozon':
+                                chooseO3();
+                                break;
+                        case 'CO':
+                                chooseCO();
+                                break;
+                        case 'NO2':
+                                chooseNO2();
+                                break;
+                        case 'humidity':
+                                chooseHumidity();
+                                break;
+                        }
+                }
+        
+
+        chooseDay(0);
+        
+        
+        
+        
+        //At loading the page: Draw empty diagram
+        drawDiagram();
+        
+        //Date of the radio buttons: Instead of "yesterday", "day before yesterday" etc.
+        for (var x = 0; x < 7; x++) document.getElementById('day' + x).innerHTML = writeCorrectDates(x);
+        
+        function testLeapYear(x){
+                if (x%400 == 0) return true;
+                if (x%4 == 0 && x%100 != 0) return true;
+                else return false;                      
+                }
+        
+        function writeCorrectDates(n)
+                {
+                        var d = new Date();
+                        var currentDay = d.getDate();
+                        var currentMonth = d.getMonth() + 1;
+                        var currentYear = d.getFullYear();
+                        var correctDay = (currentDay-n + '.' + (currentMonth) + '.' + currentYear);
+                        
+                        //Preventing negative days and months
+                        if (currentDay-n < 1){
+                                var minusDays = n - currentDay;
+                                var previousMonth = currentMonth-1;
+                                if (previousMonth < 1) previousMonth = 12;
+                                var previousMonthLength;
+                                if (previousMonth == 1 || previousMonth == 3 || previousMonth == 5 || previousMonth == 7 || previousMonth == 8 || previousMonth == 10 || previousMonth == 12)
+                                        previousMonthLength = 31;
+                                else if (previousMonth == 4 || previousMonth == 6 || previousMonth == 9 || previousMonth == 11)
+                                        previousMonthLength = 30;
+                                else if (testLeapYear(currentYear) == true)
+                                        previousMonthLength = 29;
+                                else previousMonthLength = 28;
+                                correctDay = (previousMonthLength-minusDays + '.' + (previousMonth) + '.' + currentYear);
+                                }
+                        return correctDay;
+                }
+
+        
+        //Main function for drawing all diagrams
+        function drawDiagram(egg1, egg2, egg3)
+                {
+                var line = new RGraph.Line('canvas1', [egg1, egg2, egg3]);
+                line.Set('chart.labels', time);
+                line.Set('chart.ylabels.count', 5);
+                line.Set('chart.xaxispos', 'center');
+                line.Set('chart.numxticks', 12);
+                line.Set('chart.numyticks', 20);
+                line.Set('colors', ['red', 'limegreen', 'blue']);
+                line.Set('chart.key', ['egg1','egg2','egg3']);
+                line.Set('chart.key.position', 'gutter');
+                line.Set('chart.background.grid.autofit.numvlines', 24);
+                line.Set('chart.background.grid.autofit.numhlines', 8);
+                line.Set('chart.gutter.left', 50);
+                line.Draw();
+                }
+        
+        
+        //Remove previous diagram from the canvas
+        function clearCanvas()
+                {
+                var c = document.getElementById("canvas1");
+                var context = c.getContext('2d');
+                context.rect(-10,0,750,500);
+                context.fillStyle='white';
+                context.fill();
+                }
+                
+        //Choose parameter
+        var selectedPara;
+        
+        function chooseTemperature()
+                {
+                        selectedPara = 'temperaturC';
+                        egg1 = [0];
+                        egg2 = [0];
+                        egg3 = [0];
+                        callPHP();
+                        clearCanvas();
+                        
+                        document.getElementById('parameter').innerHTML='Temperatur in °C';
+                        var line = new RGraph.Line('canvas1', [egg1, egg2, egg3]);
+                        line.Set('chart.scale.decimals', 1);    
+                }
+        
+        function chooseO3()
+                {
+                        selectedPara = 'ozon';
+                        egg1 = [0];
+                        egg2 = [0];
+                        egg3 = [0];
+                        callPHP();
+                        clearCanvas();
+                        
+                        document.getElementById('parameter').innerHTML='Ozon in Parts per Million';
+                        var line = new RGraph.Line('canvas1', [egg1, egg2, egg3]);
+                        line.Set('chart.scale.decimals', 0);
+                }
+                
+        function chooseCO()
+                {
+                        selectedPara = 'CO';
+                        egg1 = [0];
+                        egg2 = [0];
+                        egg3 = [0];
+                        callPHP();
+                        clearCanvas();
+                
+                        document.getElementById('parameter').innerHTML='Kohlenstoffmonoxid in Parts per Million';
+                        var line = new RGraph.Line('canvas1', [egg1, egg2, egg3]);
+                        line.Set('chart.scale.decimals', 0);
+                }
+                
+        function chooseNO2()
+                {
+                        selectedPara = 'NO2';
+                        egg1 = [0];
+                        egg2 = [0];
+                        egg3 = [0];
+                        callPHP();
+                        clearCanvas();
+                        
+                        document.getElementById('parameter').innerHTML='Stickstoffdioxid in Parts per Million';
+                        var line = new RGraph.Line('canvas1', [egg1, egg2, egg3]);
+                        line.Set('chart.scale.decimals', 0);
+                }
+                
+        function chooseHumidity()
+                {
+                        selectedPara = 'humidity';
+                        egg1 = [0];
+                        egg2 = [0];
+                        egg3 = [0];
+                        callPHP();
+                        clearCanvas();
+                        
+                        document.getElementById('parameter').innerHTML='Luftfeuchtigkeit in Prozent';
+                        var line = new RGraph.Line('canvas1', [egg1, egg2, egg3]);
+                        line.Set('chart.scale.decimals', 1);
+                }
+        
+                
+                
+        //Labels for x-axis
+        var time = ['0 Uhr','2 Uhr','4 Uhr','6 Uhr','8 Uhr','10 Uhr','12 Uhr','14 Uhr','16 Uhr','18 Uhr','20 Uhr','22 Uhr','24 Uhr',];
+        
+        //Default: Empty diagram
+        var egg1 = [0];
+        var egg2 = [0];
+        var egg3 = [0];
+
+        //function for requesting data from the database with PHP and drawing the diagram
+        function callPHP(){     
+
+        phpLocation = 'http://localhost/Semvis-Air/requestData.php?dateBegin=' + dateBegin + '&monthBegin=' + monthBegin + '&yearBegin=' + yearBegin + '&dateEnd=' + dateEnd + '&monthEnd=' + monthEnd + '&yearEnd=' + yearEnd + '&selectedPara=' + selectedPara + '&sensorId1=' + sensorId1 + '&sensorId2=' + sensorId2 + '&sensorId3=' + sensorId3;
+
+        $.ajax({
+        type: "GET",
+        url: phpLocation,
+        dataType: "script",
+        success: function(){
+                                                drawDiagram(egg1, egg2, egg3);
+                                                }
+        });
+        }       
+      </script>
+    </div><!--Close-side_content-->
+  </div><!--Close_Main=-->
 </body>
 </html>

@@ -499,3 +499,17 @@ font-size:small;
 		* html a:hover { background: transparent; }
 		.classic {background: #FFF; border: 1px solid #000000; }
   
+  /*---------Diagram-------------*/
+  
+#diagram{
+background-color:white;
+position:absolute;
+width: 710px; 
+height: 420px;
+left:455px;
+top:145px;
+-webkit-box-shadow: rgba(0, 0, 0, 1) 5px 0px 10px;
+-moz-box-shadow: rgba(0, 0, 0, 1) 5px 0px 10px;
+box-shadow: rgba(0, 0, 0, 1) 5px 0px 10px;}
+
+

@@ -65,7 +65,7 @@ linkages to the help-site, the table and the diagram.  -->
 			<input type="button" name="Tabelle" value="Tabelle" id="4" onclick="linkgenerieren(4)">
 			<input type="button" name="Diagramm" value="Diagramm" id="5" onclick="linkgenerieren(5)">
 
-            </form><span style="margin-left: 225px"><a class="tooltip" href="#">?<span class="classic">Erläuterungen zum Umgang mit
+            <span style="margin-left: 225px"><a class="tooltip" href="#">?<span class="classic">Erläuterungen zum Umgang mit
             der Auswahlfunktion erhalten Sie unter 'Hilfe'</span></a></span>
           </div><!--close sidebar_item-->
         </div><!--close sidebar-->
@@ -360,7 +360,7 @@ linkages to the help-site, the table and the diagram.  -->
 						}
 						else
 						{
-						var newURL = "diagramm.html?";
+						var newURL = "Diagramm.html?";
 						}
 						for (var i = 0; i < 3; i++) {
 							if(selected_eggs[i] != "") {

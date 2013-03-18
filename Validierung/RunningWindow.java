@@ -19,7 +19,7 @@ import java.util.Arrays;
 
 public class RunningWindow {
 
-	public static void validate(Connection conn, ArrayList list, int ws) {
+	public static void validate(Connection conn, ArrayList list, int ws,double sigma) {
 		RunningWindow w = new RunningWindow();
 
 		double[] result = w.runMed(list, ws);
@@ -27,7 +27,7 @@ public class RunningWindow {
 			for (int j = 0; j < result.length; j++) {
 				// System.out.append(",result"+j+":"+result[j]);
 			}
-			w.berechneAusreißer(conn, list, result, ws);
+			w.berechneAusreißer(conn, list, result, ws, sigma);
 		}
 	}
 
@@ -139,7 +139,7 @@ public class RunningWindow {
 	 */
 	
 	private void berechneAusreißer(Connection conn, ArrayList list,
-			double[] runmed, int ws) {
+			double[] runmed, int ws,double sigma) {
 		int k = (ws / 2);
 		int index = 0;
 		int indexWerte = k;
@@ -151,8 +151,8 @@ public class RunningWindow {
 				double ir = berechneIR(window);
 				// System.out.println("ir:"+ir+"  window[2]:"+window[2]);
 				Measurement measurement = (Measurement) list.get(indexWerte);
-				if (measurement.getData() < (runmed[index] - (1.4 * ir))
-						|| measurement.getData() > (runmed[index] + (1.4 * ir))) {
+				if (measurement.getData() < (runmed[index] - (sigma * ir))
+						|| measurement.getData() > (runmed[index] + (sigma * ir))) {
 					System.out.println("index:" + indexWerte + " wert:"
 							+ measurement.getData());
 					st.execute("update \"MeasuredData\" set "

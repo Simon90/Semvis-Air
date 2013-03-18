@@ -36,11 +36,11 @@ public class Database {
 			// selects the oldest measured data
 			ResultSet r = st.executeQuery("select date from  \"MeasuredData\" where \"sensorId\"=" + sensorid
 					+ " order by date;");
-			for (int i = 0; i < (ws / 2); i++) {
+			for (int i = 1; i <(ws/2); i++) {
 				r.next();
 			}
 			// because the first (ws/2) values can't be validated they will always be null. They should not be
-			// considered. The search should start after them. If there are less than 10 data in the database the value
+			// considered. The search should start after them. If there are less than ws/2 data in the database the value
 			// is set to a default value.
 			if (r.next() == true) {
 				date = "'" + r.getString(1) + "'";
@@ -48,12 +48,16 @@ public class Database {
 				date = "'2010-02-22 15:30:39.861065'";
 			}
 			// searches the oldest data set which has has not been validated yet and saves it in "firsttimestamp".
-			r = st.executeQuery("select min(date) from  \"MeasuredData\" where \"sensorId\"=" + sensorid + " and date>"
+			r = st.executeQuery("select min(date) from  \"MeasuredData\" where \"sensorId\"=" + sensorid + " and date>="
 					+ date + " and \"" + measured + "_validated\" is null;");
 			if (r.next()) {
 				firsttimestamp = r.getString(1);
 				if (firsttimestamp != null) {
 					firsttimestamp = "'" + firsttimestamp + "'";
+					st.execute("delete from \"previusValues\"");
+					for (int j=1;j<= (ws/2);j++){
+						st.execute("insert into \"previusValues\" (id)values ("+j+");");
+					}
 					// saves the (ws/2) values which are measured before the data to validate
 					lastTenValues(conn, measured, firsttimestamp, sensorid, 1, ws);
 					// gets the values of the table and saves them in the list
@@ -92,9 +96,10 @@ public class Database {
 	 */
 	private static void lastTenValues(Connection conn, String measured, String timestamp, int sensorid, int i, int ws)
 			throws SQLException {
-
+		Statement st = conn.createStatement();
+		
 		if (i < (ws / 2)) {
-			Statement st = conn.createStatement();
+			 st = conn.createStatement();
 			//gets the latest measurement before the actual measurement and saves it in the table "previusValues"
 			st.execute("with p AS(select max(date)as datum from \"MeasuredData\" where \"sensorId\"=" + sensorid
 					+ " and date <" + timestamp + ")update \"previusValues\" set value= (select \"" + measured

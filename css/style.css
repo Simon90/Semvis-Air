@@ -261,6 +261,10 @@ width:88px;
 cursor:pointer;
 }
 
+[type=radio]{
+cursor: pointer;
+}
+
 /*---Footer---*/
 #footer
 { width: 920px;

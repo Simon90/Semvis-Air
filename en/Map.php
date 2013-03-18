@@ -22,7 +22,7 @@ linkages to the help-site, the table and the diagram.  -->
       <div id="banner">
         <div id="Willkommen">
           <h1>Semvis Air</h1>
-          <h6>System for Capturing, Modeling and the Visualisation of the Air</h6>
+          <h6>System for gathering,modelling and visualize air quality data</h6>
         </div><!--close Willkommen-->
       </div><!--close banner-->
     </div><!--close header-->
@@ -114,7 +114,7 @@ linkages to the help-site, the table and the diagram.  -->
             </div><br>
 
             <div>
-              Finde Dust (PM10): <span id="myelement3"></span> [µg/m³] <span style="margin-left: 60px"><a class="tooltip" href="#">?<span class="classic">
+              Dust (PM10): <span id="myelement3"></span> [µg/m³] <span style="margin-left: 60px"><a class="tooltip" href="#">?<span class="classic">
 			  Our Help contains explanations for the measured values.</span></a></span>
             </div>
           </div><!--close-sidebar_item-->
@@ -360,7 +360,7 @@ linkages to the help-site, the table and the diagram.  -->
 						}
 						else
 						{
-						var newURL = "diagramm.html?";
+						var newURL = "Diagram.html?";
 						}
 						for (var i = 0; i < 3; i++) {
 							if(selected_eggs[i] != "") {

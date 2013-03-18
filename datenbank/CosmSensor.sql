@@ -19,19 +19,28 @@ The primary key are the variables: "date" and "sensorId". With these two every d
 create table "MeasuredData"(
 "date"  timestamp ,
 "sensorId" integer  references "CosmSensor" on delete cascade on update cascade,
-"temperaturC" float default -99,
+"temperaturC" double precision default -99,
 "temperaturC_validated" boolean,
-ozon float default -1,
+ozon double precision  default -1,
 ozon_validated boolean,
-"NO2" float default -1,
+"NO2" double precision default -1,
 "NO2_validated" boolean,
-humidity float default -1,
+humidity double precision default -1,
 humidity_validated boolean,
-"CO" float default -1,
-"CO_validated" float,
+"CO" double precision default -1,
+"CO_validated" boolean,
 primary key ("date", "sensorId")
 );
-
+/* 
+This table saves the 10 values before the first value to vadidate.
+*/
+CREATE TABLE "previusValues"
+(
+  id integer NOT NULL,
+  date timestamp without time zone,
+  value double precision,
+  CONSTRAINT "primary_Key" PRIMARY KEY (id)
+);
 /*
 view sensor_MeasuredData_join:
 This view joins the two tables CosmSensor and MeasuredData.
@@ -55,4 +64,5 @@ grant select, insert, delete, update on "CosmSensor" to "geosoft2";
 grant select, insert, delete, update on "MeasuredData" to "geosoft2";
 grant select, insert, delete, update on sensor_MeasuredData_join to "geosoft2";
 grant connect on database "CosmDaten" to "geosoft2";
+GRANT SELECT, UPDATE, INSERT, DELETE ON TABLE "previusValues" TO "geosoft2";
 

@@ -154,7 +154,7 @@ public class RunningWindow {
 				if (measurement.getData() < (runmed[index] - (sigma * ir))
 						|| measurement.getData() > (runmed[index] + (sigma * ir))) {
 					System.out.println("index:" + indexWerte + " wert:"
-							+ measurement.getData());
+							+ measurement.getData()+"true");
 					st.execute("update \"MeasuredData\" set "
 							+ measurement.getMeasured()
 							+ "_validated=true where date= '"
@@ -164,6 +164,8 @@ public class RunningWindow {
 							+ measurement.getMeasured()
 							+ "_validated=false where date= '"
 							+ measurement.getTimestamp() + "';");
+					System.out.println("index:" + indexWerte + " wert:"
+							+ measurement.getData()+"false");
 				}
 				indexWerte++;
 				index++;

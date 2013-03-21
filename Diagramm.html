@@ -90,10 +90,29 @@
         <canvas id="canvas1" width="710" height="420">[No canvas support]</canvas>
       </div><script>
   
-        // Muss noch angepasst werden, wird mit der url von der Karte �bergeben
-        var sensorId1 = 75762;
-        var sensorId2 = 75839;
-        var sensorId3 = 75842;  
+  	var sensorId1 = 0;
+	var sensorId2 = 0;
+	var sensorId3 = 0;
+	
+	path = location.href;
+	pathPara = path.split('?');
+	if (pathPara.length > 0){					//at least one egg selected
+		pathPara = pathPara[1];
+		eggId = pathPara.split('&');
+		getId1 = eggId.slice(0,1);
+		getId1 = getId1.toString();
+		sensorId1 = getId1.slice(4);
+		if (eggId.length > 1){					//more than one egg selected
+			getId2 = eggId.slice(1,2);
+			getId2 = getId2.toString();
+			sensorId2 = getId2.slice(4);
+			if (eggId.length > 2){				//more than two eggs selected
+				getId3 = eggId.slice(2,3);
+				getId3 = getId3.toString();
+				sensorId3 = getId3.slice(4);
+			}
+		}
+	}
         
         //choose the day of the displayed measurements
         function chooseDay(n)

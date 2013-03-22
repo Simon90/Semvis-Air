@@ -315,8 +315,12 @@
 
         //function for requesting data from the database with PHP and drawing the diagram
         function callPHP(){     
+	
+	//Access to real data from Cosm
+        //phpLocation = 'http://localhost/Semvis-Air/requestData.php?dateBegin=' + dateBegin + '&monthBegin=' + monthBegin + '&yearBegin=' + yearBegin + '&dateEnd=' + dateEnd + '&monthEnd=' + monthEnd + '&yearEnd=' + yearEnd + '&selectedPara=' + selectedPara + '&sensorId1=' + sensorId1 + '&sensorId2=' + sensorId2 + '&sensorId3=' + sensorId3;
 
-        phpLocation = 'http://localhost/Semvis-Air/requestData.php?dateBegin=' + dateBegin + '&monthBegin=' + monthBegin + '&yearBegin=' + yearBegin + '&dateEnd=' + dateEnd + '&monthEnd=' + monthEnd + '&yearEnd=' + yearEnd + '&selectedPara=' + selectedPara + '&sensorId1=' + sensorId1 + '&sensorId2=' + sensorId2 + '&sensorId3=' + sensorId3;
+	//Access to test database
+	phpLocation = 'http://localhost/Semvis-Air/requestDataTest.php?selectedPara=' + selectedPara;
 
         $.ajax({
         type: "GET",

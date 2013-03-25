@@ -36,10 +36,10 @@ while($row = pg_fetch_array($result))
     {
 	echo "<tr>";
     echo "<td>" .$row["date"] ."</td>";	
-    echo "<td>" .$row["temperaturC"] ."</td>";
+    echo "<td>" .$row["temperature"] ."</td>";
 	echo "<td>" .$row["ozon"] ."</td>";
-	echo "<td>" .$row["CO"] ."</td>";
-	echo "<td>" .$row["NO2"] ."</td>";
+	echo "<td>" .$row["co"] ."</td>";
+	echo "<td>" .$row["no2"] ."</td>";
 	echo "<td>" .$row["humidity"] ."</td>";
     echo "</tr>";
 	} 

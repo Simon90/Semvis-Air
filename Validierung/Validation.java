@@ -33,7 +33,7 @@ public class Validation {
 				if (list.size() != 0) {
 					RunningWindow.validate(conn, list, 100, 20);
 				}
-				list = Database.getWerte(conn, r.getInt(1), "temperaturC", 60);
+				list = Database.getWerte(conn, r.getInt(1), "temperature", 60);
 				if (list.size() != 0) {
 					RunningWindow.validate(conn, list, 60, 2);
 				}
@@ -41,11 +41,11 @@ public class Validation {
 				if (list.size() != 0) {
 					RunningWindow.validate(conn, list, 60, 2);
 				}
-				list = Database.getWerte(conn, r.getInt(1), "NO2", 60);
+				list = Database.getWerte(conn, r.getInt(1), "no2", 60);
 				if (list.size() != 0) {
 					RunningWindow.validate(conn, list, 60, 2);
 				}
-				list = Database.getWerte(conn, r.getInt(1), "CO", 60);
+				list = Database.getWerte(conn, r.getInt(1), "co", 60);
 				if (list.size() != 0) {
 					RunningWindow.validate(conn, list, 60, 2);
 				}

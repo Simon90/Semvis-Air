@@ -155,8 +155,9 @@
 					return $all_values;
 					}
 					
-				    /*$test=get_values(get_id_coord());
-					echo $test[0].'</br>';
+					$dies=get_id_coord();
+				    $test=get_values($dies);
+					/*echo $test[0].'</br>';
 					echo $test[6];*/
 												
 ?>

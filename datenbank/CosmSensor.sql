@@ -17,18 +17,18 @@ In this table the measuring data of the AirQualityEggs are stored. All data of a
 The primary key are the variables: "date" and "sensorId". With these two every data can be definitely identified.
 */
 create table "MeasuredData"(
-"date"  timestamp ,
+date  timestamp ,
 "sensorId" integer  references "CosmSensor" on delete cascade on update cascade,
-"temperaturC" double precision default -99,
-"temperaturC_validated" boolean,
+temperature double precision default -99,
+temperature_validated boolean,
 ozon double precision  default -1,
 ozon_validated boolean,
-"NO2" double precision default -1,
-"NO2_validated" boolean,
+no2 double precision default -1,
+no2_validated boolean,
 humidity double precision default -1,
 humidity_validated boolean,
-"CO" double precision default -1,
-"CO_validated" boolean,
+co double precision default -1,
+co_validated boolean,
 primary key ("date", "sensorId")
 );
 /* 

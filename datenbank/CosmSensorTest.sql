@@ -17,18 +17,18 @@ In this table the measuring data of the AirQualityEggs are stored. All data of a
 The primary key are the variables: "date" and "sensorId". With these two every data can be definitely identified.
 */
 create table "MeasuredData"(
-"date"  timestamp ,
+date  timestamp ,
 "sensorId" integer  references "CosmSensor" on delete cascade on update cascade,
-"temperaturC" double precision default -99,
-"temperaturC_validated" boolean,
+temperature double precision default -99,
+temperature_validated boolean,
 ozon double precision  default -1,
 ozon_validated boolean,
-"NO2" double precision default -1,
-"NO2_validated" boolean,
+no2 double precision default -1,
+no2_validated boolean,
 humidity double precision default -1,
 humidity_validated boolean,
-"CO" double precision default -1,
-"CO_validated" boolean,
+co double precision default -1,
+co_validated boolean,
 primary key ("date", "sensorId")
 );
 /* 
@@ -45,8 +45,8 @@ CREATE TABLE "previusValues"
 view sensor_MeasuredData_join:
 This view joins the two tables CosmSensor and MeasuredData.
 */ 
-create view sensor_MeasuredData_join (id,name,latitude,longitude,"date", "temperaturC","temperaturC_validated",ozon,ozon_validated,"NO2", "NO2_validated",humidity,humidity_validated,"CO","CO_validated") as
-select c.id,c.name,c.latitude,c.longitude,m."date", m."temperaturC",m."temperaturC_validated",m.ozon,m.ozon_validated,m."NO2", m."NO2_validated",m.humidity,m.humidity_validated,m."CO",m."CO_validated"  from "CosmSensor"  c inner join "MeasuredData"m on (c.id= m."sensorId");
+create view sensor_MeasuredData_join (id,name,latitude,longitude,"date", "temperature","temperature_validated",ozon,ozon_validated,"no2", "no2_validated",humidity,humidity_validated,"co","co_validated") as
+select c.id,c.name,c.latitude,c.longitude,m."date", m."temperature",m."temperature_validated",m.ozon,m.ozon_validated,m."no2", m."no2_validated",m.humidity,m.humidity_validated,m."co",m."co_validated"  from "CosmSensor"  c inner join "MeasuredData"m on (c.id= m."sensorId");
 
 /*
 rule value_exists:
@@ -55,9 +55,9 @@ This rule prevent insertion into the columns "_validated" if the belonging colum
 example: temperaturC= -99, temperaturC_validated=false (bzw. true) ----- not allowed
 */ 
 create rule "value_exists" as on  insert to "MeasuredData" 
-where ("temperaturC" =-99 and new."temperaturC_validated" is not null) or (ozon =-1 and new.ozon_validated is not null)
-or( "NO2" =-1 and NEW."NO2_validated" is not null) or (humidity =-1 and new.humidity_validated is not null)
-or ("CO" =-1 and "CO_validated" is not null)
+where ("temperature" =-99 and new."temperature_validated" is not null) or (ozon =-1 and new.ozon_validated is not null)
+or( "no2" =-1 and NEW."no2_validated" is not null) or (humidity =-1 and new.humidity_validated is not null)
+or ("co" =-1 and "co_validated" is not null)
 do instead nothing;
 /*to give the rights to the user*/
 grant select, insert, delete, update on "CosmSensor" to "geosoft2";

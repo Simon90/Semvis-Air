@@ -14,7 +14,7 @@ $alle=$pachube->getFeedsList("json", 0, 100000, "summary", "munster","munster");
 
 //array: contains all IDs with the tag 'munster'.
 $ids=get_ids($alle);
-
+//echo count($ids);
 //array: contains the values for every ID in JSON format.
 $json=get_json($ids);
 
@@ -28,11 +28,17 @@ $CO=get_CO($json);
 $humidity=get_Humidity($json);
 $O3=get_O3($json);
 $names=get_Name($json);
+
+for($i=0;$i<count($temperature);$i++){
+echo $temperature[$i]."T"."</br>";
+echo $humidity[$i]."H"."</br>";
+}
 //$values=get_values($json);
 //echo count($values);
 
 //$count2 initialisation before the loop for a better performance. Echo-lines are not important, just for implementation. 
 $count2=count($ids);
+echo $count2."</br>";
 for($i=0;$i<$count2;$i++){
 	echo $ids[$i].' ';
 	echo $lat[$i].' ';

@@ -123,9 +123,9 @@ function get_Humidity($json_fulltext){
 $humidity_values=array();
 for($i=0;$i<count($json_fulltext);$i++){
 	if(strpos($json_fulltext[$i],'"id":"humidity","current_value":"')!==false){
-		$temp1=explode('"id":"humidity","current_value":"',$json_fulltext[$i]);
-					$temp2=explode('","at"',$temp1[1]);
-					array_push($humidity_values, $temp2[0]);
+		$temp=explode('"id":"humidity","current_value":"',$json_fulltext[$i]);
+					$temp1=explode('","at"',$temp[1]);
+					array_push($humidity_values, $temp1[0]);
 				}	
 				
 	else{

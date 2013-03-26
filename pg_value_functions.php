@@ -157,7 +157,11 @@
 					
 					$dies=get_id_coord();
 				    $test=get_values($dies);
-					/*echo $test[0].'</br>';
-					echo $test[6];*/
-												
+					echo $test[0].'</br>';
+					echo $test[1].'</br>';
+					echo $test[2].'</br>';
+					echo $test[3].'</br>';
+					echo $test[4].'</br>';
+					echo $test[5].'</br>';
+					echo $test[6].'</br>';							
 ?>

@@ -23,32 +23,40 @@ $lat=get_lat($json);
 $lon=get_lon($json);
 $timestamp=get_timestamp($json);
 $NO2=get_NO2($json);
-$temperature=get_Temperature($json);
+
 $CO=get_CO($json);
-$humidity=get_Humidity($json);
+
 $O3=get_O3($json);
 $names=get_Name($json);
-
-for($i=0;$i<count($temperature);$i++){
+/*
+for($i=0;$i<count($ids);$i++){
+echo $ids[$i]."</br>";
 echo $temperature[$i]."T"."</br>";
 echo $humidity[$i]."H"."</br>";
 }
+for($i=0;$i<count($ids);$i++){
+echo $ids[$i]."</br>";
+echo $temperature[$i]."T"."</br>";
+echo $humidity[$i]."H"."</br>";
+}
+*/
 //$values=get_values($json);
 //echo count($values);
-
 //$count2 initialisation before the loop for a better performance. Echo-lines are not important, just for implementation. 
 $count2=count($ids);
-echo $count2."</br>";
 for($i=0;$i<$count2;$i++){
+$temperature=get_Temperature($json);
+$humidity=get_Humidity($json);
 	echo $ids[$i].' ';
 	echo $lat[$i].' ';
 	echo $lon[$i].' ';
 	echo $timestamp[$i].' ';
-	echo $temperature[$i].' ';
 	echo $humidity[$i].' ';
+	echo $temperature[$i].' ';
 	echo $NO2[$i].' ';
 	echo $CO[$i].' ';
 	echo $O3[$i]."</br>";
+	
 	
 	//pgSQL
 	$sensorid=pg_escape_string($ids[$i]);
@@ -87,12 +95,7 @@ $result=pg_query($query);
 
 }
 }	
-	
-	
-	
-	
-	
-	}
+}
 
 
 $count1=count($ids);
@@ -221,4 +224,5 @@ for($i=0;$i<count($json_fulltext);$i++){
 	}
 }	return $values;
 }*/
+
 ?>

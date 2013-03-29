@@ -5,7 +5,8 @@ linkages to the help-site, the table and the diagram.  -->
 <html lang="de">
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <title>Air Quality Egg Muenster</title>
+  <title>Air Quality Egg Münster</title>
+  <link rel="shortcut icon" href="bilder/egg1.png" type="image/x-icon" />
   <meta name="description" content="Luftqualitätsdaten Münster">
   <meta name="keywords" content="Air Quality Egg">
   <meta name="viewport" content="target-densitydpi=480px, width=1000px, user-scalable=yes">

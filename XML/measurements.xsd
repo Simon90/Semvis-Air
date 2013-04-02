@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="measurementTable" >
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="measurementtype" />
+				<xs:element name="unit" type="xs:string"/>
+				<xs:element name="start" type="xs:dateTime"/>
+				<xs:element name="end" type="xs:dateTime"/>
+				<xs:element name="measurements" type="measurements"/>
+
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" />
+			<xs:attribute name="id" type="xs:integer"/>
+			<xs:attribute name="latitude" type="xs:decimal"/>
+			<xs:attribute name="longitude" type="xs:decimal"/>
+		</xs:complexType>
+
+
+	</xs:element>
+	<xs:element	name="measurementtype">
+		<xs:simpleType >
+			<xs:restriction base="xs:string">
+				<xs:pattern value="temperature|no2|humidity|ozon|co" />			
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:complexType name="measurement">
+		<xs:sequence>
+			<xs:element name="data" type="xs:decimal"/>
+			<xs:element name="outlier" type="xs:boolean"/>
+		</xs:sequence>
+		<xs:attribute name="timestamp" type="xs:dateTime"/>
+	</xs:complexType>
+	<xs:complexType name="measurements">
+		<xs:sequence>
+			<xs:element name="measurement" type="measurement" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+
+
+</xs:schema>
+
+
+

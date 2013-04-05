@@ -360,16 +360,24 @@ cursor: pointer;
   color: #FFF;}
 
 /*-----Map----*/
-#map {
+#map,#diagram {
 float:left;
 width: 710px; 
 height: 420px;
-top: 20px;
+margin-top: 20px;
 margin-left: 30px;
 -webkit-box-shadow: rgba(0, 0, 0, 1) 5px 0px 10px;
 -moz-box-shadow: rgba(0, 0, 0, 1) 5px 0px 10px;
 box-shadow: rgba(0, 0, 0, 1) 5px 0px 10px;  
 }
+
+  /*---------Diagram-------------*/
+  
+#diagram{
+background-color:white;
+margin-top: 20px;
+ }
+
 
 
 }
@@ -502,17 +510,6 @@ font-size:small;
 		* html a:hover { background: transparent; }
 		.classic {background: #FFF; border: 1px solid #000000; }
   
-  /*---------Diagram-------------*/
-  
-#diagram{
-background-color:white;
-position:absolute;
-width: 710px; 
-height: 420px;
-left:455px;
-top:145px;
--webkit-box-shadow: rgba(0, 0, 0, 1) 5px 0px 10px;
--moz-box-shadow: rgba(0, 0, 0, 1) 5px 0px 10px;
-box-shadow: rgba(0, 0, 0, 1) 5px 0px 10px;}
+
 
 

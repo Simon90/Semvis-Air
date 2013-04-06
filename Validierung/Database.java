@@ -36,7 +36,7 @@ public class Database {
 			// selects the oldest measured data
 			ResultSet r = st.executeQuery("select date from  \"MeasuredData\" where \"sensorId\"=" + sensorid
 					+ " order by date;");
-			for (int i = 1; i <(ws/2); i++) {
+			for (int i = 1; i <=(ws/2); i++) {
 				r.next();
 			}
 			// because the first (ws/2) values can't be validated they will always be null. They should not be
@@ -49,11 +49,13 @@ public class Database {
 			}
 			// searches the oldest data set which has has not been validated yet and saves it in "firsttimestamp".
 			r = st.executeQuery("select min(date) from  \"MeasuredData\" where \"sensorId\"=" + sensorid + " and date>="
-					+ date + " and \"" + measured + "_validated\" is null;");
+					+ date + " and \"" + measured + "_validated\" is null ;");
 			if (r.next()) {
 				firsttimestamp = r.getString(1);
 				if (firsttimestamp != null) {
 					firsttimestamp = "'" + firsttimestamp + "'";
+					//deletes all values in the table "previusValues". After that the sequence from 1 to (ws/2) will be 
+					//insert into the column "id"
 					st.execute("delete from \"previusValues\"");
 					for (int j=1;j<= (ws/2);j++){
 						st.execute("insert into \"previusValues\" (id)values ("+j+");");
@@ -61,7 +63,7 @@ public class Database {
 					// saves the (ws/2) values which are measured before the data to validate
 					lastTenValues(conn, measured, firsttimestamp, sensorid, 1, ws);
 					// gets the values of the table and saves them in the list
-					r = st.executeQuery("select * from \"previusValues\" where date is not null order by id;");
+					r = st.executeQuery("select * from \"previusValues\" where date is not null order by id  desc;");
 					while (r.next()) {
 						Measurement m = new Measurement(r.getString("date"), r.getDouble("value"), measured);
 						list.add(m);
@@ -98,7 +100,7 @@ public class Database {
 			throws SQLException {
 		Statement st = conn.createStatement();
 		
-		if (i < (ws / 2)) {
+		if (i <=(ws / 2)) {
 			 st = conn.createStatement();
 			//gets the latest measurement before the actual measurement and saves it in the table "previusValues"
 			st.execute("with p AS(select max(date)as datum from \"MeasuredData\" where \"sensorId\"=" + sensorid

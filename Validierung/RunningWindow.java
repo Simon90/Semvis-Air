@@ -19,7 +19,7 @@ import java.util.Arrays;
 
 public class RunningWindow {
 
-	public static void validate(Connection conn, ArrayList list, int ws,double sigma) {
+	public static void validate(Connection conn, ArrayList list,int id, int ws,double sigma) {
 		RunningWindow w = new RunningWindow();
 
 		double[] result = w.runMed(list, ws);
@@ -27,7 +27,7 @@ public class RunningWindow {
 			for (int j = 0; j < result.length; j++) {
 				// System.out.append(",result"+j+":"+result[j]);
 			}
-			w.berechneAusreißer(conn, list, result, ws, sigma);
+			w.berechneAusreißer(conn, list, result, id, ws, sigma);
 		}
 	}
 
@@ -64,7 +64,7 @@ public class RunningWindow {
 		ArrayList newarray = new ArrayList();
 		int j = a;
 		for (int i = 0; i < (b - a) + 1; i++) {
-			newarray.add(array.get(i));
+			newarray.add(array.get(j));
 			j++;
 		}
 		return newarray;
@@ -139,7 +139,7 @@ public class RunningWindow {
 	 */
 	
 	private void berechneAusreißer(Connection conn, ArrayList list,
-			double[] runmed, int ws,double sigma) {
+			double[] runmed,int id, int ws,double sigma) {
 		int k = (ws / 2);
 		int index = 0;
 		int indexWerte = k;
@@ -153,18 +153,18 @@ public class RunningWindow {
 				Measurement measurement = (Measurement) list.get(indexWerte);
 				if (measurement.getData() < (runmed[index] - (sigma * ir))
 						|| measurement.getData() > (runmed[index] + (sigma * ir))) {
-					System.out.println("index:" + indexWerte + " wert:"
+					System.out.println("id:"+id+"  index:" + indexWerte + " wert:"
 							+ measurement.getData()+"true");
 					st.execute("update \"MeasuredData\" set "
 							+ measurement.getMeasured()
 							+ "_validated=true where date= '"
-							+ measurement.getTimestamp() + "';");
+							+ measurement.getTimestamp() + "'and \"sensorId\"="+id+";");
 				} else {
 					st.execute("update \"MeasuredData\" set "
 							+ measurement.getMeasured()
 							+ "_validated=false where date= '"
-							+ measurement.getTimestamp() + "';");
-					System.out.println("index:" + indexWerte + " wert:"
+							+ measurement.getTimestamp() + "'and \"sensorId\"="+id+";");
+					System.out.println("id:"+id+"  index:" + indexWerte + " wert:"
 							+ measurement.getData()+"false");
 				}
 				indexWerte++;

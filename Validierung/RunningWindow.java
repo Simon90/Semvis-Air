@@ -126,8 +126,8 @@ public class RunningWindow {
 	 */
 	
 	private double berechneIR(ArrayList n) {
-		return Math.abs(quantil(n, 0.75) - quantil(n, 0.25));
-
+		double d= Math.abs(quantil(n, 0.75) - quantil(n, 0.25));
+return d;
 	}
 
 	/**

@@ -221,8 +221,8 @@ ul#menu li:hover a
   
 .content_image
 { float: right;
-  width: 320px;
-  height: 238px;
+  width: 326px;
+  height: 240px;
   margin: 0 50px 0px 0;
   -webkit-box-shadow: rgba(0, 0, 0, 1) 0px 0px 5px;
   -moz-box-shadow: rgba(0, 0, 0, 1) 0px 0px 5px;
@@ -275,29 +275,15 @@ cursor: pointer;
   text-shadow: 1px 1px #fff;
   color: #535353;}
 
-#footer a, #footer a:hover
-{ color: #535353;
-  text-decoration: none;
-  padding-bottom: 20px;}
-
-#footer a:hover
-{ text-decoration: underline;}
-
-#footer a, #footer a:hover
-{ color: #535353;
-  text-decoration: none;}
-
-#footer a:hover
-{ text-decoration: underline;}
 
 /*----delete-Button----*/
  .delete
-{ font: bold 65% Arial, Helvetica, sans-serif;
+{ font: bold 70% Arial, Helvetica, sans-serif;
   cursor: pointer;
   height: 10px;
   bottom: 32px;
   float: right;
-  right: 15px;
+  right: 12px;
   width: auto;  
   position: relative;
   padding: 5px 5px 5px 5px;

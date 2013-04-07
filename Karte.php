@@ -53,15 +53,15 @@ linkages to the help-site, the table and the diagram.  -->
             <p><b>Ausgewählte AQEs:</b></p>
             <p>Egg 1:<input type="text" name="Egg1" readonly id="1" style="margin-left:5px"></p>
             <div class="delete" onclick="loeschen(1);">
-              löschen
+              Löschen
             </div><!--close delete-button-->
             <p>Egg 2:<input type="text" name="Egg2" readonly id="2" style="margin-left:5px"></p>
             <div class="delete" onclick="loeschen(2);">
-              löschen
+              Löschen
             </div><!--close delete-button-->
             <p>Egg 3:<input type="text" name="Egg3" readonly id="3" style="margin-left:5px"></p>
             <div class="delete" onclick="loeschen(3);">
-              löschen
+              Löschen
             </div><!--close delete-button-->
 			<input type="button" name="Tabelle" value="Tabelle" id="4" onclick="linkgenerieren(4)">
 			<input type="button" name="Diagramm" value="Diagramm" id="5" onclick="linkgenerieren(5)">

@@ -101,10 +101,10 @@ public class XMLGenerator {
 			if (r.next()) {
 				String name = r.getString("name");
 				table.setName(name);
-				BigDecimal latitude = BigDecimal.valueOf(r.getInt("latitude"));
+				BigDecimal latitude = BigDecimal.valueOf(r.getDouble("latitude"));
 				table.setLatitude(latitude);
 				BigDecimal longitude = BigDecimal
-						.valueOf(r.getInt("longitude"));
+						.valueOf(r.getDouble("longitude"));
 				table.setLongitude(longitude);
 
 			}

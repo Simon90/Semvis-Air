@@ -62,7 +62,7 @@ linkages to the help-site, the table and the diagram.  -->
             <p>Egg 3:<input type="text" name="Egg3" readonly id="3" style="margin-left:5px"></p>
             <div class="delete" onclick="loeschen(3);">
               Löschen
-            </div><!--close delete-button-->
+            </div><!--close delete-button-->			
 			<input type="button" name="Tabelle" value="Tabelle" id="4" onclick="linkgenerieren(4)">
 			<input type="button" name="Diagramm" value="Diagramm" id="5" onclick="linkgenerieren(5)">
 

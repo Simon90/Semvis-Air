@@ -347,8 +347,8 @@ linkages to the help-site, the table and the diagram.  -->
                                                 id_coord=id_coord.split(",");
                                                 
                                                 //The following loop creates a marker and binds a popup for every ID. 
-												var standard_latitude=51.963059;
-                                                var standard_longitude=7.627009;
+												var standard_latitude=51.947968;
+                                                var standard_longitude=7.643723;
 												var egg;
 												for(var i=0;i<split_names.length;i++) {
 													var j = i*3;

@@ -293,18 +293,18 @@ linkages to the help-site, the table and the diagram.  -->
                                                 }
                                                 
                                                 //standard values for IDs without coordinates, in the database with the value -1.
-                                                $standard_latitude=51.963059;
-                                                $standard_longitude=7.627009;
-                                                for($i=1;$i<count($id_coord)-1; $i+=3){
-                                                        if($id_coord[$i]==-1)
-                                                                {
-                                                                $id_coord[$i]=$standard_latitude;
-                                                                }
-                                                        if($id_coord[$i+1]==-1)
-                                                                {$id_coord[$i+1]=$standard_longitude;
-                                                                $standard_longitude=$standard_longitude+0.004;
-                                                                }
-                                                        }
+                                                //$standard_latitude=51.963059;
+                                                //$standard_longitude=7.627009;
+                                                //for($i=1;$i<count($id_coord)-1; $i+=3){
+                                                //        if($id_coord[$i]==-1)
+                                                //                {
+                                                //                $id_coord[$i]=$standard_latitude;
+                                                //                }
+                                                //        if($id_coord[$i+1]==-1)
+                                                //                {$id_coord[$i+1]=$standard_longitude;
+                                                //                $standard_longitude=$standard_longitude+0.004;
+                                                //                }
+                                                //        }
                                                 
                                                 //$array_connect will contain a string so it ist easy to overgive it to javascript              
                                                 $array_connect='';
@@ -344,13 +344,23 @@ linkages to the help-site, the table and the diagram.  -->
                                                 id_coord=id_coord.split(",");
                                                 
                                                 //The following loop creates a marker and binds a popup for every ID. 
+												var standard_latitude=51.963059;
+                                                var standard_longitude=7.627009;
 												var egg;
 												for(var i=0;i<split_names.length;i++) {
 													var j = i*3;
+													if(split_names[i]!="-"){
 													egg = new teg(id_coord[j],split_names[i],id_coord[j+1],id_coord[j+2]);
+													if(id_coord[j+1]==-1){
+															egg.name=egg.name+" (No location)";
+															egg.x_coordinate=standard_latitude;
+															egg.y_coordinate=standard_longitude;
+															standard_longitude=standard_longitude+0.004;
+													}
 													var marker = L.marker([egg.x_coordinate,egg.y_coordinate], {icon: icon}).addTo(map);
 													marker.bindPopup(" <table class=\"tabelle\" style=\"width:200\"><tr ><td style=\"text-decoration:underline;font-weight:bold;\"><em>Name:<\/em><\/td><td>"+egg.name+"<\/td><\/tr><tr> <td ><em>Date:<\/em><\/td>  <td>"+split_dates[i]+"<\/td> <\/tr>  <tr> <td ><em> Time:<\/em><\/td> <td>"+split_times[i]+" CET<\/td> <\/tr> <tr> <td> <em>Temperature<\/em><\/td> <td>"+split_temperatures[i]+" °C<\/td> <\/tr> <tr><td ><em> Humidity:<\/em><\/td> <td>"+split_humiditys[i]+" %<\/td> <\/tr> <tr> <td > <em>Carbon Monoxide:<\/em><\/td> <td>"+split_carbon_monoxide[i]+" ppm<\/td> <\/tr> <tr><td ><em>Ozone:<\/em><\/td> <td>"+split_ozones[i]+" ppm<\/td> <\/tr> <tr><td > <em>Nitrogen Dioxide:<\/em><\/td><td>"+split_no2s[i]+" ppm<\/td> <\/tr> <\/table> <br> <button onClick='auswahlfenster(\""+i+"\")'> Add to Selection <\/button>");
 													all_eggs[i] = egg;
+													}
 												}
 												
 						//creates a link for the table/diagram and commited the id's of the selected eggs with the URL						

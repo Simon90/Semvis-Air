@@ -370,6 +370,11 @@ linkages to the help-site, the table and the diagram.  -->
 						}
 						newURL = newURL.substring(0,newURL.length-1);
 						location.href = newURL;
+						
+						//deletes the egg names in the selectionwindow after the link is created 
+						document.getElementById(1).value="";
+						document.getElementById(2).value="";
+						document.getElementById(3).value="";
 						}
 						
 						

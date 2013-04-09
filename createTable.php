@@ -3,22 +3,22 @@
 //Create connection
 $dbconn = pg_connect("host=giv-geosoft2c.uni-muenster.de port=5432 dbname=CosmDaten user=geosoft2 password=DZLwwxbW");
 
-$dateBegin = $_GET["dateBegin"];
-$monthBegin = $_GET["monthBegin"];
-$yearBegin = $_GET["yearBegin"];
+$date = $_GET["date"];
+$month = $_GET["month"];
+$year = $_GET["year"];
 
-$timeBegin = $yearBegin . '-' . $monthBegin . '-' . $dateBegin;
+$time = $year . '-' . $month . '-' . $date;
 
 $timestamp = array();
 
 for ($i=0, $hour=0; $hour<24; $hour++){
-  for ($min=0; $min<6; $min++, $i++){
+	for ($min=0; $min<6; $min++, $i++){
 		$timestamp[$i] = $hour .":". $min . "0";
 		}
 	}
 
 for ($j=0; $j<144; $j++){
-	$timestamp[$j] = $timeBegin . " " . $timestamp[$j];
+	$timestamp[$j] = $time . " " . $timestamp[$j];
 	}
 
 $selectedpara = $_GET["selectedPara"];
@@ -58,6 +58,8 @@ echo "</table>";
 pg_close($dbconn);
 
 //url zum testen:
-//http://localhost/Semvis-Air/createTable.php?selectedPara=temperature&sensorId1=75842&sensorId2=75759&sensorId3=75842&dateBegin=05&monthBegin=04&yearBegin=2013
+//http://localhost/Semvis-Air/createTable.php?selectedPara=temperature&sensorId1=75842&sensorId2=75759&sensorId3=75842&date=08&month=04&year=2013
+
+
 
 ?>

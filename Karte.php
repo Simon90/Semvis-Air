@@ -355,7 +355,7 @@ linkages to the help-site, the table and the diagram.  -->
 													if(split_names[i]!="-"){	//Delet all Eggs without a name.
 													egg = new teg(id_coord[j],split_names[i],id_coord[j+1],id_coord[j+2]);
 													if(id_coord[j+1]==-1){
-															egg.name=egg.name+" (Ungenaue Lage)";
+															egg.name=egg.name+" (Keine Ortung)";
 															egg.x_coordinate=standard_latitude;
 															egg.y_coordinate=standard_longitude;
 															standard_longitude=standard_longitude+0.004;

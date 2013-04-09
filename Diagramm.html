@@ -95,6 +95,10 @@
 	var sensorId2 = 0;
 	var sensorId3 = 0;
 	
+	var name1 = ' ';
+	var name2 = ' ';
+	var name3 = ' ';
+	
 	path = location.href;
 	pathPara = path.split('?');
 	if (pathPara.length > 0){					//at least one egg selected
@@ -114,6 +118,15 @@
 			}
 		}
 	}
+        
+        //get Names for the legend
+	phpLocation2 = 'http://giv-geosoft2c.uni-muenster.de/getEggNames.php?id1=' + sensorId1 + '&id2=' + sensorId2 + '&id3=' + sensorId3;
+	$.ajax({
+	type: "GET",
+	url: phpLocation2,
+	dataType: "script",
+	success: function(){}
+	});
         
         //choose the day of the displayed measurements
         function chooseDay(n)
@@ -212,7 +225,7 @@
                 line.Set('chart.numxticks', 12);
                 line.Set('chart.numyticks', 20);
                 line.Set('colors', ['red', 'limegreen', 'blue']);
-                line.Set('chart.key', ['egg1','egg2','egg3']);
+                line.Set('chart.key', [name1, name2, name3]);
                 line.Set('chart.key.position', 'gutter');
                 line.Set('chart.background.grid.autofit.numvlines', 24);
                 line.Set('chart.background.grid.autofit.numhlines', 8);
@@ -318,10 +331,10 @@
         function callPHP(){     
 	
 	//Access to real data from Cosm
-        //phpLocation = 'http://localhost/Semvis-Air/requestData.php?dateBegin=' + dateBegin + '&monthBegin=' + monthBegin + '&yearBegin=' + yearBegin + '&dateEnd=' + dateEnd + '&monthEnd=' + monthEnd + '&yearEnd=' + yearEnd + '&selectedPara=' + selectedPara + '&sensorId1=' + sensorId1 + '&sensorId2=' + sensorId2 + '&sensorId3=' + sensorId3;
+        phpLocation = 'http://giv-geosoft2c.uni-muenster.de/requestData.php?dateBegin=' + dateBegin + '&monthBegin=' + monthBegin + '&yearBegin=' + yearBegin + '&dateEnd=' + dateEnd + '&monthEnd=' + monthEnd + '&yearEnd=' + yearEnd + '&selectedPara=' + selectedPara + '&sensorId1=' + sensorId1 + '&sensorId2=' + sensorId2 + '&sensorId3=' + sensorId3;
 
 	//Access to test database
-	phpLocation = 'http://localhost/Semvis-Air/requestDataTest.php?selectedPara=' + selectedPara;
+	//phpLocation = 'http://giv-geosoft2c.uni-muenster.de/requestDataTest.php?selectedPara=' + selectedPara;
 
         $.ajax({
         type: "GET",

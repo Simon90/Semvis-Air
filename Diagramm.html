@@ -115,6 +115,15 @@
 		}
 	}
         
+        //get Names for the legend
+	phpLocation2 = 'http://localhost/Semvis-Air/getEggNames.php?id1=' + sensorId1 + '&id2=' + sensorId2 + '&id3=' + sensorId3;
+	$.ajax({
+	type: "GET",
+	url: phpLocation2,
+	dataType: "script",
+	success: function(){}
+	});
+        
         //choose the day of the displayed measurements
         function chooseDay(n)
                 {
@@ -212,7 +221,7 @@
                 line.Set('chart.numxticks', 12);
                 line.Set('chart.numyticks', 20);
                 line.Set('colors', ['red', 'limegreen', 'blue']);
-                line.Set('chart.key', ['egg1','egg2','egg3']);
+                line.Set('chart.key', [name1, name2, name3]);
                 line.Set('chart.key.position', 'gutter');
                 line.Set('chart.background.grid.autofit.numvlines', 24);
                 line.Set('chart.background.grid.autofit.numhlines', 8);

@@ -174,8 +174,8 @@ ul#menu li:hover a
   /*-----Definition-Sidebar and Sidebar-items---*/
 .sidebar_container
 { float: left;
-  margin: 10px 20px 0 0;
-  width: 215px;
+  margin: 10px 10px 0 0;
+  width: 225px;
   padding: 0;}
 
 .sidebar

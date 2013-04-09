@@ -9,12 +9,6 @@ $yearBegin = $_GET["yearBegin"];
 
 $timeBegin = $yearBegin . '-' . $monthBegin . '-' . $dateBegin;
 
-$dateEnd = $_GET["dateEnd"];
-$monthEnd = $_GET["monthEnd"];
-$yearEnd = $_GET["yearEnd"];
-
-$timeEnd = $yearEnd . '-' . $monthEnd . '-' . $dateEnd;
-
 $timestamp = array();
 
 for ($i=0, $hour=0; $hour<24; $hour++){
@@ -64,6 +58,6 @@ echo "</table>";
 pg_close($dbconn);
 
 //url zum testen:
-//http://localhost/Semvis-Air/createTable.php?selectedPara=temperature&sensorId1=75842&sensorId2=75759&sensorId3=75842&dateBegin=05&monthBegin=04&yearBegin=2013&dateEnd=06&monthEnd=04&yearEnd=2013
+//http://localhost/Semvis-Air/createTable.php?selectedPara=temperature&sensorId1=75842&sensorId2=75759&sensorId3=75842&dateBegin=05&monthBegin=04&yearBegin=2013
 
 ?>

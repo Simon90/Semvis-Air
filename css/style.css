@@ -235,7 +235,7 @@ ul#menu li:hover a
   float: left;}
 
 /*---formatting input types----*/  
- input[type=text],textarea,[type=submit],[type=button] {
+ input[type=text],textarea,[type=submit],[type=button],[type=radio] {
 	width:130px;
     border: 1px solid white; 
     padding: 3px;
@@ -263,6 +263,8 @@ float:left;
 }
 
 [type=radio]{
+width:30px;
+margin: 3px 0 0 0;
 cursor: pointer;
 }
 

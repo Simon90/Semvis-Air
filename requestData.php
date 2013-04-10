@@ -20,6 +20,8 @@ $sensorId1 = $_GET["sensorId1"];
 $sensorId2 = $_GET["sensorId2"];
 $sensorId3 = $_GET["sensorId3"];
 
+$bool = $selectedPara . '_validated';
+
 $sql_select1 = "SELECT * FROM \"MeasuredData\" WHERE \"sensorId\" = '$sensorId1' AND date BETWEEN '$timeBegin' AND '$timeEnd'";
 $result1 = pg_query($dbconn, $sql_select1);
 
@@ -33,7 +35,9 @@ $result3 = pg_query($dbconn, $sql_select3);
 $i = 0;
 while($row1 = pg_fetch_array($result1))
     {
-    echo "egg1[".$i."] = " .$row1[$selectedPara] .";";	
+    echo "egg1[".$i."] = " .$row1[$selectedPara] .";";
+	if ($row1[$bool] == 't') {echo "bool1[".$i."] = 1;";}
+	else {echo "bool1[".$i."] = 0;";}
 	$i++;
 	} 
 	
@@ -41,13 +45,17 @@ $j = 0;
 while($row2 = pg_fetch_array($result2))
     {
     echo "egg2[".$j."] = " .$row2[$selectedPara] .";";	
+	if ($row2[$bool] == 'f') {echo "bool2[".$j."] = 0;";}
+	else {echo "bool2[".$j."] = 1;";}
 	$j++;
 	} 
 	
 $k = 0;
 while($row3 = pg_fetch_array($result3))
     {
-    echo "egg3[".$k."] = " .$row3[$selectedPara] .";";	
+    echo "egg3[".$k."] = " .$row3[$selectedPara] .";";
+	if ($row3[$bool] == 'f') {echo "bool3[".$k."] = 0;";}
+	else {echo "bool3[".$k."] = 1;";}	
 	$k++;
 	} 
 	

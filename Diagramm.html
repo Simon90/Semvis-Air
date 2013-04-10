@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html lang="de">
 <head>
@@ -17,6 +17,10 @@
   <script src="libraries_diagram/RGraph/libraries/RGraph.common.key.js">
 </script>
   <script src="libraries_diagram/jquery-1.9.1.js" type="text/javascript">
+</script>
+  <script src="libraries_diagram/RGraph/libraries/RGraph.common.dynamic.js">
+</script>
+  <script src="libraries_diagram/RGraph/libraries/RGraph.drawing.circle.js">
 </script>
 </head>
 
@@ -98,6 +102,12 @@
 	var name1 = ' ';
 	var name2 = ' ';
 	var name3 = ' ';
+	
+	var bool1 = []; 
+	var bool2 = [];
+	var bool3 = [];
+	
+	var circle;
 	
 	path = location.href;
 	pathPara = path.split('?');
@@ -216,7 +226,7 @@
 
         
         //Main function for drawing all diagrams
-        function drawDiagram(egg1, egg2, egg3)
+        function drawDiagram(egg1, egg2, egg3, bool1, bool2, bool3)
                 {
                 var line = new RGraph.Line('canvas1', [egg1, egg2, egg3]);
                 line.Set('chart.labels', time);
@@ -231,6 +241,18 @@
                 line.Set('chart.background.grid.autofit.numhlines', 8);
                 line.Set('chart.gutter.left', 50);
                 line.Draw();
+				
+				//Mark measurement errors   [x-Wert von Punkt-Nummer][0],[y-Wert von Punkt-Nummer][1]
+				for (i=0;i<bool1.length;i++){
+					if (bool1[i]==1) {
+						circle = new RGraph.Drawing.Circle('canvas1',line.coords[i][0],line.coords[i][1],5)
+						circle.Set('chart.strokestyle', 'black')
+						circle.Set('chart.fillstyle', 'rgba(255,255,0,0)')
+						circle.Set('chart.tooltips', ['Ausreißer'])
+						circle.Set('chart.linewidth', 1)
+						circle.Draw();
+						}
+					}
                 }
         
         
@@ -328,7 +350,7 @@
         var egg3 = [0];
 
         //function for requesting data from the database with PHP and drawing the diagram
-        function callPHP(){     
+        function callPHP(){   
 	
 	//Access to real data from Cosm
         phpLocation = 'http://giv-geosoft2c.uni-muenster.de/requestData.php?dateBegin=' + dateBegin + '&monthBegin=' + monthBegin + '&yearBegin=' + yearBegin + '&dateEnd=' + dateEnd + '&monthEnd=' + monthEnd + '&yearEnd=' + yearEnd + '&selectedPara=' + selectedPara + '&sensorId1=' + sensorId1 + '&sensorId2=' + sensorId2 + '&sensorId3=' + sensorId3;
@@ -341,8 +363,8 @@
         url: phpLocation,
         dataType: "script",
         success: function(){
-                                                drawDiagram(egg1, egg2, egg3);
-                                                }
+                            drawDiagram(egg1, egg2, egg3, bool1, bool2, bool3);
+							}
         });
         }       
       </script>

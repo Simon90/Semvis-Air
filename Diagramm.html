@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="de">
 <head>
@@ -13,6 +13,8 @@
   <script src="libraries_diagram/RGraph/libraries/RGraph.common.core.js">
 </script>
   <script src="libraries_diagram/RGraph/libraries/RGraph.line.js">
+</script>
+  <script src="libraries_diagram/RGraph/libraries/RGraph.bar.js">
 </script>
   <script src="libraries_diagram/RGraph/libraries/RGraph.common.key.js">
 </script>
@@ -107,6 +109,7 @@
 	var bool2 = [];
 	var bool3 = [];
 	
+	var selectedPara;
 	var circle;
 	
 	path = location.href;
@@ -228,33 +231,86 @@
         //Main function for drawing all diagrams
         function drawDiagram(egg1, egg2, egg3, bool1, bool2, bool3)
                 {
-                var line = new RGraph.Line('canvas1', [egg1, egg2, egg3]);
-                line.Set('chart.labels', time);
-                line.Set('chart.ylabels.count', 5);
+                var line = new RGraph.Line('canvas1', [0],[0],[0]);
+                line.Set('chart.ylabels', false);
                 line.Set('chart.xaxispos', 'center');
-                line.Set('chart.numxticks', 12);
-                line.Set('chart.numyticks', 20);
                 line.Set('colors', ['red', 'limegreen', 'blue']);
                 line.Set('chart.key', [name1, name2, name3]);
                 line.Set('chart.key.position', 'gutter');
                 line.Set('chart.background.grid.autofit.numvlines', 24);
                 line.Set('chart.background.grid.autofit.numhlines', 8);
                 line.Set('chart.gutter.left', 50);
+				line.Set('chart.numxticks',1);
                 line.Draw();
 				
-				//Mark measurement errors   [x-Wert von Punkt-Nummer][0],[y-Wert von Punkt-Nummer][1]
+				var line1 = new RGraph.Line('canvas1', [egg1, egg2, egg3]);
+                line1.Set('chart.xaxispos', 'center');
+                line1.Set('colors', ['red', 'rgba(0,0,0,0)', 'rgba(0,0,0,0)']);
+                line1.Set('chart.gutter.left', 50);
+				line1.Set('chart.labels', time);
+                line1.Set('chart.ylabels.count', 5);
+				line1.Set('chart.background.grid.vlines', false);
+                line1.Set('chart.background.grid.hlines', false);
+				line1.Set('chart.numxticks',1);
+				line1.Draw();
+				
+				var line2 = new RGraph.Line('canvas1', [egg2, egg1, egg3]);
+                line2.Set('chart.xaxispos', 'center');
+                line2.Set('colors', ['limegreen', 'rgba(0,0,0,0)', 'rgba(0,0,0,0)']);
+                line2.Set('chart.gutter.left', 50);
+				line2.Set('chart.ylabels', false);
+				line2.Set('chart.background.grid.vlines', false);
+                line2.Set('chart.background.grid.hlines', false);
+				line2.Set('chart.noaxes',true);
+				line2.Set('chart.numxticks',1);
+				line2.Draw();
+				
+				var line3 = new RGraph.Line('canvas1', [egg3, egg1, egg2]);
+                line3.Set('chart.xaxispos', 'center');
+                line3.Set('colors', ['blue', 'rgba(0,0,0,0)', 'rgba(0,0,0,0)']);
+                line3.Set('chart.gutter.left', 50);
+				line3.Set('chart.ylabels', false);
+				line3.Set('chart.background.grid.vlines', false);
+                line3.Set('chart.background.grid.hlines', false);
+				line3.Set('chart.noaxes',true);
+				line3.Set('chart.numxticks',1);
+				line3.Draw();
+				
+				
+				//Mark measurement errors with circles
 				for (i=0;i<bool1.length;i++){
 					if (bool1[i]==1) {
-						circle = new RGraph.Drawing.Circle('canvas1',line.coords[i][0],line.coords[i][1],5)
+						circle = new RGraph.Drawing.Circle('canvas1',line1.coords[i][0],line1.coords[i][1],5)
 						circle.Set('chart.strokestyle', 'black')
 						circle.Set('chart.fillstyle', 'rgba(255,255,0,0)')
-						circle.Set('chart.tooltips', ['Ausreißer'])
+						circle.Set('chart.linewidth', 1)
+						circle.Draw();
+						}
+					}
+                
+				
+				for (i=0;i<bool2.length;i++){
+					if (bool2[i]==1) {
+						circle = new RGraph.Drawing.Circle('canvas1',line2.coords[i][0],line2.coords[i][1],5)
+						circle.Set('chart.strokestyle', 'black')
+						circle.Set('chart.fillstyle', 'rgba(255,255,0,0)')
+						circle.Set('chart.linewidth', 1)
+						circle.Draw();
+						}
+					}
+                
+				
+				for (i=0;i<bool3.length;i++){
+					if (bool3[i]==1) {
+						circle = new RGraph.Drawing.Circle('canvas1',line3.coords[i][0],line3.coords[i][1],5)
+						circle.Set('chart.strokestyle', 'black')
+						circle.Set('chart.fillstyle', 'rgba(255,255,0,0)')
 						circle.Set('chart.linewidth', 1)
 						circle.Draw();
 						}
 					}
                 }
-        
+			
         
         //Remove previous diagram from the canvas
         function clearCanvas()
@@ -267,7 +323,6 @@
                 }
                 
         //Choose parameter
-        var selectedPara;
         
         function chooseTemperature()
                 {
@@ -277,10 +332,7 @@
                         egg3 = [0];
                         callPHP();
                         clearCanvas();
-                        
                         document.getElementById('parameter').innerHTML='Temperatur in °C';
-                        var line = new RGraph.Line('canvas1', [egg1, egg2, egg3]);
-                        line.Set('chart.scale.decimals', 1);    
                 }
         
         function chooseO3()
@@ -291,10 +343,7 @@
                         egg3 = [0];
                         callPHP();
                         clearCanvas();
-                        
                         document.getElementById('parameter').innerHTML='Ozon in Parts per Million';
-                        var line = new RGraph.Line('canvas1', [egg1, egg2, egg3]);
-                        line.Set('chart.scale.decimals', 0);
                 }
                 
         function chooseCO()
@@ -305,10 +354,7 @@
                         egg3 = [0];
                         callPHP();
                         clearCanvas();
-                
                         document.getElementById('parameter').innerHTML='Kohlenstoffmonoxid in Parts per Million';
-                        var line = new RGraph.Line('canvas1', [egg1, egg2, egg3]);
-                        line.Set('chart.scale.decimals', 0);
                 }
                 
         function chooseNO2()
@@ -319,10 +365,7 @@
                         egg3 = [0];
                         callPHP();
                         clearCanvas();
-                        
                         document.getElementById('parameter').innerHTML='Stickstoffdioxid in Parts per Million';
-                        var line = new RGraph.Line('canvas1', [egg1, egg2, egg3]);
-                        line.Set('chart.scale.decimals', 0);
                 }
                 
         function chooseHumidity()
@@ -333,10 +376,7 @@
                         egg3 = [0];
                         callPHP();
                         clearCanvas();
-                        
                         document.getElementById('parameter').innerHTML='Luftfeuchtigkeit in Prozent';
-                        var line = new RGraph.Line('canvas1', [egg1, egg2, egg3]);
-                        line.Set('chart.scale.decimals', 1);
                 }
         
                 
@@ -349,11 +389,11 @@
         var egg2 = [0];
         var egg3 = [0];
 
-        //function for requesting data from the database with PHP and drawing the diagram
+        //function for requesting data from the database with PHP and drawing the diagram		
         function callPHP(){   
 	
 	//Access to real data from Cosm
-        phpLocation = 'http://giv-geosoft2c.uni-muenster.de/requestData.php?dateBegin=' + dateBegin + '&monthBegin=' + monthBegin + '&yearBegin=' + yearBegin + '&dateEnd=' + dateEnd + '&monthEnd=' + monthEnd + '&yearEnd=' + yearEnd + '&selectedPara=' + selectedPara + '&sensorId1=' + sensorId1 + '&sensorId2=' + sensorId2 + '&sensorId3=' + sensorId3;
+    phpLocation = 'http://giv-geosoft2c.uni-muenster.de/requestData.php?dateBegin=' + dateBegin + '&monthBegin=' + monthBegin + '&yearBegin=' + yearBegin + '&dateEnd=' + dateEnd + '&monthEnd=' + monthEnd + '&yearEnd=' + yearEnd + '&selectedPara=' + selectedPara + '&sensorId1=' + sensorId1 + '&sensorId2=' + sensorId2 + '&sensorId3=' + sensorId3;
 
 	//Access to test database
 	//phpLocation = 'http://giv-geosoft2c.uni-muenster.de/requestDataTest.php?selectedPara=' + selectedPara;

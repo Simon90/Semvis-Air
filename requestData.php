@@ -22,13 +22,13 @@ $sensorId3 = $_GET["sensorId3"];
 
 $bool = $selectedPara . '_validated';
 
-$sql_select1 = "SELECT * FROM \"MeasuredData\" WHERE \"sensorId\" = '$sensorId1' AND date BETWEEN '$timeBegin' AND '$timeEnd'";
+$sql_select1 = "SELECT * FROM \"MeasuredData\" WHERE \"sensorId\" = '$sensorId1' AND date BETWEEN '$timeBegin' AND '$timeEnd' ORDER BY date";
 $result1 = pg_query($dbconn, $sql_select1);
 
-$sql_select2 = "SELECT * FROM \"MeasuredData\" WHERE \"sensorId\" = '$sensorId2' AND date BETWEEN '$timeBegin' AND '$timeEnd'";
+$sql_select2 = "SELECT * FROM \"MeasuredData\" WHERE \"sensorId\" = '$sensorId2' AND date BETWEEN '$timeBegin' AND '$timeEnd' ORDER BY date";
 $result2 = pg_query($dbconn, $sql_select2);
 
-$sql_select3 = "SELECT * FROM \"MeasuredData\" WHERE \"sensorId\" = '$sensorId3' AND date BETWEEN '$timeBegin' AND '$timeEnd'";
+$sql_select3 = "SELECT * FROM \"MeasuredData\" WHERE \"sensorId\" = '$sensorId3' AND date BETWEEN '$timeBegin' AND '$timeEnd' ORDER BY date";
 $result3 = pg_query($dbconn, $sql_select3);
 
 

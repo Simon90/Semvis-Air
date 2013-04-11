@@ -68,7 +68,7 @@ public class Database {
 					}
 					// saves the (ws/2) values which are measured before the
 					// data to validate
-					lastTenValues(conn, measured, firsttimestamp, sensorid, 1, ws);
+					last30Values(conn, measured, firsttimestamp, sensorid, 1, ws);
 					// gets the values of the table and saves them in the list
 					r = st.executeQuery("select * from \"previusValues\" where date is not null order by id  desc;");
 					while (r.next()) {
@@ -95,7 +95,7 @@ public class Database {
 	}
 
 	/**
-	 * This method saves ten measured data before the first value to validate.
+	 * This method saves (ws/2) measured data before the first value to validate.
 	 * 
 	 * @param conn connection of the database
 	 * @param measured type of data (for example: humidity, CO, NO2, ozon,temperature)
@@ -104,7 +104,7 @@ public class Database {
 	 * @param i value to count for the recursive function. Always use 0!
 	 * @throws SQLException
 	 */
-	private static void lastTenValues(Connection conn, String measured, String timestamp, int sensorid, int i, int ws)
+	private static void last30Values(Connection conn, String measured, String timestamp, int sensorid, int i, int ws)
 			throws SQLException {
 		Statement st = conn.createStatement();
 
@@ -125,7 +125,7 @@ public class Database {
 				timestamp = "'" + r.getString(1) + "'";
 			}
 			i++;
-			lastTenValues(conn, measured, timestamp, sensorid, i, ws);
+			last30Values(conn, measured, timestamp, sensorid, i, ws);
 
 		}
 	}

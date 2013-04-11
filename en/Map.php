@@ -37,7 +37,7 @@ linkages to the help-site, the table and the diagram.  -->
           <a href="Map.php">Map</a>
         </li>
         <li>
-          <a href="Help.html">Help</a>
+          <a href="Support.html">Support</a>
         </li>
         <li>
           <a href="Imprint.html">Imprint and Contact</a>

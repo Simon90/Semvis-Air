@@ -138,7 +138,7 @@
         //function for requesting the table from the corresponding PHP file		
         function callPHP(date, month, year){   
 	
-		phpLocation = 'http://localhost/Semvis-Air/createTableRawData.php?date=' + date + '&month=' + month + '&year=' + year + '&sensorId1=' + sensorId1;
+		phpLocation = 'http://giv-geosoft2c.uni-muenster.de/createTableRawData.php?date=' + date + '&month=' + month + '&year=' + year + '&sensorId1=' + sensorId1;
 
         $.ajax({
         type: "GET",

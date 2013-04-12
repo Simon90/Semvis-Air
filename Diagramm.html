@@ -169,8 +169,9 @@
 		timeNow = new Date();
 		hourNow = timeNow.getHours();
 		partDay = ['','2 Uhr','4 Uhr','6 Uhr','8 Uhr','10 Uhr','12 Uhr','14 Uhr','16 Uhr','18 Uhr','20 Uhr','22 Uhr','24 Uhr',];
-		partDay.length = hourNow / 2 + 1;
-			
+		hour1 = hourNow / 2 + 1;
+		hour2 = Math.floor(hour1);
+		partDay.length = hour2;	
 		if (n == 0) time = partDay;
 		else time = fullDay;
                

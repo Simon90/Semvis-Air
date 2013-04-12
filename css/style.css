@@ -280,7 +280,7 @@ cursor: pointer;
 
 
 /*----delete-Button----*/
- .delete
+ #delete,#rawdata
 { font: bold 70% Arial, Helvetica, sans-serif;
   cursor: pointer;
   height: 10px;
@@ -299,7 +299,15 @@ cursor: pointer;
   -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 0px;
   -moz-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 5px;
   box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 1px;}
-  
+ 
+#rawdata{ 
+height: 10px;
+bottom: 0px;
+float: left;
+left: 0px;
+width: auto;  
+}
+ }
  .delete a
 { color: #1D1D1D;}
  
@@ -324,6 +332,7 @@ cursor: pointer;
 .button_small a
 { color: #FFF;
   padding-left: 5px;}
+  
 
 /*---formatting-text-and-boxes---*/
 .form_settings

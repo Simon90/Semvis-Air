@@ -47,7 +47,6 @@
         <div class="sidebar">
           <div class="sidebar_item">
             <h2>Tabelle</h2>
-
             <form name='selectpara' id="selectpara">
               <input type="radio" name="Parameter" onclick="(chooseTemperature())" checked="checked"> Temperatur<br>
               <input type="radio" name="Parameter" onclick="(chooseO3())"> Ozon<br>
@@ -59,12 +58,9 @@
             <p id='parameter'>Maßeinheit</p><span style="margin-left: 225px"><a class="tooltip">?<span class="classic">Um eine
             Messung in der Tabelle anzuzeigen, wählen und markieren Sie bitte den jeweiligen Kreis</span></a></span>
           </div><!--Close-item-->
-        </div><!--Close-sidebar-->
-
-        <div class="sidebar">
+               
           <div class="sidebar_item">
             <p id='time'></p>
-
             <h2>Tag</h2>
 
             <form name='selectday' id="selectday">
@@ -78,12 +74,26 @@
             </form><span style="margin-left: 225px"><a class="tooltip">?<span class="classic">Wenn Sie die Werte vergangener Tage
             einsehen möchten, wählen und markieren Sie bitte den zum jeweiligen Datum dazugehörigen Kreis</span></a></span>
           </div><!--Close-item-->
+		  <div class="sidebar_item">
+			<h2>Rohdaten</h2>
+			
+				<div id="rawdata">
+					<a href="createTableRawData.html">Rohdaten AQE 1</a>
+				</div><!--close delete-->
+				<div id="rawdata">
+					<a href="createTableRawData.html">Rohdaten AQE 2</a>
+				</div><!--close delete-->
+				<div id="rawdata">
+					<a href="createTableRawData.html">Rohdaten AQE 3</a>
+				</div><!--close delete-->
+		  </div><!--Close-item-->
         </div><!--Close-sidebar-->
       </div><!--Close-sidebar_container-->
 
       <div id="diagram">
         <canvas id="canvas1" width="710" height="420">[No canvas support]</canvas>
-      </div><script>
+      </div>
+	  <script>
   
   	var sensorId1 = 0;
 	var sensorId2 = 0;

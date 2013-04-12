@@ -403,6 +403,7 @@
         url: phpLocation,
         dataType: "script",
         success: function(){
+        		    RGraph.ObjectRegistry.Clear();
                             drawDiagram(egg1, egg2, egg3, bool1, bool2, bool3);
 							}
         });

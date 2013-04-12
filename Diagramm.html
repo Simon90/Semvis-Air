@@ -61,7 +61,7 @@
             <h2>Diagramm</h2>
 
             <form name='selectpara' id="selectpara">
-              <input type="radio" name="Parameter" onclick="(chooseTemperature())" checked="checked"> Temperatur<br>
+              <input type="radio" name="Parameter" onclick="(chooseTemperature())"> Temperatur<br>
               <input type="radio" name="Parameter" onclick="(chooseO3())"> Ozon<br>
               <input type="radio" name="Parameter" onclick="(chooseCO())"> Kohlenstoffmonoxid<br>
               <input type="radio" name="Parameter" onclick="(chooseNO2())"> Stickstoffdioxid<br>
@@ -109,7 +109,7 @@
 	var bool2 = [];
 	var bool3 = [];
 	
-	var selectedPara = 'temperature';
+	var selectedPara;
 	var circle;
 	var time = [];
 	

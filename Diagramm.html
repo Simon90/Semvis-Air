@@ -168,7 +168,7 @@
 		//adjusting x-axis labels, for the current day which has not 24 hours of measurement values
 		timeNow = new Date();
 		hourNow = timeNow.getHours();
-		partDay = fullDay;
+		partDay = ['','2 Uhr','4 Uhr','6 Uhr','8 Uhr','10 Uhr','12 Uhr','14 Uhr','16 Uhr','18 Uhr','20 Uhr','22 Uhr','24 Uhr',];
 		partDay.length = hourNow / 2 + 1;
 			
 		if (n == 0) time = partDay;

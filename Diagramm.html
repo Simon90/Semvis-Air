@@ -90,8 +90,38 @@
             </form><span style="margin-left: 225px"><a class="tooltip">?<span class="classic">Wenn Sie die Werte vergangener Tage
             einsehen möchten, wählen und markieren Sie bitte den zum jeweiligen Datum dazugehörigen Kreis</span></a></span>
           </div><!--Close-item-->
-        </div><!--Close-sidebar-->
+          
+          		
+		  <div class="sidebar_item">
+			<h2>Rohdaten</h2>
+
+			<button type="button" onclick="(getXML1())">XML 1</button>
+			<button type="button" onclick="(getXML2())">XML 2</button>
+			<button type="button" onclick="(getXML3())">XML 3</button>
+			
+		  </div><!--Close-item-->		
+		</div><!--Close-sidebar-->
       </div><!--Close-sidebar_container-->
+
+      <div id="diagram">
+        <canvas id="canvas1" width="710" height="420">[No canvas support]</canvas>
+      </div><script>
+	  
+	function getXML1(){
+		xmlPath1 = 'http://giv-geosoft2c.uni-muenster.de:8080/XML/rest/XML/' + sensorId1 + '/' + selectedPara + '/' + yearBegin + '-' + monthBegin + '-' + dateBegin + '%200:0:0/' + yearEnd + '-' + monthEnd + '-' + dateEnd + '%200:0:0';
+		window.open(xmlPath1);
+		}
+		
+	function getXML2(){
+		xmlPath2 = 'http://giv-geosoft2c.uni-muenster.de:8080/XML/rest/XML/' + sensorId2 + '/' + selectedPara + '/' + yearBegin + '-' + monthBegin + '-' + dateBegin + '%200:0:0/' + yearEnd + '-' + monthEnd + '-' + dateEnd + '%200:0:0';
+		window.open(xmlPath2);
+		}
+		
+	function getXML3(){
+		xmlPath3 = 'http://giv-geosoft2c.uni-muenster.de:8080/XML/rest/XML/' + sensorId3 + '/' + selectedPara + '/' + yearBegin + '-' + monthBegin + '-' + dateBegin + '%200:0:0/' + yearEnd + '-' + monthEnd + '-' + dateEnd + '%200:0:0';
+		window.open(xmlPath3);
+		}
+
 
       <div id="diagram">
         <canvas id="canvas1" width="710" height="420">[No canvas support]</canvas>

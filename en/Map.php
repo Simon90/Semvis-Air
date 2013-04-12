@@ -367,7 +367,7 @@ linkages to the help-site, the table and the diagram.  -->
 						function linkgenerieren (id) {
 						if (id == "4")
 						{
-						var newURL         = "tabelle.html?";
+						var newURL         = "createTable.html?";
 						}
 						else
 						{

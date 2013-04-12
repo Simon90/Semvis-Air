@@ -55,7 +55,12 @@ import org.xml.sax.SAXException;
 
 @Path("/XML")
 public class XMLGenerator {
-	
+	public static void main(String[] args) throws JAXBException, MalformedURLException, SAXException, DatatypeConfigurationException {
+		
+		XMLGenerator xml=new XMLGenerator();
+		String s=xml.parseToXML(75842, "humidity","2013-04-12 0:0:0","2013-04-12 24:0:0");
+	System.out.println(s);
+	}
 	/**
 	 * This method parses the data of a measurement (humidity,temperature,...)
 	 * to an xml file.
@@ -90,8 +95,8 @@ public class XMLGenerator {
 		String url = "jdbc:postgresql://giv-geosoft2c.uni-muenster.de/CosmDaten";
 		try {
 			Class.forName("org.postgresql.Driver");
-			Connection conn = DriverManager.getConnection(url, "xxx",
-					"xxx");
+			Connection conn = DriverManager.getConnection(url, "geosoft2",
+					"DZLwwxbW");
 			Statement st = conn.createStatement();
 			// The additional information about the sensor are got from the
 			// database.
@@ -115,7 +120,7 @@ public class XMLGenerator {
 					+ measurementtype
 					+ "_validated from \"MeasuredData\" where \"sensorId\"="
 					+ sensorId + "and date<'" + end + "' and date>'" + start
-					+ "';");
+					+ "' order by date;");
 			while (r.next()) {
 				Measurement measurement = new Measurement();
 				XMLGregorianCalendar date = getXMLGregorianCalendar(r
@@ -143,9 +148,9 @@ public class XMLGenerator {
 			Marshaller marshaller = context.createMarshaller();
 			SchemaFactory schemaFactory = SchemaFactory
 					.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-			Schema schema = schemaFactory.newSchema((getClass()
-					.getResource("/measurements.xsd")));
-			marshaller.setSchema(schema);
+			//Schema schema = schemaFactory.newSchema((getClass()
+			//		.getResource("/measurements.xsd")));
+			//marshaller.setSchema(schema);
 			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 			StringWriter w = new StringWriter();
 			marshaller.marshal(table, w);
@@ -153,10 +158,10 @@ public class XMLGenerator {
 		} catch (JAXBException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (SAXException e) {
+		} //catch (SAXException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		//	e.printStackTrace();
+		//}
 		return string;
 	}
 
@@ -172,12 +177,12 @@ public class XMLGenerator {
 			String dateString) {
 		GregorianCalendar calendar = new GregorianCalendar();
 		XMLGregorianCalendar xmlcalendar = null;
-		// Splits the input date into day, month, year, hours and minutes.
+		// Splits the input date into day, month, year,hours and minutes.
 		String[] split = dateString.split(" ");
 		String[] date = split[0].split("-");
 		String[] time = split[1].split(":");
 		// The values are adopted by the new data type.
-		calendar.set(Integer.parseInt(date[0]), Integer.parseInt(date[1]),
+		calendar.set(Integer.parseInt(date[0]), Integer.parseInt(date[1])-1,
 				Integer.parseInt(date[2]), Integer.parseInt(time[0]),
 				Integer.parseInt(time[1]));
 		try {

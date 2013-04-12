@@ -115,7 +115,7 @@ linkages to the help-site, the table and the diagram.  -->
             </div><br>
 
             <div>
-              Feinstaub PM10: <span id="myelement3"></span> [ppm] <span style="margin-left: 60px"><a class="tooltip" href="#">?<span class="classic">
+              Feinstaub PM10: <span id="myelement3"></span> [µg/m³] <span style="margin-left: 60px"><a class="tooltip" href="#">?<span class="classic">
 			  Erläuterungen zu den offiziellen Werten erhalten Sie unter 'Hilfe'</span></a></span>
             </div>
           </div><!--close-sidebar_item-->
@@ -233,9 +233,9 @@ linkages to the help-site, the table and the diagram.  -->
                         var NO2="<?php echo $test_NO2[count($test_NO2)-1] ?>";
                         var pm10="<?php echo $test_pm10[count($test_pm10)-1] ?>";
                         
-						O3=Math.round((O3*24.45)/48.0); //http://www.lenntech.de/systeme/ozon/daten/ozon-daten.htm
-						NO2=Math.round((NO2*24.45)/46.0055); http://www.convertunits.com/molarmass/Nitrogen+Dioxide
-						pm10=Math.round((pm10*24.45)/1449.127493); http://www.webqc.org/molecular-weight-of-Pm10.html
+						O3=(Math.round((((O3/1000)*24.45)/48.0)*100)/100); //http://www.lenntech.de/systeme/ozon/daten/ozon-daten.htm
+						NO2=(Math.round((((NO2/1000)*24.45)/46.0)*100)/100); // http://www.convertunits.com/molarmass/Nitrogen+Dioxide
+						
                         $(selector).html(O3);
                         $(selector2).html(NO2);
                         $(selector3).html(pm10);

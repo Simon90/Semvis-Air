@@ -62,7 +62,6 @@
           <div class="sidebar_item">
             <p id='time'></p>
             <h2>Tag</h2>
-
             <form name='selectday' id="selectday">
               <input type="radio" name="Parameter" onclick="(chooseDay(6))"> <span id="day6"></span><br>
               <input type="radio" name="Parameter" onclick="(chooseDay(5))"> <span id="day5"></span><br>
@@ -74,26 +73,38 @@
             </form><span style="margin-left: 225px"><a class="tooltip">?<span class="classic">Wenn Sie die Werte vergangener Tage
             einsehen möchten, wählen und markieren Sie bitte den zum jeweiligen Datum dazugehörigen Kreis</span></a></span>
           </div><!--Close-item-->
-		  <div class="sidebar_item">
-			<h2>Rohdaten</h2>
-			
-				<div id="rawdata">
-					<a href="createTableRawData.html">Rohdaten AQE 1</a>
-				</div><!--close delete-->
-				<div id="rawdata">
-					<a href="createTableRawData.html">Rohdaten AQE 2</a>
-				</div><!--close delete-->
-				<div id="rawdata">
-					<a href="createTableRawData.html">Rohdaten AQE 3</a>
-				</div><!--close delete-->
-		  </div><!--Close-item-->
+		  
+		<div class="sidebar_item">
+				<h2>Rohdaten</h2>
+					<div id="rawdata" onclick="(getXML1())">XML 1</div>
+					<div id="rawdata" onclick="(getXML2())">XML 2</div>
+					<div id="rawdata" onclick="(getXML3())">XML 3</div>	
+		</div><!--Close-item-->	
         </div><!--Close-sidebar-->
       </div><!--Close-sidebar_container-->
 
-      <div id="diagram">
-        <canvas id="canvas1" width="710" height="420">[No canvas support]</canvas>
-      </div>
-	  <script>
+      <div id="table">
+        <canvas id="canvas1" width="200" height="720">[No canvas support]</canvas>
+      </div> 
+	<script>
+	  
+	function getXML1(){
+		xmlPath1 = 'http://giv-geosoft2c.uni-muenster.de:8080/XML/rest/XML/' + sensorId1 + '/' + selectedPara + '/' + yearBegin + '-' + monthBegin + '-' + dateBegin + '%200:0:0/' + yearEnd + '-' + monthEnd + '-' + dateEnd + '%200:0:0';
+		window.open(xmlPath1);
+		}
+		
+	function getXML2(){
+		xmlPath2 = 'http://giv-geosoft2c.uni-muenster.de:8080/XML/rest/XML/' + sensorId2 + '/' + selectedPara + '/' + yearBegin + '-' + monthBegin + '-' + dateBegin + '%200:0:0/' + yearEnd + '-' + monthEnd + '-' + dateEnd + '%200:0:0';
+		window.open(xmlPath2);
+		}
+		
+	function getXML3(){
+		xmlPath3 = 'http://giv-geosoft2c.uni-muenster.de:8080/XML/rest/XML/' + sensorId3 + '/' + selectedPara + '/' + yearBegin + '-' + monthBegin + '-' + dateBegin + '%200:0:0/' + yearEnd + '-' + monthEnd + '-' + dateEnd + '%200:0:0';
+		window.open(xmlPath3);
+		}
+
+	</script>
+	<script>
   
   	var sensorId1 = 0;
 	var sensorId2 = 0;
@@ -212,7 +223,7 @@
                 {
                         selectedPara = 'temperature';
                         callPHP();
-                        document.getElementById('parameter').innerHTML='Temperatur in �C';
+                        document.getElementById('parameter').innerHTML='Temperatur in °C';
                 }
         
         function chooseO3()
@@ -243,7 +254,7 @@
                         document.getElementById('parameter').innerHTML='Luftfeuchtigkeit in Prozent';
                 }
 				
-        //function for requesting data from the database with PHP and drawing the diagram		
+        //function for requesting data from the database with PHP and drawing the table		
         function callPHP(){   
 		
 		phpLocation = 'http://giv-geosoft2c.uni-muenster.de/createTable.php?date=' + date + '&month=' + month + '&year=' + year + '&selectedPara=' + selectedPara + '&id1=' + sensorId1 + '&id2=' + sensorId2 + '&id3=' + sensorId3;
@@ -253,7 +264,7 @@
         url: phpLocation,
         dataType: "script",
         success: function(){
-                            document.getElementById('diagram').innerHTML=table[0]+table[1];
+                            document.getElementById('table').innerHTML=table[0]+table[1];
 							}
         });
         }       

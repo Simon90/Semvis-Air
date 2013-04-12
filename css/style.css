@@ -358,7 +358,7 @@ width: auto;
   color: #FFF;}
 
 /*-----Map----*/
-#map,#diagram {
+#map,#diagram,#table {
 float:left;
 width: 710px; 
 height: 420px;
@@ -375,7 +375,13 @@ box-shadow: rgba(0, 0, 0, 1) 5px 0px 10px;
 background-color:white;
 margin-top: 20px;
  }
+  /*---------Table-------------*/
+#table{
+background-color:white;
+width: 250px; 
+height: auto;
 
+}
 
 
 }

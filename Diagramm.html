@@ -233,7 +233,8 @@
                 {
                 var line = new RGraph.Line('canvas1', [0],[0],[0]);
                 line.Set('chart.ylabels', false);
-                line.Set('chart.xaxispos', 'center');
+                if (selectedPara == 'temperature') line.Set('chart.xaxispos', 'center');
+					else line.Set('chart.xaxispos', 'bottom');
                 line.Set('colors', ['red', 'limegreen', 'blue']);
                 line.Set('chart.key', [name1, name2, name3]);
                 line.Set('chart.key.position', 'gutter');
@@ -244,7 +245,8 @@
                 line.Draw();
 				
 				var line1 = new RGraph.Line('canvas1', [egg1, egg2, egg3]);
-                line1.Set('chart.xaxispos', 'center');
+                if (selectedPara == 'temperature') line1.Set('chart.xaxispos', 'center');
+					else line1.Set('chart.xaxispos', 'bottom');
                 line1.Set('colors', ['red', 'rgba(0,0,0,0)', 'rgba(0,0,0,0)']);
                 line1.Set('chart.gutter.left', 50);
 				line1.Set('chart.labels', time);
@@ -255,7 +257,8 @@
 				line1.Draw();
 				
 				var line2 = new RGraph.Line('canvas1', [egg2, egg1, egg3]);
-                line2.Set('chart.xaxispos', 'center');
+                if (selectedPara == 'temperature') line2.Set('chart.xaxispos', 'center');
+					else line2.Set('chart.xaxispos', 'bottom');
                 line2.Set('colors', ['limegreen', 'rgba(0,0,0,0)', 'rgba(0,0,0,0)']);
                 line2.Set('chart.gutter.left', 50);
 				line2.Set('chart.ylabels', false);
@@ -266,7 +269,8 @@
 				line2.Draw();
 				
 				var line3 = new RGraph.Line('canvas1', [egg3, egg1, egg2]);
-                line3.Set('chart.xaxispos', 'center');
+                if (selectedPara == 'temperature') line3.Set('chart.xaxispos', 'center');
+					else line3.Set('chart.xaxispos', 'bottom');
                 line3.Set('colors', ['blue', 'rgba(0,0,0,0)', 'rgba(0,0,0,0)']);
                 line3.Set('chart.gutter.left', 50);
 				line3.Set('chart.ylabels', false);

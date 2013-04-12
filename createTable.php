@@ -17,7 +17,7 @@ for ($i=0, $hour=0; $hour<24; $hour++){
 		}
 	}
 
-for ($j=0; $j<44; $j++){
+for ($j=0; $j<144; $j++){
 	$timestamp[$j] = $time . " " . $timestamp[$j];
 	}
 
@@ -26,7 +26,7 @@ $sensorId1 = $_GET["id1"];
 $sensorId2 = $_GET["id2"];
 $sensorId3 = $_GET["id3"];
 
-for ($i=0; $i<44; $i++){
+for ($i=0; $i<144; $i++){
 	$sql_select1 = "SELECT $selectedpara FROM \"MeasuredData\" WHERE \"sensorId\" = '$sensorId1' AND date > '$timestamp[$i]' ORDER BY date";
 	$result1 = pg_query($dbconn, $sql_select1);
 	$values1[$i] = pg_fetch_result($result1, 0, 0);
@@ -42,7 +42,7 @@ for ($i=0; $i<44; $i++){
 
 echo "table[0] = '<table width=250 border=1><tr><th>Uhrzeit</th><th>AQE $sensorId1</th><th>AQE $sensorId2</th><th>AQE $sensorId3</th></tr>';";
 echo 'table[1] = "';
-for ($l=0; $l<44; $l++)
+for ($l=0; $l<144; $l++)
     {
 	echo "<tr>";
 	echo "<td>" .$timestamp[$l] ."</td>"; 

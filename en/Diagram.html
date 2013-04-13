@@ -14,9 +14,15 @@
 </script>
   <script src="../libraries_diagram/RGraph/libraries/RGraph.line.js">
 </script>
+  <script src="../libraries_diagram/RGraph/libraries/RGraph.bar.js">
+</script>
   <script src="../libraries_diagram/RGraph/libraries/RGraph.common.key.js">
 </script>
   <script src="../libraries_diagram/jquery-1.9.1.js" type="text/javascript">
+</script>
+  <script src="../libraries_diagram/RGraph/libraries/RGraph.common.dynamic.js">
+</script>
+  <script src="../libraries_diagram/RGraph/libraries/RGraph.drawing.circle.js">
 </script>
 </head>
 
@@ -26,7 +32,6 @@
       <div id="banner">
         <div id="Willkommen">
           <h1>Semvis Air</h1>
-
           <h6>System for gathering,modelling and visualize air quality data</h6>
         </div><!--close welcome-->
       </div><!--close banner-->
@@ -39,11 +44,11 @@
         </li>
 
         <li>
-          <a href="Map.php">Back to the Map</a>
+          <a href="Map.php">Back to Map</a>
         </li>
 		
 		<li>
-          <a href="Support.html">Support</a>
+          <a href="Support.html">Help</a>
         </li>
       </ul>
     </div><!--close menubar-->
@@ -58,12 +63,12 @@
               <input type="radio" name="Parameter" onclick="(chooseTemperature())"> Temperature<br>
               <input type="radio" name="Parameter" onclick="(chooseO3())"> Ozone<br>
               <input type="radio" name="Parameter" onclick="(chooseCO())"> Carbon monoxide<br>
-              <input type="radio" name="Parameter" onclick="(chooseNO2())"> Nitrogen dioxide<br>
+              <input type="radio" name="Parameter" onclick="(chooseNO2())">Nitrogen dioxide<br>
               <input type="radio" name="Parameter" onclick="(chooseHumidity())"> Humidity<br>
             </form>
 			<br>
-            <p id='parameter'>Measuring unit</p><span style="margin-left: 225px"><a class="tooltip">?<span class="classic">To display
-			a measurement in the diagram, please select by marking the circles.</span></a></span>
+            <p id='parameter'>Maßeinheit</p><span style="margin-left: 225px"><a class="tooltip">?<span class="classic">Um eine
+            Messung im Diagramm anzuzeigen, wählen und markieren Sie bitte den jeweiligen Kreis</span></a></span>
           </div><!--Close-item-->
         </div><!--Close-sidebar-->
 
@@ -81,20 +86,86 @@
               <input type="radio" name="Parameter" onclick="(chooseDay(2))"> <span id="day2"></span><br>
               <input type="radio" name="Parameter" onclick="(chooseDay(1))"> <span id="day1"></span><br>
               <input type="radio" name="Parameter" onclick="(chooseDay(0))" checked="checked"> <span id="day0"></span> (today)
-            </form><span style="margin-left: 225px"><a class="tooltip">?<span class="classic">If you like to display past measurements,
-			please select the respective circle.</span></a></span>
+            </form><span style="margin-left: 225px"><a class="tooltip">?<span class="classic">Wenn Sie die Werte vergangener Tage
+            einsehen möchten, wählen und markieren Sie bitte den zum jeweiligen Datum dazugehörigen Kreis</span></a></span>
           </div><!--Close-item-->
-        </div><!--Close-sidebar-->
+                 		
+		  <div class="sidebar_item">
+			<h2>Raw Data XML</h2>
+				<div id="rawdata" onclick="(getXML1())">AQE 1</div>
+				<div id="rawdata" onclick="(getXML2())">AQE 2</div>
+				<div id="rawdata" onclick="(getXML3())">AQE 3</div>			
+		  </div><!--Close-item-->		
+		</div><!--Close-sidebar-->
       </div><!--Close-sidebar_container-->
 
       <div id="diagram">
         <canvas id="canvas1" width="710" height="420">[No canvas support]</canvas>
-      </div><script>
+      </div>
+	<script>
+	  
+	function getXML1(){
+		xmlPath1 = 'http://giv-geosoft2c.uni-muenster.de:8080/XML/rest/XML/' + sensorId1 + '/' + selectedPara + '/' + yearBegin + '-' + monthBegin + '-' + dateBegin + '%200:0:0/' + yearEnd + '-' + monthEnd + '-' + dateEnd + '%200:0:0';
+		window.open(xmlPath1);
+		}
+		
+	function getXML2(){
+		xmlPath2 = 'http://giv-geosoft2c.uni-muenster.de:8080/XML/rest/XML/' + sensorId2 + '/' + selectedPara + '/' + yearBegin + '-' + monthBegin + '-' + dateBegin + '%200:0:0/' + yearEnd + '-' + monthEnd + '-' + dateEnd + '%200:0:0';
+		window.open(xmlPath2);
+		}
+		
+	function getXML3(){
+		xmlPath3 = 'http://giv-geosoft2c.uni-muenster.de:8080/XML/rest/XML/' + sensorId3 + '/' + selectedPara + '/' + yearBegin + '-' + monthBegin + '-' + dateBegin + '%200:0:0/' + yearEnd + '-' + monthEnd + '-' + dateEnd + '%200:0:0';
+		window.open(xmlPath3);
+		}
+
+	</script>
+     <script>
   
-        // Muss noch angepasst werden, wird mit der url von der Karte �bergeben
-        var sensorId1 = 75762;
-        var sensorId2 = 75839;
-        var sensorId3 = 75842;  
+  	var sensorId1 = 0;
+	var sensorId2 = 0;
+	var sensorId3 = 0;
+	
+	var name1 = ' ';
+	var name2 = ' ';
+	var name3 = ' ';
+	
+	var bool1 = []; 
+	var bool2 = [];
+	var bool3 = [];
+	
+	var selectedPara;
+	var circle;
+	var time = [];
+	
+	path = location.href;
+	pathPara = path.split('?');
+	if (pathPara.length > 0){					//at least one egg selected
+		pathPara = pathPara[1];
+		eggId = pathPara.split('&');
+		getId1 = eggId.slice(0,1);
+		getId1 = getId1.toString();
+		sensorId1 = getId1.slice(4);
+		if (eggId.length > 1){					//more than one egg selected
+			getId2 = eggId.slice(1,2);
+			getId2 = getId2.toString();
+			sensorId2 = getId2.slice(4);
+			if (eggId.length > 2){				//more than two eggs selected
+				getId3 = eggId.slice(2,3);
+				getId3 = getId3.toString();
+				sensorId3 = getId3.slice(4);
+			}
+		}
+	}
+        
+        //get Names for the legend
+	phpLocation2 = 'http://giv-geosoft2c.uni-muenster.de/getEggNames.php?id1=' + sensorId1 + '&id2=' + sensorId2 + '&id3=' + sensorId3;
+	$.ajax({
+	type: "GET",
+	url: phpLocation2,
+	dataType: "script",
+	success: function(){}
+	});
         
         //choose the day of the displayed measurements
         function chooseDay(n)
@@ -117,19 +188,30 @@
                 egg2 = [0];
                 egg3 = [0];
                 
-                callPHP();
+                fullDay = ['','2 Uhr','4 Uhr','6 Uhr','8 Uhr','10 Uhr','12 Uhr','14 Uhr','16 Uhr','18 Uhr','20 Uhr','22 Uhr','24 Uhr',];
+				
+		//adjusting x-axis labels, for the current day which has not 24 hours of measurement values
+		timeNow = new Date();
+		hourNow = timeNow.getHours();
+		partDay = ['','2 Uhr','4 Uhr','6 Uhr','8 Uhr','10 Uhr','12 Uhr','14 Uhr','16 Uhr','18 Uhr','20 Uhr','22 Uhr','24 Uhr',];
+		hour1 = hourNow / 2 + 1;
+		hour2 = Math.floor(hour1);
+		partDay.length = hour2;	
+		if (n == 0) time = partDay;
+		else time = fullDay;
+               
                 switch(selectedPara)
                         {
-                        case 'temperaturC':
+                        case 'temperature':
                                 chooseTemperature();
                                 break;
                         case 'ozon':
                                 chooseO3();
                                 break;
-                        case 'CO':
+                        case 'co':
                                 chooseCO();
                                 break;
-                        case 'NO2':
+                        case 'no2':
                                 chooseNO2();
                                 break;
                         case 'humidity':
@@ -145,7 +227,7 @@
         
         
         //At loading the page: Draw empty diagram
-        drawDiagram();
+        drawDiagram(egg1, egg2, egg3, bool1, bool2, bool3);
         
         //Date of the radio buttons: Instead of "yesterday", "day before yesterday" etc.
         for (var x = 0; x < 7; x++) document.getElementById('day' + x).innerHTML = writeCorrectDates(x);
@@ -184,23 +266,92 @@
 
         
         //Main function for drawing all diagrams
-        function drawDiagram(egg1, egg2, egg3)
+        function drawDiagram(egg1, egg2, egg3, bool1, bool2, bool3)
                 {
-                var line = new RGraph.Line('canvas1', [egg1, egg2, egg3]);
-                line.Set('chart.labels', time);
-                line.Set('chart.ylabels.count', 5);
-                line.Set('chart.xaxispos', 'center');
-                line.Set('chart.numxticks', 12);
-                line.Set('chart.numyticks', 20);
+                var line = new RGraph.Line('canvas1', [0],[0],[0]);
+                line.Set('chart.ylabels', false);
+                if (selectedPara == 'temperature') line.Set('chart.xaxispos', 'center');
+					else line.Set('chart.xaxispos', 'bottom');
                 line.Set('colors', ['red', 'limegreen', 'blue']);
-                line.Set('chart.key', ['egg1','egg2','egg3']);
+                line.Set('chart.key', [name1, name2, name3]);
                 line.Set('chart.key.position', 'gutter');
                 line.Set('chart.background.grid.autofit.numvlines', 24);
                 line.Set('chart.background.grid.autofit.numhlines', 8);
                 line.Set('chart.gutter.left', 50);
+				line.Set('chart.numxticks',1);
                 line.Draw();
+				
+				var line1 = new RGraph.Line('canvas1', [egg1, egg2, egg3]);
+                if (selectedPara == 'temperature') line1.Set('chart.xaxispos', 'center');
+					else line1.Set('chart.xaxispos', 'bottom');
+                line1.Set('colors', ['red', 'rgba(0,0,0,0)', 'rgba(0,0,0,0)']);
+                line1.Set('chart.gutter.left', 50);
+				line1.Set('chart.labels', time);
+                line1.Set('chart.ylabels.count', 5);
+				line1.Set('chart.background.grid.vlines', false);
+                line1.Set('chart.background.grid.hlines', false);
+				line1.Set('chart.numxticks',1);
+				line1.Draw();
+				
+				var line2 = new RGraph.Line('canvas1', [egg2, egg1, egg3]);
+                if (selectedPara == 'temperature') line2.Set('chart.xaxispos', 'center');
+					else line2.Set('chart.xaxispos', 'bottom');
+                line2.Set('colors', ['limegreen', 'rgba(0,0,0,0)', 'rgba(0,0,0,0)']);
+                line2.Set('chart.gutter.left', 50);
+				line2.Set('chart.ylabels', false);
+				line2.Set('chart.background.grid.vlines', false);
+                line2.Set('chart.background.grid.hlines', false);
+				line2.Set('chart.noaxes',true);
+				line2.Set('chart.numxticks',1);
+				line2.Draw();
+				
+				var line3 = new RGraph.Line('canvas1', [egg3, egg1, egg2]);
+                if (selectedPara == 'temperature') line3.Set('chart.xaxispos', 'center');
+					else line3.Set('chart.xaxispos', 'bottom');
+                line3.Set('colors', ['blue', 'rgba(0,0,0,0)', 'rgba(0,0,0,0)']);
+                line3.Set('chart.gutter.left', 50);
+				line3.Set('chart.ylabels', false);
+				line3.Set('chart.background.grid.vlines', false);
+                line3.Set('chart.background.grid.hlines', false);
+				line3.Set('chart.noaxes',true);
+				line3.Set('chart.numxticks',1);
+				line3.Draw();
+				
+				
+				//Mark measurement errors with circles
+				for (i=0;i<bool1.length;i++){
+					if (bool1[i]==1) {
+						circle = new RGraph.Drawing.Circle('canvas1',line1.coords[i][0],line1.coords[i][1],5)
+						circle.Set('chart.strokestyle', 'black')
+						circle.Set('chart.fillstyle', 'rgba(255,255,0,0)')
+						circle.Set('chart.linewidth', 1)
+						circle.Draw();
+						}
+					}
+                
+				
+				for (i=0;i<bool2.length;i++){
+					if (bool2[i]==1) {
+						circle = new RGraph.Drawing.Circle('canvas1',line2.coords[i][0],line2.coords[i][1],5)
+						circle.Set('chart.strokestyle', 'black')
+						circle.Set('chart.fillstyle', 'rgba(255,255,0,0)')
+						circle.Set('chart.linewidth', 1)
+						circle.Draw();
+						}
+					}
+                
+				
+				for (i=0;i<bool3.length;i++){
+					if (bool3[i]==1) {
+						circle = new RGraph.Drawing.Circle('canvas1',line3.coords[i][0],line3.coords[i][1],5)
+						circle.Set('chart.strokestyle', 'black')
+						circle.Set('chart.fillstyle', 'rgba(255,255,0,0)')
+						circle.Set('chart.linewidth', 1)
+						circle.Draw();
+						}
+					}
                 }
-        
+			
         
         //Remove previous diagram from the canvas
         function clearCanvas()
@@ -213,20 +364,16 @@
                 }
                 
         //Choose parameter
-        var selectedPara;
         
         function chooseTemperature()
                 {
-                        selectedPara = 'temperaturC';
+                        selectedPara = 'temperature';
                         egg1 = [0];
                         egg2 = [0];
                         egg3 = [0];
                         callPHP();
                         clearCanvas();
-                        
-                        document.getElementById('parameter').innerHTML='Temperatur in °C';
-                        var line = new RGraph.Line('canvas1', [egg1, egg2, egg3]);
-                        line.Set('chart.scale.decimals', 1);    
+                        document.getElementById('parameter').innerHTML='Temperature in °C';
                 }
         
         function chooseO3()
@@ -237,38 +384,29 @@
                         egg3 = [0];
                         callPHP();
                         clearCanvas();
-                        
-                        document.getElementById('parameter').innerHTML='Ozon in Parts per Million';
-                        var line = new RGraph.Line('canvas1', [egg1, egg2, egg3]);
-                        line.Set('chart.scale.decimals', 0);
+                        document.getElementById('parameter').innerHTML='Ozone in Parts per Million';
                 }
                 
         function chooseCO()
                 {
-                        selectedPara = 'CO';
+                        selectedPara = 'co';
                         egg1 = [0];
                         egg2 = [0];
                         egg3 = [0];
                         callPHP();
                         clearCanvas();
-                
-                        document.getElementById('parameter').innerHTML='Kohlenstoffmonoxid in Parts per Million';
-                        var line = new RGraph.Line('canvas1', [egg1, egg2, egg3]);
-                        line.Set('chart.scale.decimals', 0);
+                        document.getElementById('parameter').innerHTML='Carbon monoxide in Parts per Million';
                 }
                 
         function chooseNO2()
                 {
-                        selectedPara = 'NO2';
+                        selectedPara = 'no2';
                         egg1 = [0];
                         egg2 = [0];
                         egg3 = [0];
                         callPHP();
                         clearCanvas();
-                        
-                        document.getElementById('parameter').innerHTML='Stickstoffdioxid in Parts per Million';
-                        var line = new RGraph.Line('canvas1', [egg1, egg2, egg3]);
-                        line.Set('chart.scale.decimals', 0);
+                        document.getElementById('parameter').innerHTML='Nitrogen dioxide in Parts per Million';
                 }
                 
         function chooseHumidity()
@@ -279,34 +417,33 @@
                         egg3 = [0];
                         callPHP();
                         clearCanvas();
-                        
-                        document.getElementById('parameter').innerHTML='Luftfeuchtigkeit in Prozent';
-                        var line = new RGraph.Line('canvas1', [egg1, egg2, egg3]);
-                        line.Set('chart.scale.decimals', 1);
+                        document.getElementById('parameter').innerHTML='Humidity in Percent';
                 }
         
                 
-                
-        //Labels for x-axis
-        var time = ['0 Uhr','2 Uhr','4 Uhr','6 Uhr','8 Uhr','10 Uhr','12 Uhr','14 Uhr','16 Uhr','18 Uhr','20 Uhr','22 Uhr','24 Uhr',];
         
         //Default: Empty diagram
         var egg1 = [0];
         var egg2 = [0];
         var egg3 = [0];
 
-        //function for requesting data from the database with PHP and drawing the diagram
-        function callPHP(){     
+        //function for requesting data from the database with PHP and drawing the diagram		
+        function callPHP(){   
+	
+	//Access to real data from Cosm
+    phpLocation = 'http://giv-geosoft2c.uni-muenster.de/requestData.php?dateBegin=' + dateBegin + '&monthBegin=' + monthBegin + '&yearBegin=' + yearBegin + '&dateEnd=' + dateEnd + '&monthEnd=' + monthEnd + '&yearEnd=' + yearEnd + '&selectedPara=' + selectedPara + '&sensorId1=' + sensorId1 + '&sensorId2=' + sensorId2 + '&sensorId3=' + sensorId3;
 
-        phpLocation = 'http://localhost/Semvis-Air/requestData.php?dateBegin=' + dateBegin + '&monthBegin=' + monthBegin + '&yearBegin=' + yearBegin + '&dateEnd=' + dateEnd + '&monthEnd=' + monthEnd + '&yearEnd=' + yearEnd + '&selectedPara=' + selectedPara + '&sensorId1=' + sensorId1 + '&sensorId2=' + sensorId2 + '&sensorId3=' + sensorId3;
+	//Access to test database
+	//phpLocation = 'http://giv-geosoft2c.uni-muenster.de/requestDataTest.php?selectedPara=' + selectedPara;
 
         $.ajax({
         type: "GET",
         url: phpLocation,
         dataType: "script",
         success: function(){
-                                                drawDiagram(egg1, egg2, egg3);
-                                                }
+        		    RGraph.ObjectRegistry.Clear();
+                            drawDiagram(egg1, egg2, egg3, bool1, bool2, bool3);
+							}
         });
         }       
       </script>

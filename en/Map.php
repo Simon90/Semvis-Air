@@ -76,11 +76,11 @@ linkages to the help-site, the table and the diagram.  -->
             <h2>Official Values</h2>
 
             <div>
-              Ozone (O3): <span id="myelement"></span> [µg/m³]
+              Ozone (O3): <span id="myelement"></span> [ppm]
             </div><br>
 
             <div>
-              Nitrogen Dioxide (NO2): <span id="myelement2"></span> [µg/m³]
+              Nitrogen Dioxide (NO2): <span id="myelement2"></span> [ppm]
             </div><br>
 
             <div>
@@ -232,6 +232,9 @@ linkages to the help-site, the table and the diagram.  -->
                         var O3= "<?php echo $test_O3[count($test_O3)-1] ?>";
                         var NO2="<?php echo $test_NO2[count($test_NO2)-1] ?>";
                         var pm10="<?php echo $test_pm10[count($test_pm10)-1] ?>";
+						
+						O3=(Math.round((((O3/1000)*24.45)/48.0)*100)/100); //http://www.lenntech.de/systeme/ozon/daten/ozon-daten.htm
+						NO2=(Math.round((((NO2/1000)*24.45)/46.0)*100)/100); // http://www.convertunits.com/molarmass/Nitrogen+Dioxide
                         
                         $(selector).html(O3);
                         $(selector2).html(NO2);

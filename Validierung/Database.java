@@ -140,6 +140,7 @@ public class Database {
 			conn = DriverManager.getConnection(url, "geosoft2", "DZLwwxbW");
 			Statement st = conn.createStatement();
 			st.execute("delete from \"MeasuredData\" where date<(Current_Timestamp- interval'7 days');");
+			conn.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -133,6 +133,7 @@ public class XMLGenerator {
 			}
 
 			table.setMeasurements(measurements);
+			conn.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -210,16 +211,16 @@ public class XMLGenerator {
 			return "%";
 		}
 		if (measurementtype.equals("ozon")) {
-			return "ppm";
+			return "ppb";
 		}
 		if (measurementtype.equals("no2")) {
-			return "ppm";
+			return "ppb";
 		}
 		if (measurementtype.equals("temperature")) {
 			return "°C";
 		}
 		if (measurementtype.equals("co")) {
-			return "ppm";
+			return "ppb";
 		}
 		return null;
 	}

@@ -130,21 +130,6 @@ public class Database {
 		}
 	}
 
-	/**
-	 * This method deletes all data from the table which are older than 7 days.
-	 */
-	public static void deleteOldData() {
-		Connection conn;
-		try {
-			String url = "jdbc:postgresql://giv-geosoft2c.uni-muenster.de/CosmDaten";
-			conn = DriverManager.getConnection(url, "geosoft2", "DZLwwxbW");
-			Statement st = conn.createStatement();
-			st.execute("delete from \"MeasuredData\" where date<(Current_Timestamp- interval'7 days');");
-			conn.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+
 
 }

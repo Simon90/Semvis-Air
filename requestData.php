@@ -45,8 +45,8 @@ $j = 0;
 while($row2 = pg_fetch_array($result2))
     {
     echo "egg2[".$j."] = " .$row2[$selectedPara] .";";	
-	if ($row2[$bool] == 'f') {echo "bool2[".$j."] = 0;";}
-	else {echo "bool2[".$j."] = 1;";}
+	if ($row2[$bool] == 't') {echo "bool2[".$j."] = 1;";}
+	else {echo "bool2[".$j."] = 0;";}
 	$j++;
 	} 
 	
@@ -54,8 +54,8 @@ $k = 0;
 while($row3 = pg_fetch_array($result3))
     {
     echo "egg3[".$k."] = " .$row3[$selectedPara] .";";
-	if ($row3[$bool] == 'f') {echo "bool3[".$k."] = 0;";}
-	else {echo "bool3[".$k."] = 1;";}	
+	if ($row3[$bool] == 't') {echo "bool3[".$k."] = 1;";}
+	else {echo "bool3[".$k."] = 0;";}	
 	$k++;
 	} 
 	

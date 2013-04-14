@@ -17,7 +17,7 @@
     <div id="header">
       <div id="banner">
         <div id="Willkommen">
-          <h1>Semvis Air</h1>
+          <h1>Semvis-Air</h1>
           <h6>System zur Erfassung,Modellierung und Visualisierung von Luftqualitätsdaten</h6>
         </div><!--close welcome-->
       </div><!--close banner-->
@@ -91,7 +91,7 @@
               <p>"Air Quality Egg" heißt übersetzt nichts weiter als "Luftqualitäts-Ei". Wie der Name es
               vermuten lässt, sind diese Objekte ei-förmig. Sie beinhalten diverse Sensoren zur Messung der Luftqualität.
 			  Das AQE besteht aus zwei Sensoren, der Außenstation und der Empfangsstation. Die Außenstation beinhaltet die 
-			  verschiedenen Sensoren zur Messung der Luftqualität und wir draußen in Reichweite der Empfangsstation angebracht. 
+			  verschiedenen Sensoren zur Messung der Luftqualität und wird draußen in Reichweite der Empfangsstation angebracht. 
 			  Die gemessenen Daten werden automatisch an die Empfangsstation gesendet, die wiederum über das Internet die Daten in Echtzeit 
 			  hochlädt und von Cosm dargestellt werden. Gegenwärtig kommunizieren die beiden Bestandteile per Ethernet, doch soll es
 			  zukünftig über Radiofrequenzen vonstatten gehen. Standardmäßig besitzen die Air Quality Eggs Sensoren zur Messung der 
@@ -139,25 +139,28 @@
               <h4 class="slider2">Was bedeuten die Messwerte?</h4>
               <p>Kohlenmonoxid ist ein sogenanntes Atemgift, welches den Sauerstofftransport im Körper hemmt. Allerdings ist seine
               Konzentration in den letzten Jahren so stark zurückgegangen,dass selbst in verkehrsnahen Bereichen die Messungen
-              weit unterhalb des Grenzwertes. Bei hohen Ozonwerten kommt es zur Beeinträchtigung der Lungenfunktion und des
-              Immunsystems. Müdigkeit und Kopfschmerzen sind meist die Folge. Der Grenzwert für Ozon liegt bei 180µg/m³.
+              weit unterhalb des Grenzwertes liegen. Bei hohen Ozonwerten kommt es zur Beeinträchtigung der Lungenfunktion und des
+              Immunsystems. Müdigkeit und Kopfschmerzen sind meist die Folge. Der Grenzwert für Ozon liegt bei ca. 0.09 parts per million.
               Stickstoffoxid ist ebenfalls ein Gas und führt zu Reizungen und Erkrankung der Atemwege. Der Grenzwert liegt hier
-              bei 200µg/m³. Feinstaub PM10 gibt die Masse der Schwebpartikel in der Luft wieder. Dieser entsteht zum Beispiel
-              durch Emissionen von Kfz-Motoren. Gesundheitliche Folgen bei zu Hoher Feinstaubbelasung sind zum Beispiel
+              bei ca 0.1 ppm. Feinstaub PM10 gibt die Masse der Schwebpartikel in der Luft wieder. Dieser entsteht zum Beispiel
+              durch Emissionen von Kfz-Motoren. Gesundheitliche Folgen bei zu hoher Feinstaubbelasung sind zum Beispiel
               Herzkreislauferkrankungen. Der Tagesgrenzwert von Feinstaub beträgt 50µg/m³. Dieser Tageswert sollte innerhalb
               eines Jahres nicht mehr als 35 mal überschritten werden.</p>
             </li>
             <li class="slider1">
               <h4 class="slider2">Wie werden die Messdaten bezogen?</h4>
               <p>Die Messwerte die Sie aus der Karte entnehmen können, werden von den einzelnen "Air Quality Eggs"
-              erhoben. Für die Qualität der Messungen sind die Inhaber auch mitverantwortlich. (...) Die offiziellen Messwerte
-              werden von verschiedenen Wetterstationen in der Region Münster, zusammengefasst vom Landesamt für Natur, Umwelt und
-              Verbraucherschutz(www.lanuv.nrw.de) abgerufen.</p>
+              erhoben. Für die Qualität der Messungen sind die Inhaber auch mitverantwortlich. Vorgesehen ist eine Anbringung außerhalb der eigenen vier Wände.
+			  Dies wird jedoch nicht kontrolliert und so kann es vorkommen, dass die AQEs innerhalb eines Gebäudes sind. Dadurch sind die Daten nicht repräsentativ,
+			  was die Luftqualität draußen angeht. Hier ist also auch Ihre persönliche Einschätzung gefragta. Hinterfragen Sie die Werte ruhig und nehmen Sie sie nicht
+			  als 100% richtig an.	
+			  Die offiziellen Messwerte werden von verschiedenen Wetterstationen in der Region Münster, zusammengefasst vom Landesamt für Natur, Umwelt und
+              Verbraucherschutz(www.lanuv.nrw.de), abgerufen.</p>
             </li>
 			<li class="slider1">
               <h4 class="slider2">Sind die gemessen Daten auf Richtigkeit überprüft worden?</h4>
               <p>Ja. Jeder einzelne Messwert wird mittels einer Methode zur Erkennung von Ausreißern („Running median“) validiert. 
-			  Die Methode arbeitet mit vorherigen sowie nachfolgende Messungen des Air Quality Egg’s. Jeder Messwert wird überprüft, 
+			  Die Methode arbeitet mit vorherigen sowie nachfolgenden Messungen des Air Quality Eggs. Jeder Messwert wird überprüft, 
 			  ob er außerhalb eines bestimmten Wertebereichs liegt und als möglicher Ausreißer gewertet werden kann. Der Wertebereich 
 			  wird für jeden Messwert, durch verschiedene statistische Parameter, neu erstellt. Mögliche Ausreißer können durch Mess- oder 
 			  Übertragungsfehler entstehen.  Für die Richtigkeit der Ausreißererkennung können wir nicht garantieren.</p>

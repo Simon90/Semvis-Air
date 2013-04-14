@@ -92,6 +92,7 @@ $query.="(\"date\",\"sensorId\",\"temperature\",ozon,\"no2\",humidity,\"co\") va
 $connection="host=giv-geosoft2c.uni-muenster.de port=5432 dbname=CosmDaten user=geosoft2 password=DZLwwxbW";
 pg_connect($connection);
 $result=pg_query($query);
+pg_query("delete from \"MeasuredData\" where date<(Current_Timestamp- interval'7 days');");
 
 }
 }	

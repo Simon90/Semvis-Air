@@ -166,13 +166,26 @@
 			  Übertragungsfehler entstehen.  Für die Richtigkeit der Ausreißererkennung können wir nicht garantieren.</p>
             </li>
 			<li class="slider1">
-              <h4 class="slider2">Sind die gemessen Daten auf Richtigkeit überprüft worden?</h4>
-              <p>Ja, das geht. Die Messdaten können im XML Format angezeigt werden. Die Daten eines Parameters 
-			  (Luftfeuchtigkeit, Temperatur, CO, NO2, Ozon) werden für ein Air Quality Egg jeweils dargestellt. 
-			  Außerdem muss ein Zeitfenster für diese Daten gewählt werden. Es können die Daten der letzten 7 Tage abgerufen werden. 
-			  Die XML wird mit Hilfe eines Webservice erstellt. Es gibt zwei Varianten, um die XML anzuzeigen. 
-			  Einmal kann man innerhalb der Diagramm- oder Tabellendarstellung auf den Button „als XML anzeigen“ klicken. 
-			  Dann wird die XML zu den aktuellen, im Diagramm/Tabelle dargestellten Werten angezeigt.</p>
+              <h4 class="slider2">Gibt es Formate in denen die gemessenen Daten angezeigt werden können?</h4>
+              <p>Ja, das geht. Die Messdaten können im XML Format angezeigt werden. Die Daten eines Parameters (Luftfeuchtigkeit, Temperatur, CO, NO2, Ozon) 
+			  werden für ein Air Quality Egg jeweils dargestellt. Außerdem muss ein Zeitfenster für diese Daten gewählt werden. Es können die Daten der 
+			  letzten 7 Tage abgerufen werden. Die XML wird mit Hilfe eines Webservice erstellt. Es gibt zwei Varianten um die XML anzuzeigen. Einmal kann 
+			  man innerhalb der Diagramm- oder Tabellendarstellung auf den Button „ XML “ klicken. Dann wird die XML zu den aktuellen, im Diagramm/Tabelle 
+			  dargestellten Werten erstellt. Oder man trägt die entsprechenden Werte selber in die URL ein (siehe „Wie kann ich selber Parameter für die XML 
+			  festlegen?“).</p>
+            </li>
+			<li class="slider1">
+              <h4 class="slider2">Wie kann ich selber Parameter für die XML festlegen?</h4>
+              <p>Möchte man für die XML ein anderes Zeitfenster wählen oder die XML variabel zum weiteren Bearbeiten auslesen lassen, dann kann man die URL 
+			  mit gewünschten Parametern anpassen.<br/>
+              So sieht die Struktur der URL aus:<br/>
+              http://giv-geosoft2c.uni-muenster.de:8080/XML/rest/XML/AirQualityEggId/MessParameter/StartZeit/EndZeit <br/>
+              Dies ist eine Beispiel URL:<br/>
+              <a href="http://giv-geosoft2c.uni-muenster.de:8080/XML/rest/XML/75842/humidity/2012-09-15%2007:16:39.096991/2013-04-12%2023:30:22.055179" target="_blank">
+			  <u>http://giv-geosoft2c.uni-muenster.de:8080/XML/rest/XML/75842/humidity/2012-09-15%2007:16:39.096991/2013-04-12%2023:30:22.055179</u> </a><br/>
+
+              Das XML Schema kann man sich unter der Url <a href="http://giv-geosoft2c.uni-muenster.de/XML/measurements.xsd" target="_blank">
+			  <u>http://giv-geosoft2c.uni-muenster.de/XML/measurements.xsd</u> </a> anzeigen lassen.</p>
             </li>
 			<li class="slider1">
               <h4 class="slider2">Wie kann ich mein "Air Quality Egg" bereitstellen?</h4>

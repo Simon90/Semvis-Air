@@ -55,12 +55,7 @@ import org.xml.sax.SAXException;
 
 @Path("/XML")
 public class XMLGenerator {
-	public static void main(String[] args) throws JAXBException, MalformedURLException, SAXException, DatatypeConfigurationException {
-		
-		XMLGenerator xml=new XMLGenerator();
-		String s=xml.parseToXML(75842, "humidity","2013-04-12 0:0:0","2013-04-12 24:0:0");
-	System.out.println(s);
-	}
+	
 	/**
 	 * This method parses the data of a measurement (humidity,temperature,...)
 	 * to an xml file.
